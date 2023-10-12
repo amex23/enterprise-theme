@@ -1,0 +1,151 @@
+<div class="section flex justify-center relative w-full">{% comment %} {% render 'newspopup' %} {% endcomment %}
+
+</div>
+
+
+{% schema %}
+    {
+        "name": "Custom Newsletter Popup",
+        "tag": "section",
+        "class": "cc-custom-liquid",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "header",
+                "content": "Layout"
+            },
+            {
+                "type": "select",
+                "label": "Section height",
+                "id": "section_height",
+                "options": [
+                    {
+                        "value": "default",
+                        "label": "Default"
+                    },
+                    {
+                        "value": "tight",
+                        "label": "Tight"
+                    },
+                    {
+                        "value": "xsmall",
+                        "label": "Extra small"
+                    },
+                    {
+                        "value": "small",
+                        "label": "Small"
+                    }, {
+                        "value": "medium",
+                        "label": "Medium"
+                    }
+                ],
+                "default": "default"
+            },
+            {
+                "type": "header",
+                "content": "Style"
+            }, {
+                "type": "checkbox",
+                "id": "full_width",
+                "label": "Make section full width",
+                "default": false
+            }, {
+                "type": "select",
+                "id": "dividers",
+                "label": "Dividing lines",
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "None"
+                    }, {
+                        "value": "border-top",
+                        "label": "Above"
+                    }, {
+                        "value": "border-bottom",
+                        "label": "Below"
+                    }, {
+                        "value": "border-top border-bottom",
+                        "label": "Above and below"
+                    }
+                ],
+                "default": "none"
+            }, {
+                "type": "header",
+                "content": "SEO"
+            }, {
+                "type": "checkbox",
+                "id": "prevent_animation",
+                "label": "Load the section without animation",
+                "info": "If this section is visible when the page loads, enabling this setting can reduce CLS and may improve site speed scores. [Read more](https://cleancanvas.co.uk/support/enterprise/performance-guide)",
+                "default": false
+            }
+        ],
+        "presets": [
+            {
+                "name": "Custom Newsletter Popup"
+            }
+        ],
+        "disabled_on": {
+            "groups": ["aside"]
+        }
+    }
+{% endschema %}
+
+
+<style>
+    /* styles.css */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    // script.js
+    $(document).ready(function() {
+        const modal = $("#modal");
+        const closeButton = $("#close");
+
+// Function to open the modal
+        function openModal() {
+            modal.css("display", "block");
+        }
+
+// Function to close the modal
+        function closeModal() {
+            modal.css("display", "none");
+        }
+
+// Event listeners
+        closeButton.on("click", closeModal);
+
+// Open the modal on initial load
+        openModal();
+    });
+</script>

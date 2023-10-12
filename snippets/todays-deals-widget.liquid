@@ -1,0 +1,75 @@
+<style>
+    .todays-designs .cost {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        color: #fff;
+        display: block;
+        line-height: 1.1em;
+        font-size: 20px;
+        padding: 14px;
+        font-family: Mina, sans-serif, sans-serif;
+    }
+    .daily-design .cost {
+        background: #fa9025;
+    }
+    .daily-design.yesterday .cost {
+        background: #a02fff;
+    }
+    .daily-design.yesterday img {
+        border: 5px solid #a02fff;
+    }
+</style>
+
+<div class="container" style="margin-top: 20px;">
+    {% assign date = 'now' | date: "%p" %}
+    {% if date %}
+        <div class="timer-module">
+            <h2>
+                {% if type == 'today' %}Today's {% else %}Yesterday's{% endif %}
+                Deals End In:
+                <span class="time {% if type == 'today' %}today{% else %}lastcall{% endif %}-time"></span>
+            </h2>
+        </div>
+        <div class="todays-designs">
+            <div class="row">
+                <ul class="medium-block-grid-3 daily-design {% if type != 'today' %} yesterday{% endif %}">
+
+                    {% if type == 'today' %}
+                        {% assign designs = settings.todays_designs | split: ',' %}
+                    {% else %}
+                        {% assign designs = settings.lastcall_designs | split: ',' %}
+                    {% endif %}
+
+                    {% for handle in designs %}
+                        {% assign dailyDesign = collections[handle] %}
+                        {% if dailyDesign.metafields.global.status == type %}
+                            <li>
+                                <a href="/products/{{dailyDesign.handle}}-mens">
+                                    <img
+                                        class="lazyload blur-up"
+                                        data-src="{{ dailyDesign.image.src | img_url: 'large' }}"
+                                        src="{{ loading_image }}"
+                                        alt="{{collections[handle].title}} - Collection Image - RIPT Apparel" />
+                                    {% if type == 'today' %}
+                                        <span class="cost">$14</span>
+                                    {% else %}
+                                        <span class="cost">$19</span>
+                                    {% endif %}
+                                </a>
+                                <h5>{{ dailyDesign.title }}</h5>
+                                <a href="/pages/member/?{{ dailyDesign.metafields.global.artist-name }}">{{ dailyDesign.metafields.global.artist-name }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+        {% comment %}{% if type == 'today' %}
+        <div class="divider stripe orange" style="margin:10px 0 30px 0"></div>
+        {% else %}
+        <div class="divider stripe purple" style="margin:10px 0 30px 0"></div>
+        {% endif %}{% endcomment %}
+    {% endif %}
+</div>

@@ -1,0 +1,112 @@
+{
+  "type": "aside",
+  "name": "Overlay group",
+  "sections": {
+    "8156f49a-2a9c-4a36-ab0f-b0fd2eaa4376": {
+      "type": "homepage_daily_designs",
+      "disabled": true,
+      "settings": {}
+    },
+    "cart-drawer": {
+      "type": "cart-drawer",
+      "settings": {
+        "show_backorder_text": false,
+        "show_vendor": true,
+        "show_order_note": false,
+        "show_shipping_text_notice": true,
+        "show_additional_checkout_buttons": true,
+        "show_checkout_button": true,
+        "stick_footer": true,
+        "show_shipping_calculator": false,
+        "shipping_calculator_default_country": "United States"
+      }
+    },
+    "product-compare": {
+      "type": "product-compare",
+      "blocks": {
+        "compare-1": {
+          "type": "image",
+          "settings": {
+            "show_line": false
+          }
+        },
+        "compare-2": {
+          "type": "vendor",
+          "settings": {
+            "show_line": false
+          }
+        },
+        "compare-3": {
+          "type": "title",
+          "settings": {
+            "show_line": false
+          }
+        },
+        "compare-4": {
+          "type": "price",
+          "settings": {
+            "show_line": false
+          }
+        },
+        "compare-5": {
+          "type": "description",
+          "settings": {
+            "truncate_description": false,
+            "words_to_show": 20,
+            "show_line": false
+          }
+        },
+        "compare-6": {
+          "type": "variants",
+          "settings": {
+            "show_line": false
+          }
+        }
+      },
+      "block_order": [
+        "compare-1",
+        "compare-2",
+        "compare-3",
+        "compare-4",
+        "compare-5",
+        "compare-6"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "9ed929ec-f84f-4301-a59c-314bcc98d413": {
+      "type": "countdown-timer-custom",
+      "disabled": true,
+      "settings": {
+        "countdown_text": "These Daily Deals End In:",
+        "font_size": 2,
+        "ript_slogan": "RIPT Apparel features 3 new designs for sale everyday created by artists from all around the world. Each design is available for 24 hours on t-shirts, hoodies, posters and more, starting at just $14.00."
+      }
+    },
+    "79be4f1c-41af-41dd-8854-4e94c380ab10": {
+      "type": "hero",
+      "disabled": true,
+      "settings": {
+        "show": true,
+        "homepage_hero_img": "shopify:\/\/shop_images\/Winning_Spirit_Showroom_Banners.png",
+        "homepage_hero_link": "",
+        "homepage_hero_alt": "",
+        "start_year": "",
+        "start_month": "01",
+        "start_day": "",
+        "start_hour": "00:01",
+        "end_year": "",
+        "end_month": "01",
+        "end_day": "",
+        "end_hour": "23:59"
+      }
+    }
+  },
+  "order": [
+    "8156f49a-2a9c-4a36-ab0f-b0fd2eaa4376",
+    "cart-drawer",
+    "product-compare",
+    "9ed929ec-f84f-4301-a59c-314bcc98d413",
+    "79be4f1c-41af-41dd-8854-4e94c380ab10"
+  ]
+}

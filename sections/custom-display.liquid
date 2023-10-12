@@ -1,0 +1,123 @@
+<div class="section flex justify-center relative section--full-width{% unless section.settings.section_height == "tight" %} section--padded-{{ section.settings.section_height }}{% endunless %}{% if section.settings.dividers != "none" %} {{ section.settings.dividers }}{% endif %}"{% if settings.animations_enabled != "disabled" and section.settings.prevent_animation == false %}data-cc-animate{% endif %}>
+
+    <div class="">
+        {%- unless section.settings.full_width -%}
+            <div class="w-full flex flex-col-reverse md:flex-col-reverse lg:flex-row px max-w-screen-2xl">
+                <div class="bg-black flex justify-center items-center px-[6vw] ">
+                    <div class="flex flex-col gap-[20px] py-20 md:py-10 md:py-0">
+                        <h2 class="text-4xl md:text-4xl lg:text-4xl xl:text-6xl text-white leading-tight">LOOKING TO ADD YOUR<br>
+                            LOGO? NEED HELP WITH<br>
+                            A DESIGN?</h2>
+                        <p class="text-white">Speak To Us About Decorating Your Garments Embroidery, Screenprinting, DTG & DTF</p>
+                        <button
+                            onclick="window.location.href='/pages/contact';"
+                            style="border: 2px solid white;"
+                            class="text-white self-start px-12 py-4">Contact Us</button>
+                    </div>
+                </div>
+                <div class="">
+                    <img src="{{ section.settings.image | img_url: 'master'}}" alt="">
+                </div>
+            {%- endunless -%}
+
+            {% comment %} {{- section.settings.custom_liquid -}} {% endcomment %}
+
+            {%- unless section.settings.full_width -%}
+            </div>
+        {%- endunless -%}
+    </div>
+
+</div>
+
+
+{% schema %}
+    {
+        "name": "Custom Display",
+        "tag": "section",
+        "class": "cc-custom-liquid",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "header",
+                "content": "Layout"
+            },
+            {
+                "type": "select",
+                "label": "Section height",
+                "id": "section_height",
+                "options": [
+                    {
+                        "value": "default",
+                        "label": "Default"
+                    },
+                    {
+                        "value": "tight",
+                        "label": "Tight"
+                    },
+                    {
+                        "value": "xsmall",
+                        "label": "Extra small"
+                    },
+                    {
+                        "value": "small",
+                        "label": "Small"
+                    }, {
+                        "value": "medium",
+                        "label": "Medium"
+                    }
+                ],
+                "default": "default"
+            },
+            {
+                "type": "header",
+                "content": "Style"
+            }, {
+                "type": "checkbox",
+                "id": "full_width",
+                "label": "Make section full width",
+                "default": false
+            }, {
+                "type": "select",
+                "id": "dividers",
+                "label": "Dividing lines",
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "None"
+                    }, {
+                        "value": "border-top",
+                        "label": "Above"
+                    }, {
+                        "value": "border-bottom",
+                        "label": "Below"
+                    }, {
+                        "value": "border-top border-bottom",
+                        "label": "Above and below"
+                    }
+                ],
+                "default": "none"
+            }, {
+                "type": "header",
+                "content": "SEO"
+            }, {
+                "type": "checkbox",
+                "id": "prevent_animation",
+                "label": "Load the section without animation",
+                "info": "If this section is visible when the page loads, enabling this setting can reduce CLS and may improve site speed scores. [Read more](https://cleancanvas.co.uk/support/enterprise/performance-guide)",
+                "default": false
+            }
+        ],
+        "presets": [
+            {
+                "name": "Custom Display"
+            }
+        ],
+        "disabled_on": {
+            "groups": ["aside"]
+        }
+    }
+{% endschema %}

@@ -1,0 +1,241 @@
+<div class="account-nav">
+  <div class="container flex justify-center column account-buttons">
+    <a class="btn btn--secondary" href="{{ routes.account_orders_url }}">
+      {{ 'customer.orders.title' | t }}
+    </a>
+    <a class="btn btn--secondary" href="{{ routes.account_addresses_url }}">
+      {{ 'customer.addresses.title' | t }}
+    </a>
+    <a class="btn btn--secondary" href="{{ routes.account_logout_url }}"{% if settings.preload_links %} data-no-instant{% endif %}>
+      {{- 'customer.account.log_out' | t -}}
+    </a>
+  </div>
+</div>
+
+<div class="section customer">
+  <div class="container">
+    <div class="account-width mx-auto">
+      <h1 class="text-center">{{ 'customer.account.title' | t }}</h1>
+
+      <div id="customer-account" class="section account-content">
+        <div id="my-account">
+          <form class="container" id="account-info" method="post">
+            <div id="my-account-fields" class="load-user-data grid grid-cols-1 sm:grid-cols-1 gap-x-theme gap-y-6 mb-2 md:mb-2">
+              {% comment %}<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+                <h3 class="left">
+                My Account
+                </h3>
+              </div>{% endcomment %}
+        
+              <div class="form-input w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+                  <div class="columns medium-6">
+                    <h6>Email *</h6>
+                    <input class="input w-full" type="email" name="email" v-model="user.email" required/>
+                    {% comment %} <input class="input w-full" type="hidden" name="username" v-model="user.username" /> {% endcomment %}
+                  </div>
+                  <div class="columns medium-6">
+                    <h6>Paypal Email</h6>
+                    <input class="input w-full" type="text" name="paypal" id="paypal" v-model="user.paypal"/>
+                  </div>
+                </div>
+              </div>
+        
+              {% comment %} <div class="form-input w-full" v-if="!user.fb_auth">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+                  <div class="columns medium-6">
+                    <h6>New Password (optional) </h6>
+                    <input class="input w-full" type="password" name="password" />
+                  </div>
+                  <div class="columns medium-6">
+                    <h6>Confirm New Password</h6>
+                    <input class="input w-full" type="password" name="password_confirm" />
+                  </div>
+                </div>
+              </div> {% endcomment %}
+        
+              <div class="form-input w-full">
+                <div class="row">
+                  <div class="columns medium-6">
+                    <h6>Username </h6>
+                    <input class="input w-full" type="text" name="username" v-model="user.username" />
+                  </div>
+                </div>
+              </div>
+        
+              <div class="form-input w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+                  <div class="columns medium-6">
+                    <h6>First Name</h6>
+                    <input class="input w-full" type="text" name="first_name"  v-model="user.first_name" />
+                  </div>
+                  <div class="columns medium-6">
+                    <h6>Last Name</h6>
+                    <input class="input w-full" type="text" name="last_name" value="{{ customer.last_name }}" v-model="user.last_name" />
+                  </div>
+                </div>
+              </div>
+        
+              <div class="form-input w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+                  <div class="columns medium-6">
+                    <h6>Location</h6>
+                    <input class="input w-full" type="text" name="location" id="location" v-model="user.location" />
+                  </div>
+                  <div class="columns medium-6">
+                    <h6>Website</h6>
+                    <input class="input w-full" type="text" name="website" id="website" v-model="user.website"/>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="form-input w-full">
+                <div>
+                  <h6>Bio</h6>
+                  <textarea class="input w-full" name="bio" id="bio" v-model="user.bio" rows="10" style="font-size: 16px; padding: 20px;"></textarea>
+                </div>
+              </div>
+        
+              <div class="grid grid-cols-1 gap-x-theme gap-y-theme">
+                <h3 class="left mt-8 mb-0">
+                Social Info - full URL's, not just usernames
+                </h3>
+              </div>
+        
+              <div class="form-input w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+                  <div class="columns medium-6">
+                    <h6>Deviantart</h6>
+                    <input class="input w-full" type="text" name="deviantart" id="deviantart" v-model="user.social.deviantart"/>
+                  </div>
+                  <div class="columns medium-6">
+                    <h6>Dribbble</h6>
+                    <input class="input w-full" type="text" name="dribbble" id="dribbble" v-model="user.social.dribbble"/>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="form-input w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+                  <div class="columns medium-6">
+                    <h6>Facebook</h6>
+                    <input class="input w-full" type="text" name="facebook" id="facebook" v-model="user.social.facebook"/>
+                  </div>
+                  <div class="columns medium-6">
+                    <h6>Instagram</h6>
+                    <input class="input w-full" type="text" name="instagram" id="instagram" v-model="user.social.instagram"/>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="form-input w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+                  <div class="columns medium-6">
+                    <h6>Pinterest</h6>
+                    <input class="input w-full" type="text" name="pinterest" id="pinterest" v-model="user.social.pinterest"/>
+                  </div>
+                  <div class="columns medium-6">
+                    <h6>Redbubble</h6>
+                    <input class="input w-full" type="text" name="redbubble" id="redbubble" v-model="user.social.redbubble"/>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="form-input w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+                  <div class="columns medium-6">
+                    <h6>Tumblr</h6>
+                    <input class="input w-full" type="text" name="tumblr" id="tumblr" v-model="user.social.tumblr"/>
+                  </div>
+                  <div class="columns medium-6">
+                    <h6>Twitter</h6>
+                    <input class="input w-full" type="text" name="twitter" id="twitter" v-model="user.social.twitter"/>
+                  </div>
+                </div>
+              </div>
+        
+                <button class="btn btn--primary w-full mt-6" id="save-changes" type="submit">
+                  Save Changes
+                </button>
+                <div style="clear:both">
+                  <div class="saved-message text-center">Your changes have been saved.</div>
+                  <div class="error-message text-center"></div>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <h2 class="h3">{{ 'customer.orders.title' | t }}</h2>
+
+        {%- paginate customer.orders by 20 -%}
+          {%- if customer.orders.size > 0 -%}
+            <table class="orders w-full">
+              <caption class="visually-hidden">{{ 'customer.orders.title' | t }}</caption>
+              <thead>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th class="text-end">{{ 'customer.orders.total' | t }}</th>
+              </tr>
+              </thead>
+              <tbody>
+              {%- for order in customer.orders -%}
+                <tr>
+                  <td class="orders__number" data-label="{{ 'customer.orders.order_number' | t }}">
+                    <a class="link" href="{{ order.customer_url }}">{{ order.name }}</a>
+                  </td>
+                  <td class="orders__date" data-label="{{ 'customer.orders.date' | t }}">
+                    {{- order.created_at | time_tag: format: 'date' -}}
+                  </td>
+                  <td class="orders__pay" data-label="{{ 'customer.orders.payment_status' | t }}">
+                    {{- order.financial_status_label -}}
+                  </td>
+                  <td class="orders__fulfil" data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                    {{- order.fulfillment_status_label -}}
+                  </td>
+                  <td class="orders__total text-end" data-label="{{ 'customer.orders.total' | t }}">
+                    {{- order.total_price | money_with_currency -}}
+                  </td>
+                  <td class="orders__link">
+                    <a class="btn btn--secondary w-full" href="{{ order.customer_url }}">{{ 'customer.orders.view_order' | t }}</a>
+                  </td>
+                </tr>
+              {%- endfor -%}
+              </tbody>
+            </table>
+          {%- else -%}
+            <p>{{ 'customer.orders.none' | t }}</p>
+          {%- endif -%}
+
+          {%- if paginate.pages > 1 -%}
+            {% render 'pagination', paginate: paginate %}
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+
+      <div class="mt-16 text-center">
+        <h2 class="h3">{{ 'customer.account.details' | t }}</h2>
+        <div class="address-box mt-6 mx-auto">
+          {{ customer.default_address | format_address }}
+          <a class="link" href="{{ routes.account_addresses_url }}">
+            {{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} <script type="text/javascript" charset="utf-8">
+  var accountPageProvinces = function () {
+  // initialize observers on address selectors
+    new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {hideElement: 'address_province_container_new'});
+    {% for address in customer.addresses %}
+    new Shopify.CountryProvinceSelector('address_country_{{address.id}}', 'address_province_{{address.id}}', {hideElement: 'address_province_container_{{address.id}}'});
+    {% endfor %} 
+  }
+</script> {% endcomment %}

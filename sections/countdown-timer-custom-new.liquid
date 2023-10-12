@@ -1,0 +1,93 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="availability" class="row">
+    <div class="columns small-12">
+        <h2>Shop Daily Designs</h2>
+        <h1 style="padding: 10px 5px; margin-top: 5px;">{{ section.settings.countdown_text }} <span id="countdown-timernew" class="time today-time"></span>
+            {% comment %} <span class="tool-tip show-for-large-up">
+                <span class="tool-tip-trigger"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" x="0px" y="0px" viewBox="0 0 32 32" class="icon icon-help icons8-Help" ><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 16 4 C 9.3844277 4 4 9.3844277 4 16 C 4 22.615572 9.3844277 28 16 28 C 22.615572 28 28 22.615572 28 16 C 28 9.3844277 22.615572 4 16 4 z M 16 6 C 21.534692 6 26 10.465308 26 16 C 26 21.534692 21.534692 26 16 26 C 10.465308 26 6 21.534692 6 16 C 6 10.465308 10.465308 6 16 6 z M 16 10 C 13.802666 10 12 11.802666 12 14 L 14 14 C 14 12.883334 14.883334 12 16 12 C 17.116666 12 18 12.883334 18 14 C 18 14.767423 17.508714 15.44544 16.78125 15.6875 L 16.375 15.8125 C 15.559939 16.083523 15 16.862393 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.944786 17.08181 20 15.620577 20 14 C 20 11.802666 18.197334 10 16 10 z M 15 20 L 15 22 L 17 22 L 17 20 L 15 20 z" overflow="visible" font-family="Bitstream Vera Sans"></path></svg></span>
+                <span class="tool-tip-content">{{ section.settings.ript_slogan }}</span>
+            </span> {% endcomment %}
+        </h1>
+        {% comment %} <div id="countdown-timer" class="time today-time"></div> {% endcomment %}
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  // Set the target time for the countdown (24 hours from now)
+  const targetTime = new Date();
+  targetTime.setHours(targetTime.getHours() + 24);
+
+  // Function to update the countdown timer
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetTime - now;
+
+    // Calculate hours, minutes, and seconds
+    const hours = Math.floor(distance / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the remaining time in the desired format
+    const countdownTimer = document.getElementById("countdown-timernew");
+    countdownTimer.innerHTML =
+      hours.toString().padStart(2, "0") + "h " +
+      minutes.toString().padStart(2, "0") + "m " +
+      seconds.toString().padStart(2, "0") + "s ";
+
+    // Check if the countdown is over
+    if (distance <= 0) {
+      countdownTimer.innerHTML = "Countdown expired!";
+    }
+  }
+
+  // Update the countdown every second
+  setInterval(updateCountdown, 1000);
+
+  // Initial update to avoid 1-second delay in displaying the timer
+  updateCountdown();
+});
+</script> 
+
+
+{% schema %}
+{
+    "name": "Countdown Timer New",
+    "settings": [
+        {
+            "id": "countdown_text",
+            "type": "text",
+            "label": "Heading",
+            "default": "These Daily Deals End In:"
+        },
+        {
+            "id": "font_size",
+            "type": "range",
+            "min": 0.5,
+            "max": 4.0,
+            "step": 0.1,
+            "unit": "em",
+            "label": "Font size",
+            "default": 2
+        },
+        {
+            "id":"ript_slogan",
+            "type":"textarea",
+            "label":"About RIPT",
+            "default": "RIPT Apparel features 3 new designs for sale everyday created by artists from all around the world. Each design is available for 24 hours on t-shirts, hoodies, posters and more, starting at just $14.00."
+        }
+    ],
+    "presets": [
+        {
+            "name": "Countdown Timer",
+            "category": "Custom Content"
+        }
+    ]
+}
+{% endschema %}
+
+{% stylesheet 'scss' %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

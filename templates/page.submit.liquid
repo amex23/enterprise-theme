@@ -1,0 +1,469 @@
+<style>
+.submit-content-width {
+	max-width: 60em;
+}
+.activeColor {
+	border: 3px solid orange !important;
+}
+.alertNote {padding: 10px;
+    background-color: #a02fff;
+	color:#fff;
+    border-radius: 5px;
+    margin-bottom: 30px;
+  display: none}
+
+.alertNote a {
+	color:#fff;
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+.upload-nft {
+	border-radius:0;
+	margin:0;
+	cursor:pointer;
+	padding:10px;
+	color:white;
+	background:#81529c;
+	font-size:14px;
+	position:relative;
+	font-weight:600;
+	display:inline-block;
+}
+
+.nft {
+	display:none !important;
+}
+
+.nft-form .nft {
+	display:block !important;
+}
+
+.nft-form .nft.flex {
+	display:flex !important;
+}
+
+.nft-form .no-nft {
+	display:none;
+}
+
+#accept-nft {
+	margin-right:10px !important;
+	margin-top:5px !important;
+}
+
+#nft-preview {
+	margin-top:20px;
+	background-repeat:no-repeat;
+	background-size:contain;
+	width:300px;
+	height:300px;
+	display:block;
+	background-color:#000;
+}
+
+.tac-link {
+	margin-bottom:15px;
+}
+
+#nft-size-warning {
+	display:none;
+	color:red;
+	margin-top: 20px;
+	font-style: italic;
+}
+
+#nft-thumbnail-path {
+	display: none;
+}
+
+.download-submission-kit {
+	background-color: #81529c;
+	color: white;
+}
+
+.download-submission-kit a {
+	color: white;
+}
+
+body.artist-submission-final #upload-drop, body.artist-submit #upload-drop {
+	width: 100%;
+	height: 400px;
+	border: 2px dashed #ccc;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	cursor: pointer;
+}
+
+body.artist-submission-final .if-image-uploaded, body.artist-submit .if-image-uploaded {
+	display: none;
+}
+
+body.artist-submission-final #size-warning, body.artist-submit #size-warning {
+	display: none;
+	color: red;
+	margin-top: 20px;
+	font-style: italic;
+}
+
+body.artist-submission-final #artist-form .form-input .smalltext, body.artist-submit #artist-form .form-input .smalltext {
+	margin: 0 0 5px;
+}
+
+body.artist-submission-final .if-image-uploaded, body.artist-submit .if-image-uploaded {
+	display: none;
+}
+
+body.artist-submission-final #thumbnail-path, body.artist-submission-final .dz-preview, body.artist-submit #thumbnail-path, body.artist-submit .dz-preview {
+	display: none;
+}
+
+body.artist-submission-final span.loading, body.artist-submit span.loading {
+	display: inline-block;
+	background: green;
+	height: 5px;
+}
+
+body.artist-submission-final #upload-drop.missing-input::after, body.artist-submission-final .missing-input::after, body.artist-submit #upload-drop.missing-input::after, body.artist-submit .missing-input::after {
+	content: "This field is required";
+	font-size: 11px;
+	color: red;
+	margin-top: 3px;
+}
+</style>
+
+{% unless customer %}
+    {% if template contains 'customers' %}
+        {% assign send_to_login = false %}
+    {% else %}
+        {% assign send_to_login = true %}
+    {% endif %}
+{% endunless %}
+
+<script>
+	const url = new URL(window.location.href);
+	const params = new URLSearchParams(url.search);
+	var nft = false;
+	if(params.get('type') == 'nft') {
+		nft = true;
+	}
+</script>
+
+{% if send_to_login %}
+	<script>
+		if(nft) {
+			$('head').append('<meta content="0; url=/account/login?checkout_url=https://www.riptapparel.com/pages/design-submission?type=nft" http-equiv="refresh" />')
+		}
+		else {
+			$('head').append('<meta content="0; url=/account/login?checkout_url=https://www.riptapparel.com/pages/design-submission" http-equiv="refresh" />')
+		}
+	</script>
+{% endif %}
+
+<div class="section container" style="text-align:left" id="design-submit">
+	<div class="submit-content-width mx-auto" id="artist-form">
+		<p class="alertNote nft">
+		Use this submission portal for NFT designs only. <a href="https://www.riptapparel.com/pages/design-submission">Click here</a> for our traditional design submission. Submitting a design for NFT requires the Contributor to grant RIPT a 30 day exclusive review period and to sign over all rights to RIPT if the design is selected within the 30 days per this agreement.
+		<br><br>
+		NFT Royalties are 20% (vs 10% for non-NFT sales) + you will receive an NFT of your design.
+		</p>
+		<form id="submission-form" method="post">
+		<input type="hidden" name="submissionid" id="submissionid" value="" />
+
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme mb-8">
+			<h3 class="left">
+			Submit your design
+			</h3>
+			<button class="btn download-submission-kit" type="button">
+				<a class="subkit" style="font-size: 2rem;" href="http://bit.ly/riptsubmissionkitnobg">Download Submission Kit</a>
+			</button>
+		</div>
+
+		<div class="form-input w-full nft">
+			<h6>NFT Graphic *</h6>
+			<p class="smalltext">
+			2000x2000 jpeg with background.
+			</p>
+			<span id="nft-upload-trigger" class="upload-nft">UPLOAD NFT IMAGE</span>
+
+			<div id="nft-upload-drop">
+				<div id="nft-preview"></div>
+			</div>
+			<p id="nft-size-warning">File must be 2000x2000.</p>
+			<div class="nft-loading-bar">
+				<span class="loading"></span>
+			</div>
+			<div id="nft-thumbnail-path"></div>
+		</div>
+<h4 style="color: #4eb98f;" class="mb-8">
+  Artwork must be an original mash-up created by you. 
+  Absolutely no A.I. Art.
+</h4>
+		{% raw %}
+		<div class="form-input w-full load-design-data mb-8" style="display:none;">
+			
+          <h6>Design Shirt Color *</h6>
+			<p class="smalltext">Select the color of the shirt you'd like for this design. </p>
+			<select name="color" id="shirt-color" v-model="shirtColor.alt_name" style="display:none">
+				<option v-for="color in colors" v-bind:value="color.alt_name">
+					{{color.name }}
+				</option>
+			</select>
+
+			<span v-bind:class="{ activeColor: color.name == shirtColor.name }" v-on:click="selectColor(color)" style="display:inline-block; height:25px; width:25px; margin-right:10px; cursor:pointer;border:1px solid #eee;border-radius: 50%;" v-for="color in colors" v-bind:style="{ backgroundColor: '#' + color.alt_name }"></span>
+			<div style="font-size:14px;">Color: <b>{{shirtColor.name }}</b></div>
+		</div>
+		{% endraw %}
+
+		<div class="form-input w-full mb-8">
+			<h6>Design Graphic * <button id="upload-trigger" style="color:white;background:#81529c" class="btn">UPLOAD IMAGE</button></h6>
+			<p class="smalltext">
+				4500x5700 png mock-up graphic with a transparent background. Please ensure the file has the design positioned and sized as you want it printed. Note: It may take up to 30 seconds to process your upload.
+			</p>
+			<div class="grid grid-cols-2" style="text-align:center;margin-top:15px;">
+				<div class="inline-block medium-6">
+					<h6 style="text-align:center;font-size:14px;">Artwork Preview Image</h6>
+				</div>
+				<div class="inline-block medium-6">
+					<h6 style="text-align:center;font-size:14px;">Shirt Placement Image</h6>
+				</div>
+			</div>
+			<div id="upload-drop" class="dz-clickable" v-bind:style="{ backgroundColor: '#' + shirtColor.alt_name }" style="max-height: 45vw; position: relative; border: 0px none; background-color: rgb(21, 21, 21);">
+				<span id="detail-preview" style="background-repeat:no-repeat;z-index:0;top:0;position:absolute;float:left;height:100%;width:50%;display:inline-block;background-size:contain"></span>
+				<span id="shirt-preview" style="background-repeat:no-repeat;z-index:0;top:0;left:50%;position:absolute;float:left;height:100%;width:50%;display:inline-block;background-size:contain"></span>
+				<div id="upload-busy" style="display:none;text-align:center;position:absolute;top:10px;right:10px;opacity:0.8;z-index:100;width:80px;height:80px">
+					{% comment %}<svg width='78px' height='78px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-cube"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g transform="translate(25 25)"><rect x="-20" y="-20" width="40" height="40" fill="#ded9d9" opacity="0.9" class="cube"><animateTransform attributeName="transform" type="scale" from="1.5" to="1" repeatCount="indefinite" begin="0s" dur="1s" calcMode="spline" keySplines="0.2 0.8 0.2 0.8" keyTimes="0;1"></animateTransform></rect></g><g transform="translate(75 25)"><rect x="-20" y="-20" width="40" height="40" fill="#ded9d9" opacity="0.8" class="cube"><animateTransform attributeName="transform" type="scale" from="1.5" to="1" repeatCount="indefinite" begin="0.1s" dur="1s" calcMode="spline" keySplines="0.2 0.8 0.2 0.8" keyTimes="0;1"></animateTransform></rect></g><g transform="translate(25 75)"><rect x="-20" y="-20" width="40" height="40" fill="#ded9d9" opacity="0.7" class="cube"><animateTransform attributeName="transform" type="scale" from="1.5" to="1" repeatCount="indefinite" begin="0.3s" dur="1s" calcMode="spline" keySplines="0.2 0.8 0.2 0.8" keyTimes="0;1"></animateTransform></rect></g><g transform="translate(75 75)"><rect x="-20" y="-20" width="40" height="40" fill="#ded9d9" opacity="0.6" class="cube"><animateTransform attributeName="transform" type="scale" from="1.5" to="1" repeatCount="indefinite" begin="0.2s" dur="1s" calcMode="spline" keySplines="0.2 0.8 0.2 0.8" keyTimes="0;1"></animateTransform></rect></g></svg>{% endcomment %}
+                  {{ '8bit-anim-reaper.gif' | asset_url | img_tag }}
+				</div>
+
+				<div id="upload-trigger" style="position:relative;z-index:999;display:none;">
+					<i class="fa fa-cloud-upload"></i>
+
+					<h6 style="text-align:center">Drop files here or click to upload.</h6>
+				</div>
+			</div>
+			<p id="size-warning">File must be 4500x5700.</p>
+			<div class="loading-bar">
+				<span class="loading"></span>
+			</div>
+			<div id="thumbnail-path"></div>
+
+          <p class="smalltext if-image-uploaded">If you are satisfied with color and placement, scroll down to finalize your submission. Be sure to complete your <a style="color: #4eb98f;" href="https://www.riptapparel.com/account/">Account Information first!</a></p>
+		</div>
+
+		<div class="form-input w-full mb-8">
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+				<div class="columns medium-6">
+					<h6>Email *</h6>
+					<div class="readonly" style="font-size:20px">{{ customer.email }}</div>
+					<input class="input" type="hidden" name="email" value="{{ customer.email }}" id="email" />
+				</div>
+				<div class="columns medium-6">
+					<h6>User Name</h6>
+					{% comment %} {% raw %}<div class="readonly" style="font-size:20px" v-cloak>{{artist.username }}</div>{% endraw %} {% endcomment %}
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-input w-full mb-8">
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme">
+				<div class="columns medium-6">
+					<h6>First Name *</h6>
+					<div class="readonly" style="font-size:20px">{{ customer.first_name }}</div>
+					<input class="input" type="hidden" name="first_name" value="{{ customer.first_name }}" />
+				</div>
+				<div class="columns medium-6">
+					<h6>Last Name *</h6>
+					<div class="readonly" style="font-size:20px">{{ customer.last_name }}</div>
+					<input class="input" type="hidden" name="last_name" value="{{ customer.last_name }}" />
+				</div>
+			</div>
+		</div>
+
+		<div class="form-input w-full mb-8">
+			<h6>Phone Number *</h6>
+			<p class="smalltext">So we can reach you immediately regarding your art if email is not working</p>
+			<input type="number" minlength="8" name="phone" id="phone" class="input required-field w-full" />
+		</div>
+
+		<div class="form-input w-full mb-8">
+			<h6>Paypal Email *</h6>
+			{% comment %} <input tabindex="1" type="email" name="paypal-email" id="paypal-email" v-model="artist.paypal" class="input required-field w-full" /> {% endcomment %}
+			<input tabindex="1" type="email" name="paypal-email" id="paypal-email" class="input required-field w-full" />
+		</div>
+
+		<p class="divider"></p>
+
+		<div class="no-nft">
+			
+			<div class="form-input w-full mb-8">
+				<h6>Shirt Size *</h6>
+				<p class="smalltext">Please choose the size of shirt you wish to receive as your free artist TEE</p>
+				{% comment %} <select tabindex="2" name="shirt-size" id="shirt-size" v-model="selectedSize" class="required-field non-nft-required w-full"/>
+					<option value="">Choose your size</option>
+					<option v-for="size in sizes" v-bind:value="size.id">
+						${ size.name }
+					</option>
+				</select> {% endcomment %}
+			</div>
+
+			<h6>Shipping Address</h6>
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme related-fields">
+				<div class="columns medium-6" style="padding-left:0">
+					<div class="form-input w-full mb-8">
+						<b>Address 1 *</b>
+						<input tabindex="3" type="text" name="address1" value="{{ customer.default_address.address1 }}" class="block w-full input required-field non-nft-required"/>
+					</div>
+					<div class="form-input w-full mb-8">
+						<b>City *</b>
+						<input tabindex="5" type="text" name="city" value="{{ customer.default_address.city }}" class="block w-full input required-field non-nft-required"/>
+					</div>
+					<div class="form-input w-full mb-8">
+						<b>Zip Code *</b>
+						<input tabindex="7" type="text" name="zip" value="{{ customer.default_address.zip }}" class="block w-full input required-field non-nft-required"/>
+					</div>
+				</div>
+				<div class="columns medium-6" style="padding-left:0">
+					<div class="form-input w-full mb-8">
+						<b>Address 2</b>
+						<input class="block w-full input" tabindex="4" type="text" name="address2" value="{{ customer.default_address.address2 }}" />
+					</div>
+					<div class="form-input w-full mb-8">
+						<b>State *</b>
+						<div id="province-wrapper">
+							<select  tabindex="6" id="state" name="state" class="required-field non-nft-required w-full" data-value="{{ customer.default_address.province }}"></select>
+						</div>
+						<input type="text" id="stateinput" name="stateinput" style="display:none" class="block w-full input required-field non-nft-required"/>
+					</div>
+
+					<div class="form-input w-full mb-8">
+						<b>Country *</b>
+						<select tabindex="8" name="country" id="country" class="block w-full submit-country">
+							{{ all_country_option_tags }}
+						</select>
+					</div>
+				</div>
+			</div>
+
+
+			<p class="divider"></p>
+
+		</div>
+
+		<div class="form-input w-full mb-8">
+			<h6>Description *</h6>
+			<p class="smalltext">Please give us a description of your design. 100 words or more is appreciated.</p>
+			<textarea name="description" id="description" class="input required-field w-full" ></textarea>
+		</div>
+
+		<div class="form-input w-full mb-8">
+			<h6>Design Name *</h6>
+			<p class="smalltext">Be aware that we may have to change your requested design name</p>
+			<input type="text" name="name" id="name" class="input required-field w-full" autocomplete="off"/>
+		</div>
+
+		<div class="form-input w-full mb-8">
+			<h6>Keywords *</h6>
+			<p class="smalltext">Enter at least one keyword. Examples: Comic Books, Dragons, Coffee, Sci-fi, pixels, etc.</p>
+			<input type="text" name="keywords" id="keywords" class="input ui-autocomplete-input required-field w-full"/>
+		</div>
+
+		{% comment %}<div class="form-input w-full mb-8">
+			<h6>Final High-res Art File (optional but helpful)</h6>
+			<p class="smalltext">In efforts to prepare designs sooner, we encourage you to include print-ready screen-printable artwork files prior to being accepted. This is not required, but it may expedite the approval process because we know we won't be delayed trying to receive artwork.</p>
+			<input type="text" name="hires_link" placeholder="www.dropbox.com/link_to_my_artfile" />
+			<a class="subkit" style="display: inline-block; margin-top: 15px;" href="http://bit.ly/riptSPexamplefile">Download High Resolution Art Template</a>
+		</div>{% endcomment %}
+
+		<div class="form-input w-full mb-8 no-nft">
+			<h6>Sell your design? *</h6>
+			<p class="smalltext">Would you be willing to sell this design to RIPT Apparel for an upfront fee instead of the typical 10% commission?</p>
+			<input class="input" type="radio" name="sell" value="yes" /> &nbsp;Yes
+			<input class="input" type="radio" name="sell" value="no" checked style="margin-left: 10px;"/> &nbsp;No
+			<div id="sell-amount" style="display:none">
+				<p class="smalltext">Please enter only a whole dollar amount in USD (e.g. 150) *</p>
+				<input type="number" name="sell_amount" class="input required-field"/>
+			</div>
+		</div>
+
+		<p class="divider"></p>
+
+		<div class="form-input w-full mb-8">
+			<h6>Previously printed?</h6>
+			<p class="smalltext">Has this design been for sale or physically printed elsewhere?</p>
+			<input type="checkbox" name="prev_printed" id="previous-check" /> &nbsp;Yes
+		</div>
+
+		<div class="form-input w-full mb-8 previous-location">
+			<h6>Previously printed location</h6>
+			<p class="smalltext">List any website this has been printed at, or physical stores, or if you've even printed a few on your own.</p>
+			<input class="input w-full" type="text" name="prev_location">
+		</div>
+
+		<div class="tac-link" > 
+			<div class="no-nft">
+				<input type="checkbox" style="margin:0;margin-right:5px" name="accept-tac" id="accept-tac" required /> 
+				<label for="accept-tac" style="margin-left:0;font-size:16px;">Accept <a style="color: #4eb98f" href="/pages/artist-terms-and-conditions" target="_new">Terms and Conditions</a></label>
+			</div>
+			<div class="nft flex" style="align-items: flex-start;">
+				<input type="checkbox" style="margin:0;margin-right:5px" name="accept-tac" id="accept-nft" required /> 
+				<label for="accept-nft" style="margin-left:0;font-size:16px;">
+					Accept <a style="color: #4eb98f" href="/pages/creative-submission-agreement-nft-s" target="_new">NFT Terms and Conditions</a>
+					<p class="smalltext">If your design is selected you will be required to sign <a href="#">this agreement</a> prior to its release date.</p>
+				</label>
+			</div>
+		</div>
+
+		<div style="clear:both"></div>
+
+		<button class="btn w-full text-center mt-8" style="background-color:#fc9000;color: white;float:none;" id="agree-submit" type="submit">Submit Design</button>
+
+
+		</form>
+
+	</div>
+
+	<div id="artist-success" class="artist-intake" style="display:none">
+		<div class="grid grid-cols-1 sm:grid-cols-1 gap-x-theme gap-y-theme text-center">
+          	<img src="{{ 'thumbs-up.gif' | file_img_url }}" style="justify-self:center;">
+			<h3 style="display:block;">Thanks for your submission!  You did it!</h3>
+          	<p>We will let you know within 10 days if we decide to print your design.  In the meantime, if you haven’t already, please <a style="color: #4eb98f;" href="https://www.facebook.com/groups/121512787921168" target="_blank">join our 
+            Artist Group on Facebook</a></p>	
+		</div>
+	</div>
+
+</div>
+
+
+<script>
+
+$(document).ready(function() {
+	new Shopify.CountryProvinceSelector('country', 'state', {hideElement: 'province-wrapper'});
+	$('#state').prepend("<option value=''></option>").val('');
+
+	$(document).on('change', '#country', function() {
+		new Shopify.CountryProvinceSelector('country', 'state', {hideElement: 'province-wrapper'});
+		
+		if($('#state').is(':visible')) {
+			$('#stateinput').hide();
+			$('#state').prepend("<option value=''></option>").val('');
+		}
+		else {
+			$('#stateinput').show();
+		}
+	});
+});
+
+if(nft) {
+	$('#design-submit').addClass('nft-form');
+	nft = true;
+	$('#accept-tac').attr('required', false);
+	$('.non-nft-required').removeClass('required-field');
+	$('.nft-only-required').removeClass('required-field');
+}
+else {
+	$('#accept-nft').attr('required', false);
+}
+
+</script>

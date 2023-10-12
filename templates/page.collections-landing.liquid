@@ -1,0 +1,35 @@
+<style type="text/css">
+.banners a {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow .3s;
+  display: block;
+}
+.banners a:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+}
+.banners p {
+  background: black;
+  padding: 8px 10px;
+  border-top: 1px solid #8a8a8a;
+  color: white;
+  transition: background .2s;
+  font-size: 1.3em;
+}
+.banners a:hover p {
+  background: #ad59c2;
+}
+.banners img {width: 100%;}
+@media (max-width: 750px) {
+  .banners img {margin:0; }
+}
+</style>
+
+<img src="https://cdn.shopify.com/s/files/1/0739/9215/files/find-your-fandom_c750ccca-a2ad-41e5-9f5b-f7b90b32c2c0.jpg?18391" alt="" style="width: 100%; margin-bottom: 25px;">
+
+<div class="row">
+	<div class="container" style="font-size: 20px; margin-bottom: 25px;">
+		{{ page.content }}
+	</div>
+</div>
+
+{% section 'flex-grid' %}

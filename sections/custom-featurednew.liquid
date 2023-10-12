@@ -1,0 +1,118 @@
+<div class="flex container justify-center items-center h-[87vh]">
+    <div>
+        <div class="disclosure__panel">
+            <div class="disclosure__content">
+
+                {% render 'newsletter-signup', id: 'footer-signup', arrow_button: true %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .inside-div {
+        height: 100%;
+        width: 100%;
+
+    }
+    .inside-sub-div {
+        height: 100%;
+        width: 100%;
+        border: 2px solid white;
+        z-index: 0 !important;
+    }
+
+    .featured-img {
+        position: relative;
+        width: 100%;
+        {% comment %}
+            height: 80vh;
+        {% endcomment %}
+        background-size: cover;
+        background-position: center;
+    }
+
+    .text-title {
+        z-index: 0 !important;
+    }
+
+    .featured-img:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to bottom right, #242424a0, #5f5f5f52);
+        opacity: 0.6;
+
+    }
+
+    .btn--primary {
+        background: white !important;
+        color: black;
+        border: white;
+    }
+</style>
+
+{% schema %}
+    {
+        "name": "Custom Featured New",
+        "tag": "section",
+        "class": "cc-custom-liquid",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            }, {
+                "type": "header",
+                "content": "Layout"
+            }, {
+                "type": "header",
+                "content": "Style"
+            }, {
+                "type": "checkbox",
+                "id": "full_width",
+                "label": "Make section full width",
+                "default": false
+            }
+        ],
+        "blocks": [
+            {
+                "type": "slide",
+                "name": "Slide",
+                "limit": 4,
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "image_featured",
+                        "label": "Image",
+                        "info": "For best results, use a landscape shaped image with a minimum width of 3200px."
+                    }, {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"
+                    }, {
+                        "type": "url",
+                        "id": "btnlink",
+                        "label": "Button Link"
+                    }, {
+                        "type": "text",
+                        "id": "btnname",
+                        "label": "Button Name"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Custom Featured New"
+            }
+        ],
+        "disabled_on": {
+            "groups": ["aside"]
+        }
+    }
+{% endschema %}

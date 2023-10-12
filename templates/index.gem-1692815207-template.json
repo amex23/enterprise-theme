@@ -1,0 +1,317 @@
+{
+  "sections": {
+    "fd81f4ce-4933-4b57-af6e-c3919eeb87f8": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16115351519391__fd81f4ce-4933-4b57-af6e-c3919eeb87f8-1687978536e5f47173-0": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "template--16115351519391__fd81f4ce-4933-4b57-af6e-c3919eeb87f8-1687978536e5f47173-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Elevate Your Pop Culture Wardrobe With Unique Designs, Made Just For You!",
+            "heading_size": "h3",
+            "heading_h1": false
+          }
+        },
+        "template--16115351519391__fd81f4ce-4933-4b57-af6e-c3919eeb87f8-1687978536e5f47173-2": {
+          "type": "text",
+          "settings": {
+            "text": "<ul><li>Items come in all sizes.<\/li><li>New, Nerdy Designs Everyday.<\/li><li>Supporting Indie Designers With Every Purchase.<\/li><\/ul>",
+            "enlarge_text": false
+          }
+        },
+        "template--16115351519391__fd81f4ce-4933-4b57-af6e-c3919eeb87f8-1687978536e5f47173-3": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_1_label": "Optional button",
+            "button_1_link": "",
+            "button_1_style": "btn--primary",
+            "button_2_label": "Optional button",
+            "button_2_link": "",
+            "button_2_style": "btn btn--primary"
+          }
+        }
+      },
+      "block_order": [
+        "template--16115351519391__fd81f4ce-4933-4b57-af6e-c3919eeb87f8-1687978536e5f47173-0",
+        "template--16115351519391__fd81f4ce-4933-4b57-af6e-c3919eeb87f8-1687978536e5f47173-1",
+        "template--16115351519391__fd81f4ce-4933-4b57-af6e-c3919eeb87f8-1687978536e5f47173-2",
+        "template--16115351519391__fd81f4ce-4933-4b57-af6e-c3919eeb87f8-1687978536e5f47173-3"
+      ],
+      "settings": {
+        "text_align": "text-center",
+        "mob_center_text": true,
+        "color_scheme": "none",
+        "full_width": true
+      }
+    },
+    "2511f6f2-d222-4866-a087-b17a98bb14fa": {
+      "type": "countdown-timer-custom",
+      "settings": {
+        "countdown_text": "These Daily Deals End In:",
+        "font_size": 2,
+        "ript_slogan": "RIPT Apparel features 3 new designs for sale everyday created by artists from all around the world. Each design is available for 24 hours on t-shirts, hoodies, posters and more, starting at just $14.00."
+      }
+    },
+    "b238e33e-3b9e-4726-ab6c-bcdd170a3e6a": {
+      "type": "homepage_daily_designs",
+      "settings": {}
+    },
+    "9bb09302-292f-435f-88fc-f9fdfea9bd86": {
+      "type": "collection",
+      "settings": {
+        "show": true,
+        "title": "Reapers Choice is Back!",
+        "description": "<p>Weekly on Wednesday's, check back here for 12 fresh new designs - ALL $7.00 OFF when you use code <span>\"CHOICE\"<\/span><\/p>",
+        "collection": "reapers-choice",
+        "tag": "Type-Mens",
+        "amount_off": "700",
+        "badge_text": "ON SALE",
+        "grid": "4",
+        "rows": "3",
+        "show_sale_badge": true,
+        "show_view_all": false,
+        "button_text": "Shop Now"
+      }
+    },
+    "b22ccc6f-3d17-49c8-b61c-8acdda63387f": {
+      "type": "flex-grid-with-text",
+      "blocks": {
+        "a90944b2-a08a-428e-8281-769d19117caf": {
+          "type": "image",
+          "settings": {
+            "link_url": "",
+            "link_alt": "",
+            "image_text": "<div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Every month, premium shirts featuring brand new and exclusive designs only available to club members will be delivered straight to your doorstep!<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Upon joining, receive a complimentary welcome gift free of charge!<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Each month, the independent artist who created the design(s) will receive a royalty payment.<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Plus, you will get exclusive discounts!<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Enroll in our monthly plan today and be included in our next printing cycle.<\/span>\n<\/div>\n<\/div>",
+            "break": false
+          }
+        },
+        "3ca95964-8700-4a76-8dbb-9c16dd9d8f4b": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify:\/\/shop_images\/Group_48095736.svg",
+            "link_url": "",
+            "link_alt": "",
+            "image_text": "",
+            "break": false
+          }
+        },
+        "ce817306-08e8-4744-80c9-47923578ca83": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify:\/\/shop_images\/Group_48095737.svg",
+            "link_url": "",
+            "link_alt": "",
+            "image_text": "",
+            "break": false
+          }
+        },
+        "48838798-fab7-47b7-b939-bebc6b3bf3bc": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify:\/\/shop_images\/Group_48095738.svg",
+            "link_url": "",
+            "link_alt": "",
+            "image_text": "",
+            "break": false
+          }
+        }
+      },
+      "block_order": [
+        "a90944b2-a08a-428e-8281-769d19117caf",
+        "3ca95964-8700-4a76-8dbb-9c16dd9d8f4b",
+        "ce817306-08e8-4744-80c9-47923578ca83",
+        "48838798-fab7-47b7-b939-bebc6b3bf3bc"
+      ],
+      "custom_css": [
+        ".flex-grid-with-text {padding-bottom: 200px;}"
+      ],
+      "settings": {
+        "section_heading": "The #1 Shirt Subscription For Geeks & Pop-Culture Freaks!",
+        "section_text": "",
+        "section_fw": true,
+        "blocks_per_row_d": "4",
+        "block_mobile_half": false,
+        "section_heading_uppercase": false,
+        "section_heading_font_size": 32,
+        "block_heading_uppercase": true,
+        "block_text_font_size": 14,
+        "section_margin": 10,
+        "block_margin": 10,
+        "image_border_radius": 0,
+        "image_max_width": "",
+        "start_year": "2020",
+        "start_month": "01",
+        "start_day": "01",
+        "start_hour": "00:01",
+        "end_year": "2030",
+        "end_month": "01",
+        "end_day": "01",
+        "end_hour": "23:59"
+      }
+    },
+    "8cc53b5b-8c0a-45b9-9bbf-c773062a9f35": {
+      "type": "daily-lastcall--widget",
+      "settings": {
+        "which_type": "yesterday",
+        "heading_font_size": 25,
+        "heading_alignment": "text-center"
+      }
+    },
+    "f1ffdfa1-ea7e-48d8-a82c-661b4efc7a04": {
+      "type": "homepage_daily_designs2",
+      "custom_css": [],
+      "settings": {}
+    },
+    "a74d41bf-259f-497f-a463-c1283b80c0a2": {
+      "type": "flex-grid",
+      "blocks": {
+        "bfcf0c87-ba90-41fc-9e4c-da4670f80827": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify:\/\/shop_images\/find-your-fandom.jpg",
+            "link_url": "shopify:\/\/pages\/shop-by-fandom",
+            "link_alt": "",
+            "image_text": "",
+            "break": false
+          }
+        },
+        "77bcdce1-470f-4b33-80ca-cd341b5c9f7a": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify:\/\/shop_images\/glitchygorilla-artist-collection.jpg",
+            "link_url": "shopify:\/\/collections\/glitchygorilla-collection",
+            "link_alt": "Glitchy Gorilla Artist Collection",
+            "image_text": "",
+            "break": false
+          }
+        },
+        "d1460f91-c399-4027-982e-ff899d8ab901": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify:\/\/shop_images\/New_Project_65.png",
+            "link_url": "shopify:\/\/collections\/goodidearyan",
+            "link_alt": "Artist store: Good Idea Ryan",
+            "image_text": "",
+            "break": false
+          }
+        },
+        "97a9d3f0-adf4-45bb-9d7c-4ecd72bd3575": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify:\/\/shop_images\/best-sellers_eb58f69f-31e8-4ca4-bbb2-73b26822279c.jpg",
+            "link_url": "",
+            "link_alt": "",
+            "image_text": "",
+            "break": false
+          }
+        }
+      },
+      "block_order": [
+        "bfcf0c87-ba90-41fc-9e4c-da4670f80827",
+        "77bcdce1-470f-4b33-80ca-cd341b5c9f7a",
+        "d1460f91-c399-4027-982e-ff899d8ab901",
+        "97a9d3f0-adf4-45bb-9d7c-4ecd72bd3575"
+      ],
+      "settings": {
+        "section_heading": "Not sure where to start?",
+        "section_text": "We've got you covered!  Shop our best selling designs or, find your fandom!",
+        "section_fw": false,
+        "blocks_per_row_d": "4",
+        "block_mobile_half": false,
+        "section_heading_uppercase": false,
+        "section_heading_font_size": 32,
+        "block_heading_uppercase": true,
+        "block_text_font_size": 14,
+        "section_margin": 10,
+        "block_margin": 10,
+        "image_border_radius": 0,
+        "image_max_width": "",
+        "start_year": "2019",
+        "start_month": "01",
+        "start_day": "01",
+        "start_hour": "00:01",
+        "end_year": "2030",
+        "end_month": "01",
+        "end_day": "01",
+        "end_hour": "23:59"
+      }
+    },
+    "95e708ed-f477-418d-baed-ca872559eeaf": {
+      "type": "flex-grid",
+      "blocks": {
+        "bdae8c6d-7c19-4e51-9ea2-848b144b2e35": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify:\/\/shop_images\/hero--shop-mens.jpg",
+            "link_url": "https:\/\/www.riptapparel.com\/collections\/mens-t-shirts",
+            "link_alt": "Shop Mens",
+            "image_text": "",
+            "break": false
+          }
+        },
+        "7ffa29df-b372-4543-979b-b33057edbff4": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify:\/\/shop_images\/hero--shop-womens.jpg",
+            "link_url": "https:\/\/www.riptapparel.com\/collections\/womens-t-shirts",
+            "link_alt": "Shop Womens",
+            "image_text": "",
+            "break": false
+          }
+        }
+      },
+      "block_order": [
+        "bdae8c6d-7c19-4e51-9ea2-848b144b2e35",
+        "7ffa29df-b372-4543-979b-b33057edbff4"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_heading": "",
+        "section_text": "",
+        "section_fw": false,
+        "blocks_per_row_d": "2",
+        "block_mobile_half": false,
+        "section_heading_uppercase": true,
+        "section_heading_font_size": 14,
+        "block_heading_uppercase": true,
+        "block_text_font_size": 14,
+        "section_margin": 10,
+        "block_margin": 10,
+        "image_border_radius": 0,
+        "image_max_width": "",
+        "start_year": "2020",
+        "start_month": "01",
+        "start_day": "01",
+        "start_hour": "00:01",
+        "end_year": "2030",
+        "end_month": "01",
+        "end_day": "01",
+        "end_hour": "23:59"
+      }
+    },
+    "e5691e53-feed-42d6-b54e-6815932da91e": {
+      "type": "homepage_daily_designs",
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "fd81f4ce-4933-4b57-af6e-c3919eeb87f8",
+    "2511f6f2-d222-4866-a087-b17a98bb14fa",
+    "b238e33e-3b9e-4726-ab6c-bcdd170a3e6a",
+    "9bb09302-292f-435f-88fc-f9fdfea9bd86",
+    "b22ccc6f-3d17-49c8-b61c-8acdda63387f",
+    "8cc53b5b-8c0a-45b9-9bbf-c773062a9f35",
+    "f1ffdfa1-ea7e-48d8-a82c-661b4efc7a04",
+    "a74d41bf-259f-497f-a463-c1283b80c0a2",
+    "95e708ed-f477-418d-baed-ca872559eeaf",
+    "e5691e53-feed-42d6-b54e-6815932da91e"
+  ]
+}

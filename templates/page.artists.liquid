@@ -1,0 +1,98 @@
+<div id="artists-page">
+	<div class="row text-center">
+		<h1 class="half-banner green">RIPT Apparel Artists</h1>
+		<p><span class="count" data-bind="text: artistCount"></span> and counting</p>
+		<div class="filter">
+			<div class="search-box">
+				<form method="get" action="/pages/artists" style="width: 300px;position: relative;margin: auto;margin-bottom: 20px;">
+					<input type="search" name="search" id="search" placeholder="Search" class="search__input w-full input js-search-input" /> 
+					<button class="search__submit text-current absolute focus-inset start" style="margin:0;"><span class="visually-hidden">Search</span><svg width="21" height="23" viewBox="0 0 21 23" fill="currentColor" aria-hidden="true" focusable="false" role="presentation" class="icon"><path d="M14.398 14.483 19 19.514l-1.186 1.014-4.59-5.017a8.317 8.317 0 0 1-4.888 1.578C3.732 17.089 0 13.369 0 8.779S3.732.472 8.336.472c4.603 0 8.335 3.72 8.335 8.307a8.265 8.265 0 0 1-2.273 5.704ZM8.336 15.53c3.74 0 6.772-3.022 6.772-6.75 0-3.729-3.031-6.75-6.772-6.75S1.563 5.051 1.563 8.78c0 3.728 3.032 6.75 6.773 6.75Z"></path></svg></button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="artists" class="clearfix" data-bind="foreach: artists">
+		<div class="artist hoverable">
+			<img style="overflow-y:hidden" data-bind="
+				attr: {
+					src: '{{ settings.image_base_url }}' + avatar, 
+					alt: username + ' - Artist Avatar - RIPT Apparel' 
+				}
+			" />
+			<div class="artist-name" stye="display:none" data-bind="text: username"></div>
+			<div class="overlay">
+				<div class="overlay-content">
+					<h5 data-bind="text: username"></h5>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<button class="btn btn--primary" id="view-more" data-bind="click: loadArtists">View More</button>
+	</div>
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+	function getUrlVars()
+	{
+	    var vars = [], hash;
+	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	    for(var i = 0; i < hashes.length; i++)
+	    {
+	        hash = hashes[i].split('=');
+	        vars.push(hash[0]);
+	        vars[hash[0]] = hash[1];
+	    }
+	    return vars;
+	}
+
+	// Setup the view model.
+	var vm = function() {
+		this.offset = 0;
+		this.artistCount = ko.observable('');
+		this.artists = ko.observableArray([]);
+
+		// Dynamically load the artists from the backend.
+		this.loadArtists = function() {
+
+			// Check if the user is searching
+			var q = getUrlVars();
+			$('#search').val(q['search']);
+
+			$.get('{{ settings.api_url }}/shopify/artists', 
+				{ offset: this.offset, search: q['search'] }, 
+				function(data) {
+
+					self.artistCount(numberWithCommas(data.count));
+					self.artists.push.apply(self.artists, data.artists);
+					self.offset += 20;
+
+					if(data.artists.length < 20) {
+						$('#view-more').hide();
+					}
+				}, 
+			'json');
+		};
+	};
+	ko.applyBindings(vm);
+
+	// Load the first set of artists.
+	$('#view-more').trigger('click');
+
+	// Redirect to the artist page on click.
+	$('#artists').on('click', '.overlay', function() {
+		window.location = '/pages/member?' + $(this).find('h5').text();
+	});
+
+});
+
+</script>

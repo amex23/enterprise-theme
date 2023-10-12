@@ -1,0 +1,180 @@
+<script type="text/javascript">
+  $(window).load(function(){
+    $('.owl-item img').each(function(){
+        $(this).attr('alt', $(this).attr('data-alt'));
+    });
+  });
+</script>
+
+<div id="availability" class="row">
+    <div class="columns small-12">
+        <h1 style="padding: 10px 5px; margin-top: 5px;">These Daily Deals End In: <span class="time today-time"></span>
+            <span class="tool-tip show-for-large-up">
+                <span class="tool-tip-trigger"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" x="0px" y="0px" viewBox="0 0 32 32" class="icon icons8-Help" >    <path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 16 4 C 9.3844277 4 4 9.3844277 4 16 C 4 22.615572 9.3844277 28 16 28 C 22.615572 28 28 22.615572 28 16 C 28 9.3844277 22.615572 4 16 4 z M 16 6 C 21.534692 6 26 10.465308 26 16 C 26 21.534692 21.534692 26 16 26 C 10.465308 26 6 21.534692 6 16 C 6 10.465308 10.465308 6 16 6 z M 16 10 C 13.802666 10 12 11.802666 12 14 L 14 14 C 14 12.883334 14.883334 12 16 12 C 17.116666 12 18 12.883334 18 14 C 18 14.767423 17.508714 15.44544 16.78125 15.6875 L 16.375 15.8125 C 15.559939 16.083523 15 16.862393 15 17.71875 L 15 19 L 17 19 L 17 17.71875 L 17.40625 17.59375 C 18.944786 17.08181 20 15.620577 20 14 C 20 11.802666 18.197334 10 16 10 z M 15 20 L 15 22 L 17 22 L 17 20 L 15 20 z" overflow="visible" font-family="Bitstream Vera Sans"></path></svg></span>
+                <span class="tool-tip-content">RIPT Apparel features 3 new designs for sale everyday created by artists from all around the world.  Each design is available for 24 hours on t-shirts, hoodies, posters and more, starting at just $13.00.</span>
+            </span>
+        </h1>
+    </div>
+
+    {%- comment -%}<div class="columns medium-6 last-call-cta">
+        <div class="last-call-image">
+            <a href="/pages/last-call">
+                <img style="width:150px;" src="{{ 'last-call.gif' | asset_url }}" alt="Last-Call Designs"/>
+            </a>
+        </div>
+        <span class="yesterday-text">
+            Yesterday's designs are still available!
+        </span>
+    </div>{%- endcomment -%}
+</div>
+
+<div class="daily-designs">
+    {%- comment -%} 
+  		It is expected that the calling template as defined
+  		"today" as an array of design handles
+    {%- endcomment -%}
+    {%- for handle in today -%}
+    {%- assign collection = collections[handle] -%}
+        <div class="columns medium-4 collection" data-type="{{ collection.metafields.global.type }}">
+            {%- assign collectionIndex = increment collectionIndex -%}
+            {%- for product in collection.products -%}
+                <div class="product-data" productid="{{ product.id }}" productName="{{ product.title | remove: '"' }}" type="{{ product.type }}" subtype="{{ product.metafields.global.subtype}}" sizing="{{ product.metafields.global.sizing-image }}" style="display:none">
+                {%- for variant in product.variants -%}
+                    <div class="variant-data" id="{{ variant.id }}" productid="{{ product.id }}" title="{{ variant.title }}" price="{{ variant.price }}" compare_at_price="{{ variant.compare_at_price }}"></div>
+                {%- endfor -%}
+                </div>
+            {%- endfor -%}
+
+            <div class="design-images">
+              <div class="images-carousel owl-carousel owl-theme" style="background-image:url({{ settings.image_base_url }}{{ collection.metafields.global.wallpaper-image }}); background-size: cover;">
+                  <div><img src="{{ collection.image.src | img_url: '800x800', format: 'pjpg' }}" class="initial-art" src="{{ collection.image.src | img_url: '800x800', format: 'pjpg' }}" alt="{{collections[handle].title}} - Collection Image - RIPT Apparel"/></div>
+                {%- for product in collection.products -%}
+                  {%- assign outer = forloop -%}
+                  {%- assign innerLoop = 0 -%}
+                  {%- for image in product.images -%}
+                    {%- assign mult = innerLoop | plus: 10 -%}
+                    {%- if innerLoop == 0 -%}
+                        <div style="width:100%" imageIndex="{{ forloop.index0 }}" type="{{ product.type }}" data-subtype="{{ product.metafields.global.subtype }}" >
+                            <img data-alt="{{product.title}} - {{product.type}} - RIPT Apparel" style="max-width:100%" class="owl-lazy" data-src="{{ image.src | product_img_url: '600x600', format: 'pjpg' }}">
+                          </div>
+                    {%- endif -%}
+                    {%- assign innerLoop = innerLoop | plus: 1 -%}
+                  {%- endfor -%}
+                  {%- assign number_of_images = forloop.length -%}
+                {%- endfor -%}
+                 
+              </div>
+              <div class="zoom-in">
+                  <img src="{{ 'zoom_in.png' | asset_url }}"  alt="zoom in on product"/>
+              </div>
+            </div>
+            
+            <div class="design-info" style="display:none">
+                <div class="row design-title">
+                    <div class="columns small-7 title">
+                        <p><a href="/collections/{{ collection.handle }}">{{- collection.title -}}</a></p>
+                    </div>
+                    <div class="columns small-5">
+                    <span class="compare-at"></span>
+                    <span class="price">$11.00</span>
+                    </div>
+                </div>
+
+                <div class="variants">
+                  <div class="row">
+                    <div class="columns medium-6">
+                        <select class="product-type" data-bind="options: designByIndex({{ forloop.index0 }}).types, optionsValue: 'name', optionsText: 'name', value: designByIndex({{ forloop.index0 }}).selectedType().name"></select>
+                    </div>
+                    <div class="columns medium-6">
+                        <select class="product-subtype" data-bind="options: designByIndex({{ forloop.index0 }}).selectedType().subtypes, optionsValue: 'name', optionsText: 'name', value: designByIndex({{ forloop.index0 }}).selectedSubtype().name"></select>
+                    </div>
+                  </div>
+                    
+                  <div class="columns medium-12">
+                    <select class="product-size" data-bind="options: designByIndex({{ forloop.index0 }}).selectedSubtype().variants, optionsText: 'name', optionsValue: 'id'"></select>
+                  </div>
+
+                    <form action="/cart/add" method="post">
+                        <input type="hidden" class="variant-id" name="id" />
+                        <button class="add-to-cart">Add to cart</button>
+                    </form>
+                </div>
+
+                <div class="extra-info row">
+                    <span class="artist-name columns small-6">by: <a href="/pages/member/?{{ collection.metafields.global.artist-name }}">{{ collection.metafields.global.artist-name }}</a></span>
+                    <span class="size-chart columns small-6 text-right">
+                        <a data-bind="attr: { sizing: designByIndex({{ forloop.index0 }}).selectedSubtype().sizing }" class="sizing-link">Size Chart
+                            <svg class="svg-rule" viewBox="0 0 1024 1024">
+                                <use xlink:href="#svg-ruler"></use>
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+    {%- endfor -%}
+
+  <div id="sizechart-modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+    <img src="" alt="Sizing Chart">
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+  <div id="zoom-modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+    <img src="" alt="{{product.title}} - {{product.type}} - RIPT Apparel">
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+  
+</div>
+
+{% comment %} {%- include 'featured-products' -%} {% endcomment %}
+{% comment %} {% section 'collection' %}  {% endcomment %}
+
+<div class="row"></div>
+
+{% comment %} <div id="shipping-banner" class="row">
+    <div class="columns medium-12" style="text-align:center">
+        <div style="margin:auto;display:inline-block;" class="half-banner green">
+            <img src="{{ loading_image }}" data-src="{{ 'ship-icon.png' | asset_url }}" alt="We Ship Internationally"/> 
+            <div style="float:left;margin-top:10px" class="worldwide">We ship<br> worldwide</div>
+            <p class="shipping-message">Shipping starts at just $3.50! Orders can take 7 business days to ship. 
+                <!--
+                <b>
+                    {%- assign todayDate = 'now' | date: "%w" -%}
+                    {%- if todayDate == "0" or todayDate == "6" -%} 
+                        {%- comment -%} If today is Monday or Sunday, 4 days out {%- endcomment -%}
+                        {{'now' | date: "%s" | plus : 345600 | date: "%A, %B %d" }}.
+                    {%- elsif todayDate == "5" -%}
+                        {%- comment -%} If today is Saturday, 5 days out {%- endcomment -%}
+                        {{'now' | date: "%s" | plus : 432000 | date: "%A, %B %d" }}.
+                    {%- else -%}
+                        {%- comment -%} If today is Tue/Wed/Thu/Fri, 6 days out {%- endcomment -%}
+                        {{'now' | date: "%s" | plus : 518400 | date: "%A, %B %d" }}.
+                    {%- endif -%}
+                </b>
+                -->
+            </p>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+{% comment %} <div id="additional" class="row">
+    {%- if 'now' | date: "%p" -%}
+        <div class="columns small-12 timer">
+            <div class="timer-module">
+              <h2>Yesterday's Deals End In: <span class="time lastcall-time"></span></h2>
+            </div>
+            <div class="yesterdays-designs">
+              <div>
+              {% include 'daily-designs', type: 'yesterday' %}
+              </div>
+            </div>
+            <div class="divider stripe purple" style="margin:10px 0 30px 0"></div>
+        </div>
+    {%- endif -%}
+    <div class="columns small-12">
+        {%- include 'newsletter-signup' -%}
+    </div>
+</div>
+
+{%- section 'leaderboards' -%} {% endcomment %}

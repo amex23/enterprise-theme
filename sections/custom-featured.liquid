@@ -1,0 +1,152 @@
+<div class="section relative section--full-width{% unless section.settings.section_height == "tight" %} section--padded-{{ section.settings.section_height }}{% endunless %}{% if section.settings.dividers != "none" %} {{ section.settings.dividers }}{% endif %}"{% if settings.animations_enabled != "disabled" and section.settings.prevent_animation == false %}data-cc-animate{% endif %}>
+    <div class="container">
+        {%- unless section.settings.full_width -%}
+            <div class="w-full image-container flex flex-col md:flex-row items-center justify-center gap-20 px-[2vw] py-[7vh]">
+                {%- for block in section.blocks -%}
+
+                    <div class="featured-img flex items-center justify-center px-7 py-7 relative" style="background-image: url('{{ block.settings.image_featured | img_url: 'master'}}')">
+                        <div class="inside-div relative">
+                            <div class="inside-sub-div absolute flex items-center justify-center ">
+                                <div class="flex justify-center items-center flex-col gap-12">
+                                    <h1 class="text-white text-7xl">{{ block.settings.title }}</h1>
+                                    <a class="btn btn--primary" href="{{ blocks.settings.btnlink }}">{{ block.settings.btnname }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {%- endfor -%}
+
+            {%- endunless -%}
+
+            {%- unless section.settings.full_width -%}
+            </div>
+        {%- endunless -%}
+    </div>
+</div>
+
+<style>
+    .inside-div {
+        height: 100%;
+        width: 100%;
+
+    }
+    .inside-sub-div {
+        height: 100%;
+        width: 100%;
+        border: 2px solid white;
+        z-index: 20;
+    }
+
+    .featured-img {
+        position: relative;
+        width: 100%;
+        height: 80vh;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .featured-img:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to bottom right, #242424a0, #5f5f5f52);
+        opacity: 0.6;
+    }
+
+    .btn--primary {
+        background: white !important;
+        color: black;
+        border: white;
+    }
+</style>
+
+{% schema %}
+    {
+        "name": "Custom Featured",
+        "tag": "section",
+        "class": "cc-custom-liquid",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "header",
+                "content": "Layout"
+            },
+            {
+                "type": "header",
+                "content": "Style"
+            },
+            {
+                "type": "checkbox",
+                "id": "full_width",
+                "label": "Make section full width",
+                "default": false
+            }, {
+                "type": "select",
+                "id": "dividers",
+                "label": "Dividing lines",
+                "options": [
+                    {
+                        "value": "none",
+                        "label": "None"
+                    }, {
+                        "value": "border-top",
+                        "label": "Above"
+                    }, {
+                        "value": "border-bottom",
+                        "label": "Below"
+                    }, {
+                        "value": "border-top border-bottom",
+                        "label": "Above and below"
+                    }
+                ],
+                "default": "none"
+            }, {
+                "type": "header",
+                "content": "SEO"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "slide",
+                "name": "Slide",
+                "limit": 4,
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "image_featured",
+                        "label": "Image",
+                        "info": "For best results, use a landscape shaped image with a minimum width of 3200px."
+                    }, {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"
+                    }, {
+                        "type": "url",
+                        "id": "btnlink",
+                        "label": "Button Link"
+                    }, {
+                        "type": "text",
+                        "id": "btnname",
+                        "label": "Button Name"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Custom Featured"
+            }
+        ],
+        "disabled_on": {
+            "groups": ["aside"]
+        }
+    }
+{% endschema %}

@@ -1,0 +1,1124 @@
+{
+  "presets": {
+    "Digital": {
+      "heading_color": "#2a2b2a",
+      "text_color": "#2a2b2a",
+      "link_color": "#2a2b2a",
+      "star_color": "#ff9f1c",
+      "button_bg_color": "#2a2b2a",
+      "button_text_color": "#ffffff",
+      "button_alt_bg_color": "#ffffff",
+      "button_alt_text_color": "#2a2b2a",
+      "color_scheme_1_bg": "#f4f4f4",
+      "color_scheme_1_bg_grad": "linear-gradient(180deg, rgba(244, 244, 244, 1), rgba(244, 244, 244, 1) 100%)",
+      "color_scheme_1_heading": "#2a2b2a",
+      "color_scheme_1_text": "#2a2b2a",
+      "color_scheme_1_btn_bg": "#ff580d",
+      "color_scheme_2_bg": "#2a2b2a",
+      "color_scheme_2_bg_grad": "linear-gradient(225deg, rgba(51, 59, 67, 0.88) 8%, rgba(41, 47, 54, 1) 56%, rgba(20, 20, 20, 1) 92%)",
+      "color_scheme_2_heading": "#ff580d",
+      "color_scheme_2_btn_bg": "#ff580d",
+      "color_scheme_3_bg": "#ff580d",
+      "color_scheme_3_bg_grad": "linear-gradient(46deg, rgba(234, 73, 0, 1) 8%, rgba(234, 73, 0, 1) 32%, rgba(255, 88, 13, 0.88) 92%)",
+      "color_scheme_3_heading": "#ffffff",
+      "color_scheme_3_text": "#ffffff",
+      "color_scheme_3_btn_bg": "#2a2b2a",
+      "panel_bg_color": "#f4f4f4",
+      "panel_heading_color": "#2a2b2a",
+      "panel_text_color": "#2a2b2a",
+      "drawer_text_color": "#2a2b2a",
+      "blend_product_images": false,
+      "blend_collection_images": true,
+      "blend_bg_color": "#f4f4f4",
+      "heading_font": "dm_sans_n7",
+      "heading_uppercase": false,
+      "subheading_uppercase": false,
+      "button_text_uppercase": false,
+      "heading_scale_start": "4",
+      "body_font": "dm_sans_n4",
+      "navigation_font": "dm_sans_n7",
+      "max_page_width": 1260,
+      "section_gap": "48",
+      "input_button_border_width": "2",
+      "input_button_border_radius": 26,
+      "slider_show_arrows": "never",
+      "slider_button_style": "btn--primary",
+      "drawer_border_radius": 16,
+      "overlay_border_radius": 0,
+      "show_breadcrumbs_collection": true,
+      "show_breadcrumbs_collection_list": true,
+      "show_breadcrumbs_blog": false,
+      "show_breadcrumbs_article": false,
+      "coll_border_color": "#f2f2f2",
+      "prod_card_image_ratio": "1",
+      "prod_card_image_fit": "cover",
+      "card_show_vendor": true,
+      "card_show_subtitle": false,
+      "card_show_rating": true,
+      "card_show_inventory": true,
+      "card_atc_mobile": "text_button_bottom",
+      "card_atc_desktop": "text_button_bottom",
+      "card_contain": false,
+      "card_bg_color": "#ffffff",
+      "card_text_color": "#26262b",
+      "card_border_color": "#f2f2f2",
+      "compare_empty_field_text": "N\/A",
+      "inventory_threshold_low": 20,
+      "inventory_threshold_very_low": 8,
+      "inventory_show_notice": "always",
+      "inventory_show_count": "always",
+      "sale_label_bg_color": "#aa1155",
+      "sale_label_text_color": "#ffffff",
+      "sale_label_icon": "price_tag",
+      "sale_label_type": "percent",
+      "sold_out_label_bg_color": "#2a2b2a",
+      "sold_out_label_text_color": "#ffffff",
+      "new_label_bg_color": "#7fb800",
+      "new_label_text_color": "#ffffff",
+      "preorder_label_bg_color": "#00a6ed",
+      "preorder_label_text_color": "#ffffff",
+      "custom_label_bg_color": "#0d2c54",
+      "custom_label_text_color": "#ffffff",
+      "speech_icon_color": "#ff580d",
+      "search_show_pages": true,
+      "search_show_articles": true,
+      "predictive_search_show_collections": true,
+      "predictive_search_show_vendor": true,
+      "predictive_search_show_price": true,
+      "predictive_search_include_skus": false,
+      "cart_icon": "basket",
+      "cart_type": "drawer",
+      "show_recommendations": true,
+      "recommendations_heading": "You may also like...",
+      "recommendations_to_show": 3,
+      "cart_shaking": true,
+      "show_free_shipping_notice": true,
+      "free_shipping_minimum": "USD:100",
+      "free_shipping_color_scheme": "1",
+      "animations_enabled": "mobile_desktop",
+      "image_quality": "1.25",
+      "show_blur_messages": true,
+      "blur_message_1": "Don't leave us hanging!",
+      "blur_message_delay": 4,
+      "vibrate_on_atc": true,
+      "heading_type_scale": "1.3"
+    },
+    "Active": {
+      "heading_color": "#000000",
+      "text_color": "#000000",
+      "link_color": "#000000",
+      "star_color": "#ffd737",
+      "button_bg_color": "#621979",
+      "button_text_color": "#ffffff",
+      "button_alt_text_color": "#000000",
+      "button_alt_bg_color": "#ffffff",
+      "color_scheme_1_bg": "#f5f5f5",
+      "color_scheme_1_bg_grad": "linear-gradient(46deg, rgba(245, 245, 245, 1) 13%, rgba(249, 249, 249, 1) 86%)",
+      "color_scheme_1_heading": "#000000",
+      "color_scheme_1_text": "#000000",
+      "color_scheme_1_btn_bg": "#621979",
+      "color_scheme_1_btn_text": "#ffffff",
+      "color_scheme_2_bg": "#2e2e2e",
+      "color_scheme_2_bg_grad": "linear-gradient(180deg, rgba(46, 46, 46, 1), rgba(46, 46, 46, 1) 100%)",
+      "color_scheme_2_heading": "#ffffff",
+      "color_scheme_2_text": "#ffffff",
+      "color_scheme_2_btn_bg": "#621979",
+      "color_scheme_2_btn_text": "#ffffff",
+      "color_scheme_3_bg": "#621979",
+      "color_scheme_3_bg_grad": "linear-gradient(180deg, rgba(98, 25, 121, 1), rgba(98, 25, 121, 1) 100%)",
+      "color_scheme_3_heading": "#ffffff",
+      "color_scheme_3_text": "#ffffff",
+      "color_scheme_3_btn_bg": "#ffffff",
+      "color_scheme_3_btn_text": "#621979",
+      "panel_bg_color": "#f5f5f5",
+      "panel_heading_color": "#000000",
+      "panel_text_color": "#000000",
+      "drawer_text_color": "#000000",
+      "blend_product_images": true,
+      "blend_collection_images": true,
+      "blend_bg_color": "#f5f5f5",
+      "heading_font": "avenir_next_n8",
+      "heading_uppercase": true,
+      "subheading_uppercase": true,
+      "button_text_uppercase": true,
+      "heading_scale_start": "6",
+      "body_font": "din_next_n4",
+      "navigation_font": "din_next_n7",
+      "max_page_width": 1590,
+      "section_gap": "64",
+      "input_button_border_radius": 0,
+      "input_button_border_width": "1",
+      "slider_show_arrows": "never",
+      "slider_button_style": "btn--primary",
+      "slider_items_per_nav": "page",
+      "drawer_border_radius": 0,
+      "overlay_border_radius": 0,
+      "disclosure_toggle": "arrow",
+      "show_breadcrumbs_collection": false,
+      "show_breadcrumbs_collection_list": false,
+      "show_breadcrumbs_blog": false,
+      "show_breadcrumbs_article": false,
+      "coll_card_image_ratio": "1",
+      "coll_bg_color": "#f5f5f5",
+      "coll_border_color": "#ffffff",
+      "prod_card_image_ratio": "1",
+      "prod_card_image_fit": "cover",
+      "card_show_vendor": true,
+      "card_show_rating": true,
+      "card_show_inventory": true,
+      "card_atc_mobile": "icon",
+      "card_atc_desktop": "icon",
+      "card_contain": true,
+      "card_bg_color": "#f5f5f5",
+      "card_text_color": "#070707",
+      "card_border_color": "#ffffff",
+      "show_dividers": false,
+      "compare_toggle": "toggle_off",
+      "compare_show_empty_metafields": false,
+      "compare_empty_field_text": "N\/A",
+      "inventory_show_notice": "always",
+      "inventory_show_count": "always",
+      "in_stock_text_color": "#0da44a",
+      "low_stock_text_color": "#363737",
+      "very_low_stock_text_color": "#e32b2b",
+      "no_stock_text_color": "#070707",
+      "sale_label_bg_color": "#e32b2b",
+      "sale_label_type": "percent",
+      "sold_out_label_bg_color": "#2e2e2e",
+      "new_label_bg_color": "#1a66d2",
+      "new_label_text_color": "#ffffff",
+      "preorder_label_bg_color": "#56cbf9",
+      "preorder_label_text_color": "#000000",
+      "custom_label_bg_color": "#81f4e1",
+      "custom_label_text_color": "#070707",
+      "speech_icon_color": "#e32b2b",
+      "search_show_pages": true,
+      "search_show_articles": true,
+      "predictive_search_show_collections": true,
+      "predictive_search_show_price": true,
+      "show_currency_code": true,
+      "show_recommendations": true,
+      "cart_shaking": true,
+      "cart_shaking_frequency": 4,
+      "show_free_shipping_notice": true,
+      "free_shipping_minimum": "USD:100",
+      "free_shipping_color_scheme": "none",
+      "animations_enabled": "mobile_desktop",
+      "animation_speed": "medium",
+      "image_quality": "1",
+      "show_blur_messages": true,
+      "vibrate_on_atc": true,
+      "heading_type_scale": "1.3",
+      "button_border_radius": 0,
+      "input_text_color": "#000000",
+      "badge_card_position": "top-0 right-0 text-right",
+      "badge_product_page_position": "top-0 right-0 text-right",
+      "new_badge_bg_color": "#cd4c1d",
+      "prod_color_selector_style": "swatches"
+    }
+  },
+  "current": {
+    "checkboxnewsletter": true,
+    "maintitlenewsletter": "$20 off your next order over $99*",
+    "subtitlenewsletter": "Hear about sales, new arrivals & more",
+    "image_base_url": "",
+    "api_url": "",
+    "todays_designs": "",
+    "lastcall_designs": "",
+    "tomorrows_designs": "",
+    "collection_header_bg_default": "shopify:\/\/shop_images\/ript-pattern-dark_400x_eeedeb3e-22e4-4c1f-a9d4-0be4cc40b8fd.jpg",
+    "artist_profile_img_default": "shopify:\/\/shop_images\/default-artist-profile-background.jpg",
+    "artist_avatar_img_default": "shopify:\/\/shop_images\/default-artist-profile-avatar.jpg",
+    "heading_color": "#2a2b2a",
+    "text_color": "#2a2b2a",
+    "link_color": "#2a2b2a",
+    "star_color": "#ff9f1c",
+    "button_bg_color": "#2a2b2a",
+    "button_text_color": "#ffffff",
+    "button_alt_bg_color": "#ffffff",
+    "button_alt_text_color": "#2a2b2a",
+    "color_scheme_1_bg": "#f4f4f4",
+    "color_scheme_1_bg_grad": "linear-gradient(180deg, rgba(244, 244, 244, 1), rgba(244, 244, 244, 1) 100%)",
+    "color_scheme_1_heading": "#2a2b2a",
+    "color_scheme_1_text": "#2a2b2a",
+    "color_scheme_1_btn_bg": "#ff580d",
+    "color_scheme_2_bg": "#2a2b2a",
+    "color_scheme_2_bg_grad": "linear-gradient(225deg, rgba(51, 59, 67, 0.88) 8%, rgba(41, 47, 54, 1) 56%, rgba(20, 20, 20, 1) 92%)",
+    "color_scheme_2_heading": "#ff580d",
+    "color_scheme_2_btn_bg": "#ff580d",
+    "color_scheme_3_bg": "#ff9f1c",
+    "color_scheme_3_bg_grad": "linear-gradient(29deg, rgba(255, 159, 28, 1), rgba(255, 196, 46, 1) 100%)",
+    "color_scheme_3_heading": "#ffffff",
+    "color_scheme_3_text": "#ffffff",
+    "color_scheme_3_btn_bg": "#2a2b2a",
+    "panel_bg_color": "#f4f4f4",
+    "panel_heading_color": "#2a2b2a",
+    "panel_text_color": "#2a2b2a",
+    "drawer_text_color": "#2a2b2a",
+    "blend_product_images": true,
+    "blend_collection_images": true,
+    "blend_bg_color": "#f4f4f4",
+    "heading_font": "dm_sans_n7",
+    "heading_uppercase": false,
+    "subheading_uppercase": false,
+    "button_text_uppercase": false,
+    "heading_scale_start": "4",
+    "body_font": "dm_sans_n4",
+    "navigation_font": "dm_sans_n7",
+    "max_page_width": 1320,
+    "section_gap": "48",
+    "input_button_border_width": "2",
+    "input_button_border_radius": 26,
+    "slider_show_arrows": "never",
+    "slider_button_style": "btn--primary",
+    "drawer_border_radius": 16,
+    "overlay_border_radius": 0,
+    "disclosure_toggle": "arrow",
+    "show_breadcrumbs_collection": true,
+    "show_breadcrumbs_collection_list": true,
+    "show_breadcrumbs_blog": false,
+    "show_breadcrumbs_article": false,
+    "coll_border_color": "#f2f2f2",
+    "prod_card_image_ratio": "0.75",
+    "prod_card_image_fit": "cover",
+    "card_show_hover_image": false,
+    "card_show_vendor": false,
+    "card_show_subtitle": false,
+    "card_show_rating": true,
+    "card_show_inventory": false,
+    "card_url_within_coll": true,
+    "enable_quick_add": true,
+    "card_atc_mobile": "text_button_bottom",
+    "card_atc_desktop": "text_button_bottom",
+    "card_contain": false,
+    "card_bg_color": "#ffffff",
+    "card_text_color": "#26262b",
+    "card_border_color": "#f2f2f2",
+    "enable_compare": false,
+    "compare_empty_field_text": "N\/A",
+    "inventory_threshold_low": 20,
+    "inventory_threshold_very_low": 8,
+    "inventory_show_notice": "low",
+    "inventory_show_count": "never",
+    "sale_label_bg_color": "#aa1155",
+    "sale_label_text_color": "#ffffff",
+    "sale_label_icon": "price_tag",
+    "sale_label_type": "percent",
+    "sold_out_label_bg_color": "#2a2b2a",
+    "sold_out_label_text_color": "#ffffff",
+    "new_label_bg_color": "#7fb800",
+    "new_label_text_color": "#ffffff",
+    "show_new_label_collection": false,
+    "show_new_label_days": false,
+    "new_label_date_limit": 11,
+    "preorder_label_bg_color": "#00a6ed",
+    "preorder_label_text_color": "#ffffff",
+    "custom_label_bg_color": "#0d2c54",
+    "custom_label_text_color": "#ffffff",
+    "swatch_colors": "black:#000000\nwhite:#ffffff\nnavy:#182281\nindigo blue:#3846CD\npurple:#7000CE\ncharcoal:#555555\ndark chocolate:#5F3021\nkelly green:#29AA5D\nheavy metal:#474747\nindigo:#1D2140\nmidnight navy:#00095C\npurple rush:#460876\nred:#D20000\nkelly:#29AA5D\nturquoise:#30D5C8\nsport grey:#aaaaaa\nice grey:#f4f4f4 \nmint green:#def8d5\nnatural:#ffefde\ncoral:#D20000\norange:#ff8200\ndaisy:#fff100\nTurquoise:#30D5C8\nroyal:#0063c7\nTurqouise:#30D5C8\nSky:#6dc5e9\nLight Blue:#aed3ef\nBlack:#14191f\nDark Chocolate:#47362c\nCharcoal:#515659\nGold:#515659  \nSport Grey:#9c9b9c\nIndigo Blue:#465f75\nKelly:#018b60\nKelly Green:#018b60\nMint Green:#aedec6\nNatural:#e2d6c8\nNavy:#394158\nOrange:#ff6100\nPurple:#502a67\nRed:#af0e1e\nRoyal:#2c5e99\nRoyal:#2c5e99\nIce Grey:#c1c0bc\nDaisy:#f7cb30\nSapphire:#1786b4\nWhite:#ffffff",
+    "variant_picker_color_style": "variant-images",
+    "social_facebook_url": "https:\/\/www.facebook.com\/riptapparelofficial",
+    "social_instagram_url": "https:\/\/www.instagram.com\/riptapparel\/",
+    "social_pinterest_url": "",
+    "social_tiktok_url": "",
+    "social_twitter_url": "https:\/\/twitter.com\/riptapparel",
+    "social_youtube_url": "",
+    "search_input_placeholder_1": "Search for Marvel...",
+    "search_input_placeholder_2": "Search for Men..",
+    "search_input_placeholder_3": "Search for Women..",
+    "prompts_mobile": false,
+    "enable_speech_search": false,
+    "speech_icon_color": "#ff580d",
+    "search_show_products": true,
+    "search_show_pages": false,
+    "search_show_articles": false,
+    "predictive_search_show_collections": true,
+    "predictive_search_show_vendor": true,
+    "predictive_search_show_price": true,
+    "predictive_search_include_skus": true,
+    "show_currency_code": false,
+    "cart_icon": "cart",
+    "cart_type": "drawer",
+    "show_recommendations": true,
+    "recommendations_heading": "You may also like...",
+    "recommendations_to_show": 3,
+    "recommendations_layout": "list",
+    "cart_shaking": true,
+    "cart_shaking_frequency": 3,
+    "show_free_shipping_notice": true,
+    "free_shipping_minimum": "USD:69",
+    "free_shipping_color_scheme": "1",
+    "animations_enabled": "desktop",
+    "image_quality": "0.75",
+    "show_blur_messages": true,
+    "blur_message_1": "Hanging, don't leave us!",
+    "blur_message_2": "winningspiritshowroom",
+    "blur_message_delay": 5,
+    "vibrate_on_atc": true,
+    "favicon": "shopify:\/\/shop_images\/Winning_Spirit_Showroom_Favicon.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/ript-logo-black.png",
+    "heading_type_scale": "1.3",
+    "sections": {
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "show": true,
+          "homepage_hero_link": "",
+          "homepage_hero_alt": "",
+          "start_year": "",
+          "start_month": "01",
+          "start_day": "",
+          "start_hour": "00:01",
+          "end_year": "",
+          "end_month": "01",
+          "end_day": "",
+          "end_hour": "23:59"
+        }
+      },
+      "flex-grid": {
+        "type": "flex-grid",
+        "blocks": {
+          "b7eb181d-83ff-4826-ad8c-7bd3e28f9535": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/andys-toys.jpg",
+              "link_url": "shopify:\/\/collections\/andys-toys",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "fac54830-ec62-4097-975f-e6ba6e27ecec": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/assemble_43e37287-182c-40ff-baf5-d39adc609673.jpg",
+              "link_url": "shopify:\/\/collections\/assemble",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "7afcb4b1-f8d0-49f8-a1dd-511c06ce00cb": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/baba-yaga_645e6e88-2d6f-46e9-a1f4-dc3830122707.jpg",
+              "link_url": "shopify:\/\/collections\/baba-yaga-1",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "52be32a8-027c-413d-a862-251ddfbfb62f": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/butt.jpg",
+              "link_url": "shopify:\/\/collections\/butt-1",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "c3eb769e-a5ef-485b-be3e-4f30c6493fa8": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/by-the-power_d4cf6457-714c-45ab-a3cb-fca35fd4adf1.jpg",
+              "link_url": "shopify:\/\/collections\/by-the-power-of-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "5f614fc8-b739-4605-9202-ea80a3bfb60e": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/cats.jpg",
+              "link_url": "shopify:\/\/collections\/cats",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "8d6568ac-de14-4cf6-bd0c-f8c39ffa93ef": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/critical-hit.jpg",
+              "link_url": "shopify:\/\/collections\/critical-hit",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "42df10ea-4c43-4564-ac02-6ffc434b410f": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/crystal-lake_e859775f-4ca0-4769-8065-5363d7d588ed.jpg",
+              "link_url": "shopify:\/\/collections\/crystal-lake",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "ef123905-8ecb-44b0-a581-82f2e7d66387": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/dr-jones.jpg",
+              "link_url": "shopify:\/\/collections\/dr-jones",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "9d1db5b3-4b76-430a-ae6d-9e1a2fe5f4e8": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/dragon.jpg",
+              "link_url": "shopify:\/\/collections\/dragon-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "2b4299b2-7992-40ee-9fca-721118432c78": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/elm-st.jpg",
+              "link_url": "shopify:\/\/collections\/elm-st",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "14571660-bc60-4e1b-867a-4df12845a4dc": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/fatality.jpg",
+              "link_url": "shopify:\/\/collections\/combat",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "db602e79-b814-402d-a2a6-ebb913a105a9": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/fighter.jpg",
+              "link_url": "shopify:\/\/collections\/fighter",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "f994dbe3-b08a-4a84-82fa-00bf8c30933c": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/great-scott.jpg",
+              "link_url": "shopify:\/\/collections\/great-scott",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "7f88b811-8c0b-4dd8-98e4-ceecee28b0fe": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/groovy.jpg",
+              "link_url": "shopify:\/\/collections\/groovy",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "ade08b05-f0aa-4e26-94ed-b1a536fd4070": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/guardians_5aef9b2b-cac6-4f74-91f8-ed33f1bfcc16.jpg",
+              "link_url": "shopify:\/\/collections\/guardians-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "cc25cde8-0d10-416d-86fc-c738843a4461": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/harry.jpg",
+              "link_url": "shopify:\/\/collections\/harry-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "1b1cc802-2a9f-4d0b-885c-f8b7d7286d27": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/hope.jpg",
+              "link_url": "shopify:\/\/collections\/hope",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "e662a8de-f6f9-4307-9492-c25081fac47e": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/imagination.jpg",
+              "link_url": "shopify:\/\/collections\/imagination-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "4fcf6a82-96f3-4c23-b4c0-aa498bd6e881": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/invaders.jpg",
+              "link_url": "shopify:\/\/collections\/invaders",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "8d430bd9-5d34-4971-b855-f000d44808f9": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/justice.jpg",
+              "link_url": "shopify:\/\/collections\/justice3",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "2c2598bf-3bea-4bf8-abf6-f1c38fb930fe": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/kaiju.jpg",
+              "link_url": "shopify:\/\/collections\/kaiju-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "17692351-3cbe-451e-8ed1-26159b3b746d": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/knowing-is-half-the-battle.jpg",
+              "link_url": "shopify:\/\/collections\/the-more-you-know",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "65d1ca33-3af1-418f-8b2c-d87647fc50c2": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/life-finds-a-way.jpg",
+              "link_url": "shopify:\/\/collections\/life-finds-a-way-1",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "39796c01-9b99-4a61-8e30-07189bd9b898": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/link_b4feba95-ba4c-4052-804a-f832b20d4f77.jpg",
+              "link_url": "shopify:\/\/collections\/link-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "bd81f016-c43f-4c6c-8449-99e7c97dbcff": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/lions.jpg",
+              "link_url": "shopify:\/\/collections\/lions-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "523050a5-62c0-4d4e-8ece-48db080c0e7d": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/monsters_5ca00283-c652-47a6-b6c6-65e0d36e2301.jpg",
+              "link_url": "shopify:\/\/collections\/monsters-2",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "23480029-cd31-4ed7-83b2-ae5e998eadcb": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/mutants.jpg",
+              "link_url": "shopify:\/\/collections\/mutant-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "8fe460f1-e82e-4645-bfd2-7454815238d6": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/nick.jpg",
+              "link_url": "shopify:\/\/collections\/nick",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "adab06a2-6223-493a-b2c2-87620cfac3ac": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/nightmare.jpg",
+              "link_url": "shopify:\/\/collections\/nightmare",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "cb4f1633-2066-4c95-a07c-39a2f70a7947": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/ohana.jpg",
+              "link_url": "shopify:\/\/collections\/ohana",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "198a31b6-7894-4d94-840e-7cf5edff4587": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/plumbers.jpg",
+              "link_url": "shopify:\/\/collections\/shirtmadness-plumbers-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "0cbd1c7a-c89e-4f5b-add7-f20f238a114e": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/pro-wrestling.jpg",
+              "link_url": "shopify:\/\/collections\/pro-wrestling",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "c1eec802-120e-4f23-826a-20bd3c2b3a6a": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/rangers_a92af4a7-ad30-4cb6-abfb-966ef0ae5b41.jpg",
+              "link_url": "shopify:\/\/collections\/rangers-1",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "f60a5f78-d2a9-4ec4-ae8e-e0eca53de8de": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/robots_8de07521-a2ba-4890-9229-ff3269b20796.jpg",
+              "link_url": "shopify:\/\/collections\/shirtmadness-robots-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "99de327b-591e-4357-9abc-451fc57bfe30": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/space-cowboy.jpg",
+              "link_url": "shopify:\/\/collections\/space-cowboy",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "8e55022c-a6c1-4933-be9e-1bc5d2a3d3b0": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/spider_df2b408b-b55f-493e-a245-1fec932af6c7.jpg",
+              "link_url": "shopify:\/\/collections\/spider",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "aa9fbad3-1447-4c9a-a711-480247454139": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/the-bat.jpg",
+              "link_url": "shopify:\/\/collections\/the-bat-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "a6035a41-be7e-46e6-943b-4502e8724c33": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/the-dude.jpg",
+              "link_url": "shopify:\/\/collections\/the-dude",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "d0a3037c-589a-40d5-a63f-978bd8f78bc8": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/the-future_403354f0-b138-4b7f-b15e-74e7f59bedcf.jpg",
+              "link_url": "shopify:\/\/collections\/the-future-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "f5ad6c81-5e36-417d-91ad-5d149f5fee7a": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/the-king.jpg",
+              "link_url": "shopify:\/\/collections\/the-king",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "ad25d6d9-cd89-491c-ab45-816b532d875a": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/the-merc.jpg",
+              "link_url": "shopify:\/\/collections\/the-merc-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "7c9c8248-9d4c-473d-8fee-dc764bbc4fb4": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/thrones.jpg",
+              "link_url": "shopify:\/\/collections\/thrones-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "494e3533-81bb-46fa-9ace-a894613c2d60": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/townsville.jpg",
+              "link_url": "shopify:\/\/collections\/townsville",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "f596a83a-3c51-47fc-81b8-4c575cb5bad4": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/turtles_2a4b78b4-1f36-445a-a327-ec284f659135.jpg",
+              "link_url": "shopify:\/\/collections\/shirtmadness-reptiles-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "0a01534d-8d04-4eba-889f-ddcd6a2ccae1": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/upsidedown.jpg",
+              "link_url": "shopify:\/\/collections\/upside-down2",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "0da2201c-4682-445c-8ce1-a9aec78df783": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/we-all-float.jpg",
+              "link_url": "shopify:\/\/collections\/we-all-float",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "7342f5aa-25f1-4cd0-bbb6-99e69c4b6bf2": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/who-ya-gonna.jpg",
+              "link_url": "shopify:\/\/collections\/who-ya-gonna-collection",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "fa11f808-ddab-41ad-a928-b5f8f764b270": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/xeno.jpg",
+              "link_url": "shopify:\/\/collections\/alien",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          }
+        },
+        "block_order": [
+          "b7eb181d-83ff-4826-ad8c-7bd3e28f9535",
+          "fac54830-ec62-4097-975f-e6ba6e27ecec",
+          "7afcb4b1-f8d0-49f8-a1dd-511c06ce00cb",
+          "52be32a8-027c-413d-a862-251ddfbfb62f",
+          "c3eb769e-a5ef-485b-be3e-4f30c6493fa8",
+          "5f614fc8-b739-4605-9202-ea80a3bfb60e",
+          "8d6568ac-de14-4cf6-bd0c-f8c39ffa93ef",
+          "42df10ea-4c43-4564-ac02-6ffc434b410f",
+          "ef123905-8ecb-44b0-a581-82f2e7d66387",
+          "9d1db5b3-4b76-430a-ae6d-9e1a2fe5f4e8",
+          "2b4299b2-7992-40ee-9fca-721118432c78",
+          "14571660-bc60-4e1b-867a-4df12845a4dc",
+          "db602e79-b814-402d-a2a6-ebb913a105a9",
+          "f994dbe3-b08a-4a84-82fa-00bf8c30933c",
+          "7f88b811-8c0b-4dd8-98e4-ceecee28b0fe",
+          "ade08b05-f0aa-4e26-94ed-b1a536fd4070",
+          "cc25cde8-0d10-416d-86fc-c738843a4461",
+          "1b1cc802-2a9f-4d0b-885c-f8b7d7286d27",
+          "e662a8de-f6f9-4307-9492-c25081fac47e",
+          "4fcf6a82-96f3-4c23-b4c0-aa498bd6e881",
+          "8d430bd9-5d34-4971-b855-f000d44808f9",
+          "2c2598bf-3bea-4bf8-abf6-f1c38fb930fe",
+          "17692351-3cbe-451e-8ed1-26159b3b746d",
+          "65d1ca33-3af1-418f-8b2c-d87647fc50c2",
+          "39796c01-9b99-4a61-8e30-07189bd9b898",
+          "bd81f016-c43f-4c6c-8449-99e7c97dbcff",
+          "523050a5-62c0-4d4e-8ece-48db080c0e7d",
+          "23480029-cd31-4ed7-83b2-ae5e998eadcb",
+          "8fe460f1-e82e-4645-bfd2-7454815238d6",
+          "adab06a2-6223-493a-b2c2-87620cfac3ac",
+          "cb4f1633-2066-4c95-a07c-39a2f70a7947",
+          "198a31b6-7894-4d94-840e-7cf5edff4587",
+          "0cbd1c7a-c89e-4f5b-add7-f20f238a114e",
+          "c1eec802-120e-4f23-826a-20bd3c2b3a6a",
+          "f60a5f78-d2a9-4ec4-ae8e-e0eca53de8de",
+          "99de327b-591e-4357-9abc-451fc57bfe30",
+          "8e55022c-a6c1-4933-be9e-1bc5d2a3d3b0",
+          "aa9fbad3-1447-4c9a-a711-480247454139",
+          "a6035a41-be7e-46e6-943b-4502e8724c33",
+          "d0a3037c-589a-40d5-a63f-978bd8f78bc8",
+          "f5ad6c81-5e36-417d-91ad-5d149f5fee7a",
+          "ad25d6d9-cd89-491c-ab45-816b532d875a",
+          "7c9c8248-9d4c-473d-8fee-dc764bbc4fb4",
+          "494e3533-81bb-46fa-9ace-a894613c2d60",
+          "f596a83a-3c51-47fc-81b8-4c575cb5bad4",
+          "0a01534d-8d04-4eba-889f-ddcd6a2ccae1",
+          "0da2201c-4682-445c-8ce1-a9aec78df783",
+          "7342f5aa-25f1-4cd0-bbb6-99e69c4b6bf2",
+          "fa11f808-ddab-41ad-a928-b5f8f764b270"
+        ],
+        "settings": {
+          "section_heading": "",
+          "section_text": "",
+          "section_fw": false,
+          "blocks_per_row_d": "4",
+          "block_mobile_half": true,
+          "section_heading_uppercase": false,
+          "section_heading_font_size": 14,
+          "block_heading_uppercase": true,
+          "block_text_font_size": 14,
+          "section_margin": 10,
+          "block_margin": 10,
+          "image_border_radius": 0,
+          "image_max_width": "",
+          "start_year": "2020",
+          "start_month": "01",
+          "start_day": "01",
+          "start_hour": "00:01",
+          "end_year": "2030",
+          "end_month": "01",
+          "end_day": "01",
+          "end_hour": "23:59"
+        }
+      },
+      "hero-new": {
+        "type": "hero-new",
+        "settings": {}
+      },
+      "how": {
+        "type": "how",
+        "blocks": {
+          "7eaa7fd9-8c65-403a-9fc0-c7fd9fecf728": {
+            "type": "image",
+            "settings": {
+              "logo_image": "shopify:\/\/shop_images\/Group_48095692.png",
+              "heading": "1. Join The Club",
+              "subheading": "Select the number of shirts you would like to receive per month and join 1000’s of Geeks &amp; Pop-Culture Freaks."
+            }
+          },
+          "5f9e0e52-4c5c-433e-bd22-2ef648b80472": {
+            "type": "image",
+            "settings": {
+              "logo_image": "shopify:\/\/shop_images\/Group_48095693.png",
+              "heading": "2. We Select Your Shirts",
+              "subheading": "Our team selects your new shirts by hand, packs them up and sends them right to your door."
+            }
+          },
+          "d8feade3-600f-4b0c-8c5f-445c67eea7c2": {
+            "type": "image",
+            "settings": {
+              "logo_image": "shopify:\/\/shop_images\/Group_48095694.png",
+              "heading": "3. Unbox Your Suprise",
+              "subheading": "Our tee’s are printed every month on the 20th, so you can expect your package to arrive swiftly after then."
+            }
+          }
+        },
+        "block_order": [
+          "7eaa7fd9-8c65-403a-9fc0-c7fd9fecf728",
+          "5f9e0e52-4c5c-433e-bd22-2ef648b80472",
+          "d8feade3-600f-4b0c-8c5f-445c67eea7c2"
+        ],
+        "settings": {
+          "section_heading": "How it Works",
+          "button_text": "Get Started Now!",
+          "link": ""
+        }
+      },
+      "flex-grid-with-text": {
+        "type": "flex-grid-with-text",
+        "blocks": {
+          "2035c138-170f-44db-84fc-167dbd997ce2": {
+            "type": "image",
+            "settings": {
+              "link_url": "",
+              "link_alt": "",
+              "image_text": "<div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Every month, premium shirts featuring brand new and exclusive designs only available to club members will be delivered straight to your doorstep!<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Upon joining, receive a complimentary welcome gift free of charge!<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Each month, the independent artist who created the design(s) will receive a royalty payment.<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Plus, you will get exclusive discounts!<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Enroll in our monthly plan today and be included in our next printing cycle.<\/span>\n<\/div>\n<\/div>",
+              "break": false
+            }
+          },
+          "0ff7cef9-3b03-4169-acbc-299d8ab5778f": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/Group_48095736.svg",
+              "link_url": "https:\/\/www.riptapparel.com\/products\/three-premium-tees-monthly-subscription",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "eb371f6c-6526-4fe1-bace-c808af82d4c9": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/Group_48095737.svg",
+              "link_url": "https:\/\/www.riptapparel.com\/products\/two-premium-tees-monthly-subscription",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          },
+          "18bdef34-b783-41bb-a276-ceae3687de91": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/Group_48095738.svg",
+              "link_url": "https:\/\/www.riptapparel.com\/products\/one-premium-tee-monthly-subscription",
+              "link_alt": "",
+              "image_text": "",
+              "break": false
+            }
+          }
+        },
+        "block_order": [
+          "2035c138-170f-44db-84fc-167dbd997ce2",
+          "0ff7cef9-3b03-4169-acbc-299d8ab5778f",
+          "eb371f6c-6526-4fe1-bace-c808af82d4c9",
+          "18bdef34-b783-41bb-a276-ceae3687de91"
+        ],
+        "settings": {
+          "section_heading": "How Many Shirts Would You Like?",
+          "section_text": "",
+          "section_fw": true,
+          "blocks_per_row_d": "4",
+          "block_mobile_half": false,
+          "section_heading_uppercase": false,
+          "section_heading_font_size": 30,
+          "block_heading_uppercase": true,
+          "block_text_font_size": 14,
+          "section_margin": 10,
+          "block_margin": 10,
+          "image_border_radius": 0,
+          "image_max_width": "",
+          "start_year": "2020",
+          "start_month": "01",
+          "start_day": "01",
+          "start_hour": "00:01",
+          "end_year": "2030",
+          "end_month": "01",
+          "end_day": "01",
+          "end_hour": "23:59"
+        }
+      },
+      "flex-grid-with-text2": {
+        "type": "flex-grid-with-text2",
+        "blocks": {
+          "9b83eaf6-6dc0-4a8f-91bc-a33a65abfc37": {
+            "type": "image",
+            "settings": {
+              "link_url": "",
+              "link_alt": "",
+              "image_text": "<div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Every month, premium shirts featuring brand new and exclusive designs only available to club members will be delivered straight to your doorstep!<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Upon joining, receive a complimentary welcome gift free of charge!<\/span>\n<\/div>\n<div class=\"subscription-promo-text\">\n<div class=\"check-mark\">✓<\/div>\n<span>Each month, the independent artist who created the design(s) will receive a royalty payment.<\/span>\n<\/div>\n\n\n<\/div>",
+              "break": false
+            }
+          },
+          "4cc58e16-7b25-4b9d-aa7c-35dc0a3bc996": {
+            "type": "image",
+            "settings": {
+              "desktop_image": "shopify:\/\/shop_images\/chase_1.png",
+              "link_url": "",
+              "link_alt": "",
+              "image_text": "<a href=\"\" class=\"bg-[#ff8409] text-white px-20 rounded-full py-3 font-bold\">GeT Started Now!<\/a>",
+              "break": false
+            }
+          }
+        },
+        "block_order": [
+          "9b83eaf6-6dc0-4a8f-91bc-a33a65abfc37",
+          "4cc58e16-7b25-4b9d-aa7c-35dc0a3bc996"
+        ],
+        "settings": {
+          "section_heading": "Why Become A Member?",
+          "section_text": "",
+          "section_fw": true,
+          "blocks_per_row_d": "4",
+          "block_mobile_half": false,
+          "section_heading_uppercase": false,
+          "section_heading_font_size": 30,
+          "block_heading_uppercase": false,
+          "block_text_font_size": 14,
+          "section_margin": 10,
+          "block_margin": 10,
+          "image_border_radius": 0,
+          "image_max_width": "",
+          "start_year": "2020",
+          "start_month": "01",
+          "start_day": "01",
+          "start_hour": "00:01",
+          "end_year": "2030",
+          "end_month": "01",
+          "end_day": "01",
+          "end_hour": "23:59"
+        }
+      },
+      "images": {
+        "type": "images",
+        "settings": {
+          "desktop_image": "shopify:\/\/shop_images\/Group_48095707.png",
+          "mobile_image": "shopify:\/\/shop_images\/Group_48095690.png"
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}

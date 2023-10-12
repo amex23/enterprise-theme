@@ -1,0 +1,173 @@
+{%- assign today = settings.todays_designs | split: ',' -%}
+
+<div class="daily-designs flex gap-theme pr-4 pl-4">
+    {%- comment -%} 
+  		It is expected that the calling template as defined
+  		"today" as an array of design handles
+    {%- endcomment -%}
+    <img class="hoodie-image" src="https://cdn.shopify.com/s/files/1/0739/9215/files/hoodie_1_150x.svg?v=1690016814">
+    {%- for handle in today -%}
+    {%- assign collection = collections[handle] -%}
+        <div class="collection" data-type="{{ collection.metafields.global.type }}">
+            {%- assign collectionIndex = collectionIndex | plus: 1 -%}
+            {%- for product in collection.products -%}
+                <div class="product-data" productid="{{ product.id }}" productName="{{ product.title | remove: '"' }}" type="{{ product.type }}" subtype="{{ product.metafields.global.subtype}}" sizing="{{ product.metafields.global.sizing-image }}" style="display:none">
+                {%- for variant in product.variants -%}
+                    <div class="variant-data" id="{{ variant.id }}" productid="{{ product.id }}" title="{{ variant.title }}" price="{{ variant.price }}" compare_at_price="{{ variant.compare_at_price }}"></div>
+                {%- endfor -%}
+                </div>
+            {%- endfor -%}
+
+            <a href="/collections/{{ collection.handle }}" class="design-images">
+              <div class="images-carousel owl-carousel owl-theme" style="background-image:url({{ settings.image_base_url }}{{ collection.metafields.global.wallpaper-image }}); background-size: cover;">
+                  <div>
+                      <img 
+                        style="max-width:100%" class="initial-art lazyload blur-up" 
+                        data-src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-srcset="
+                        {{ collection.image.src | img_url : 'x300' }} 300w,
+                        {{ collection.image.src | img_url : 'x600' }} 600w,
+                        {{ collection.image.src | img_url : 'x600' }} 900w"
+                        srcset="
+                        {{ collection.image.src | img_url : 'x300' }} 300w,
+                        {{ collection.image.src | img_url : 'x600' }} 600w,
+                        {{ collection.image.src | img_url : 'x600' }} 900w"
+                        alt="{{collections[handle].title}} - Collection Image - RIPT Apparel"
+                      />
+                    </div>
+                {% comment %} {%- for product in collection.products -%}
+                  {%- assign outer = forloop -%}
+                  {%- assign innerLoop = 0 -%}
+                  {%- for image in product.images -%}
+                    {%- assign mult = innerLoop | plus: 10 -%}
+                    {%- if innerLoop == 0 -%}
+                        <div style="width:100%" imageIndex="{{ forloop.index0 }}" type="{{ product.type }}" data-subtype="{{ product.metafields.global.subtype }}" >
+                            {%- comment -%} <img
+                            src="{{ loading_image }}"
+                            data-sizes="auto"
+                            data-src="{{ loading_image }}"
+                            data-srcset="
+                            {{ image.src | product_img_url : '300x' }} 300w,
+                            {{ image.src | product_img_url : '600x' }} 600w,
+                            {{ image.src | product_img_url : '900x' }} 900w" class="lazyload blur-up" style="max-width: 100%"/>
+                          	{%- endcomment -%}
+
+                            <img
+                            style="max-width:100%" class="lazyload blur-up"
+                            data-src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                            data-srcset="
+                            {{ image.src | product_img_url : 'x300' }} 300w,
+                            {{ image.src | product_img_url : 'x600' }} 600w,
+                            {{ image.src | product_img_url : 'x600' }} 900w"
+                            srcset="
+                            {{ image.src | product_img_url : 'x300' }} 300w,
+                            {{ image.src | product_img_url : 'x600' }} 600w,
+                            {{ image.src | product_img_url : 'x600' }} 900w"
+                            alt="{{product.title}} - {{product.type}} - RIPT Apparel"
+                            >
+                          </div>
+                    {%- endif -%}
+                    {%- assign innerLoop = innerLoop | plus: 1 -%}
+                  {%- endfor -%}
+                  {%- assign number_of_images = forloop.length -%}
+                {%- endfor -%} {% endcomment %}
+                 
+              </div>
+              {% comment %} <div class="zoom-in">
+                  <img src="{{ loading_image }}" data-src="{{ 'zoom_in.png' | asset_url }}" class="lazyload blur-up"  alt="zoom in on product"/>
+              </div> {% endcomment %}
+            </a>
+            
+            <div class="design-info">
+                <div class="design-title">
+                    <div class="title">
+                        <p><a href="/collections/{{ collection.handle }}">{{- collection.title -}}</a></p>
+                    </div>
+                    <div class="price-wrap" style="display:none">
+                        <span class="compare-at"></span>
+                        <span class="price">$14.00</span>
+                    </div>
+                </div>
+
+                <div class="variants" style="display:none">
+                  <div class="row">
+                    <div class="columns medium-6">
+                        <select class="product-type" data-bind="options: designByIndex({{ forloop.index0 }}).types, optionsValue: 'name', optionsText: 'name', value: designByIndex({{ forloop.index0 }}).selectedType().name"></select>
+                    </div>
+                    <div class="columns medium-6">
+                        <select class="product-subtype" data-bind="options: designByIndex({{ forloop.index0 }}).selectedType().subtypes, optionsValue: 'name', optionsText: 'name', value: designByIndex({{ forloop.index0 }}).selectedSubtype().name"></select>
+                    </div>
+                  </div>
+                  <div class="columns medium-12">
+                    <select class="product-size" data-bind="options: designByIndex({{ forloop.index0 }}).selectedSubtype().variants, optionsText: 'name', optionsValue: 'id'"></select>
+                  </div>
+                    <form action="/cart/add" method="post">
+                        <input type="hidden" class="variant-id" name="id" />
+                        <button id="AddToCartButton" class="add-to-cart">Add to cart</button>
+                    </form>
+                </div>
+
+                <div class="extra-info row" style="display:none">
+                    <span class="artist-name columns small-6">by: <a href="/pages/member/?{{ collection.metafields.global.artist-name }}">{{ collection.metafields.global.artist-name }}</a></span>
+                    <span class="size-chart columns small-6 text-right">
+                        <a data-bind="attr: { sizing: designByIndex({{ forloop.index0 }}).selectedSubtype().sizing }" class="sizing-link">Size Chart
+                            <svg class="svg-rule" viewBox="0 0 1024 1024">
+                                <use xlink:href="#svg-ruler"></use>
+                            </svg>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    {%- endfor -%}
+
+  {% comment %} <div id="sizechart-modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+    <img src="" alt="Sizing Chart">
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div> {% endcomment %}
+  {%- comment -%}
+  <div id="zoom-modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+    <img data-src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" src="" 
+    class="lazyload blur-up"
+    alt="{{product.title}} - {{product.type}} - RIPT Apparel">
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+  {%- endcomment -%}
+
+</div>
+
+<div class="daily-designs-info-black-banner">
+  <span>
+    NEW DESIGNS UPLOADED DAILY   |   ALL SIZES AVAILABLE (S - 5XL)
+  </span>
+</div>
+
+
+{% schema %}
+{
+    "name": "Daily Design Carousels",
+    "presets": [
+        {
+            "name": "Daily Design Carousels",
+            "category": "Custom Content"
+        }
+    ]
+}
+{% endschema %}
+
+{% stylesheet %}
+/* .daily-designs-info-black-banner {
+  background-color: #000;
+} */
+.daily-designs-info-black-banner span {
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  display: block;
+  font-weight: 600;
+  font-size: 12px;
+  height: 100%;
+  padding: 5px 0;
+  margin-bottom: 20px;
+}
+{% endstylesheet %}

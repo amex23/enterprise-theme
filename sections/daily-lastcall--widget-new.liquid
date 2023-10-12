@@ -1,0 +1,158 @@
+{% style %}
+    .daily-lastcall-container--{{section.id}} {
+		--heading-font: {{section.settings.heading_font_size}}px;
+		--heading-alignment: {{section.settings.heading_alignment}};
+    }
+{% endstyle %}
+
+{% assign type = section.settings.which_type %}
+
+{%- assign time = 'now' | date: '%H%M' -%}
+{%- assign time = time | plus: 0 -%}	
+{%- assign date = 'now' | date: "%p" -%}
+
+{%- unless type == 'yesterday' and time > 1159 -%}
+{%- if date -%}
+	
+<div class="daily-lastcall-container--{{ section.id }}">
+    <h3>Don’t Wait Around For Yesterday’s Designs</h3>
+	<div class="timer-module">
+		<h1>{% if type == 'today' %}Today's {% else %}Yesterday's{% endif %} Deals End In: <span id="countdown-timernew" class="time {% if type == 'today' %}today{% else %}lastcall{% endif %}-time"></span></h1>
+	</div>
+	<div class="todays-designs">
+        {% comment %} <img class="lastcall-image" src="https://cdn.shopify.com/s/files/1/0739/9215/files/lastcall3_1_150x.svg?v=1690016817"> {% endcomment %}
+		<div class="row">
+			<ul class="flex gap-theme pr-4 pl-4 medium-block-grid-3 daily-design{% if type != ' today' %} yesterday{% endif %}">
+				{% if type == 'today' %}
+				{% assign designs = settings.todays_designs | split: ',' %}
+				{% else %}
+				{% assign designs = settings.lastcall_designs | split: ',' %}
+				{% endif %}
+
+                <!-- type: {{ type }} -->
+                <!-- {{ settings.lastcall_designs }} -->
+				{% for handle in designs %}
+                <!-- handle: {{ handle }} -->
+				{% assign dailyDesign = collections[handle] %}
+              	<!-- {{ dailyDesign.metafields.global.status }} -->
+				{% if dailyDesign.metafields.global.status == type %}
+				<li>
+					<a href="/collections/{{ dailyDesign.handle }}">
+						<img class="lazyload blur-up" data-src="{{ dailyDesign.image.src | img_url: 'large' }}" src="{{ dailyDesign.image.src | img_url: 'large' }}" alt="{{collections[handle].title}} - Collection Image - RIPT Apparel"/>
+						{% comment %} {% if type == 'today' %}
+						<span class="cost">$14</span>
+						{% else %}
+						<span class="cost">$19</span>
+						{% endif %} {% endcomment %}
+					</a>
+					<a href="/collections/{{ dailyDesign.handle }}">{{ dailyDesign.title }}</a>
+					{% comment %} <a href="/pages/member/?{{ dailyDesign.metafields.global.artist-name }}">{{ dailyDesign.metafields.global.artist-name }}</a> {% endcomment %}
+				</li>
+				{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	{% comment %}{% if type == 'today' %}
+	<div class="divider stripe orange" style="margin:10px 0 30px 0"></div>
+	{% else %}
+	<div class="divider stripe purple" style="margin:10px 0 30px 0"></div>
+	{% endif %}{% endcomment %}
+</div>
+
+<script>
+$(document).ready(function() {
+  // Set the target time for the countdown (24 hours from now)
+  const targetTime = new Date();
+  targetTime.setHours(targetTime.getHours() + 24);
+
+  // Function to update the countdown timer
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetTime - now;
+
+    // Calculate hours, minutes, and seconds
+    const hours = Math.floor(distance / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the remaining time in the desired format
+    const countdownTimer = document.getElementById("countdown-timernew");
+    countdownTimer.innerHTML =
+      hours.toString().padStart(2, "0") + "h " +
+      minutes.toString().padStart(2, "0") + "m " +
+      seconds.toString().padStart(2, "0") + "s ";
+
+    // Check if the countdown is over
+    if (distance <= 0) {
+      countdownTimer.innerHTML = "Countdown expired!";
+    }
+  }
+
+  // Update the countdown every second
+  setInterval(updateCountdown, 1000);
+
+  // Initial update to avoid 1-second delay in displaying the timer
+  updateCountdown();
+});
+</script> 
+
+{%- endif -%}
+{%- endunless -%}
+
+{% schema %}
+{
+    "name": "Daily or Last Call New",
+    "settings": [
+        {
+            "type": "select",
+            "id": "which_type",
+            "label": "Daily or Last Call",
+            "options": [
+                {
+                    "label": "Daily",
+                    "value": "today"
+                }, {
+                    "label": "Last Call",
+                    "value": "yesterday"
+                }
+            ]
+		}, {
+            "type": "range",
+            "id": "heading_font_size",
+            "min": 14,
+            "max": 90,
+            "step": 1,
+            "unit": "px",
+            "label": "Font Size",
+            "default": 25
+        }, {
+            "type": "select",
+            "id": "heading_alignment",
+            "label": "Heading alignment",
+            "options": [
+                {
+                    "label": "Left",
+                    "value": "text-left"
+                }, {
+                    "label": "Center",
+                    "value": "text-center"
+                }, {
+                    "label": "Right",
+                    "value": "text-right"
+                }
+			],
+			"default": "text-center"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Daily or Last Call New",
+            "category": "Custom Content"
+        }
+    ]
+}
+{% endschema %}
+
+{% stylesheet 'scss' %}
+{% endstylesheet %}

@@ -1,0 +1,228 @@
+{%- if section.settings.show -%}
+
+{%- assign current_date_time = 'now' | date: "%Y%m%d%H%M" -%}
+
+{%- comment %}choose start date{%- endcomment -%}
+{%- assign start_year = section.settings.start_year -%}
+{%- assign start_month = section.settings.start_month -%}
+{%- assign start_day = section.settings.start_day -%}
+{%- assign start_hour = section.settings.start_hour | remove: ':' -%}
+{%- assign start_date = start_year | append: start_month | append: start_day | append: start_hour | convert: "date" -%}
+
+{%- comment %}choose end date{%- endcomment -%}
+{%- assign end_year = section.settings.end_year -%}
+{%- assign end_month = section.settings.end_month -%}
+{%- assign end_day = section.settings.end_day -%}
+{%- assign end_hour = section.settings.end_hour | remove: ':' -%}
+{%- assign end_date = end_year | append: end_month | append: end_day | append: end_hour | convert: "date" -%}
+
+{%- if current_date_time >= start_date and current_date_time < end_date -%}
+  <a href="{{ section.settings.homepage_hero_link }}" 
+     style="
+            display: inline-block;
+            width: 100%;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.27);
+            ">
+    <img class="homepage_hero_image" src="{{ section.settings.homepage_hero_img | img_url: '1296x', format: 'pjpg' }}" style="width: 100%;" alt="{{ section.settings.homepage_hero_alt }}">
+  </a>
+{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Scheduled Hero Image",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show",
+      "default": true
+    },  
+    {
+       "type": "header",
+       "content": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "homepage_hero_img",
+      "label": "Hero Banner Img"
+    },
+    {
+      "type": "url",
+      "id": "homepage_hero_link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "homepage_hero_alt",
+      "label": "Alt Text"
+    },
+    {
+       "type": "header",
+       "content": "Start Date"
+    },
+    {
+      "type": "text",
+      "id": "start_year",
+      "label": "Start Year"
+    },
+    {
+      "type": "select",
+      "id": "start_month",
+      "label": "Start Month",
+      "options": [
+        {
+          "label": "January",
+          "value": "01"
+        },
+        {
+          "label": "February",
+          "value": "02"
+        },
+        {
+          "label": "March",
+          "value": "03"
+        },
+        {
+          "label": "April",
+          "value": "04"
+        },
+        {
+          "label": "May",
+          "value": "05"
+        },
+        {
+          "label": "June",
+          "value": "06"
+        },
+        {
+          "label": "July",
+          "value": "07"
+        },
+        {
+          "label": "August",
+          "value": "08"
+        },
+        {
+          "label": "September",
+          "value": "09"
+        },
+        {
+          "label": "October",
+          "value": "10"
+        },
+        {
+          "label": "November",
+          "value": "11"
+        },
+        {
+          "label": "December",
+          "value": "12"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "start_day",
+      "label": "Start Day",
+      "info": "Example: '09' for the 9th of the month"
+    },
+    {
+      "type": "text",
+      "id": "start_hour",
+      "label": "Start Time (24hr)",
+      "default": "00:01",
+      "info": "Example: '23:59' for the 11:59pm"
+    },
+    {
+       "type": "header",
+       "content": "End Date"
+    },
+    {
+      "type": "text",
+      "id": "end_year",
+      "label": "End Year"
+    },
+    {
+      "type": "select",
+      "id": "end_month",
+      "label": "End Month",
+      "options": [
+        {
+          "label": "January",
+          "value": "01"
+        },
+        {
+          "label": "February",
+          "value": "02"
+        },
+        {
+          "label": "March",
+          "value": "03"
+        },
+        {
+          "label": "April",
+          "value": "04"
+        },
+        {
+          "label": "May",
+          "value": "05"
+        },
+        {
+          "label": "June",
+          "value": "06"
+        },
+        {
+          "label": "July",
+          "value": "07"
+        },
+        {
+          "label": "August",
+          "value": "08"
+        },
+        {
+          "label": "September",
+          "value": "09"
+        },
+        {
+          "label": "October",
+          "value": "10"
+        },
+        {
+          "label": "November",
+          "value": "11"
+        },
+        {
+          "label": "December",
+          "value": "12"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "end_day",
+      "label": "End Day",
+      "info": "Example: '09' for the 9th of the month"
+    },
+    {
+      "type": "text",
+      "id": "end_hour",
+      "label": "End Time (24hr)",
+      "default": "23:59",
+      "info": "Example: '23:59' for the 11:59pm"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

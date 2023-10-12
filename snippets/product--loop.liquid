@@ -1,0 +1,71 @@
+{%- comment -%}
+//-- Check if product is on sale
+{%- endcomment -%}
+
+{% if section.settings.show_sale_badge %}
+    {% if product.compare_at_price > product.price or amount_off != '' %}
+        {% assign is_on_sale = true %}
+    {% endif %}
+{% endif %}
+
+{%- comment -%}
+// detail image
+{%- endcomment -%}
+{%- comment -%}
+<img src="{{ loading_image }}" data-src="{{ collections[matched_handle].image | collection_img_url: image_size }}" alt="{{ collection.title | escape }}">
+{%- endcomment -%}
+
+<a href="{{ product.url }}" style="position: relative;display: flex;justify-content: center;align-items: flex-end;">
+  {% comment %} {% if is_on_sale %}
+    <div class="badge sale">
+      {{ badge_text }}
+    </div>
+  {% endif %} {% endcomment %}
+  
+  {%- comment -%}
+  //-- product image 
+  <img 
+  src="{{ loading_image }}" 
+  data-src="{{ product.featured_image | product_img_url: product_image_size, crop: product_image_crop,  scale: 2 }}" 
+  alt="{{ product.title | escape }}" style="vertical-align: baseline;"
+  >
+  {%- endcomment -%}
+  <img 
+    style="max-width:100%" class="lazyload blur-up" 
+    data-src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+    data-srcset="
+    {{ product.featured_image | product_img_url : product_image_size, crop: product_image_crop,  scale: 2 }} 300w,
+    {{ product.featured_image | product_img_url : product_image_size, crop: product_image_crop,  scale: 2 }} 600w,
+    {{ product.featured_image | product_img_url : product_image_size, crop: product_image_crop,  scale: 2 }} 900w"
+    srcset="
+    {{ product.featured_image | product_img_url : product_image_size, crop: product_image_crop,  scale: 2 }} 300w,
+    {{ product.featured_image | product_img_url : product_image_size, crop: product_image_crop,  scale: 2 }} 600w,
+    {{ product.featured_image | product_img_url : product_image_size, crop: product_image_crop,  scale: 2 }} 900w"
+    alt="{{ product.title | escape }}" style="vertical-align: baseline;"
+    >
+</a>
+
+<h5>{{ product.title | remove: "- Tanktop" | remove: "- Womens" | remove: "- Mens" }}</h5>
+
+{% if amount_off != '' %}
+  <span>
+    <span style="font-size: 20px; font-weight: bold; color: green;">
+      {{ product.price | minus: amount_off | money_without_currency | prepend: "$"  }}
+    </span>
+    <span style="color: #999; font-weight: normal; text-decoration: line-through;">
+      {{ product.price | money_without_currency | prepend: "$" }}
+    </span> 
+  </span>
+{% elsif is_on_sale %}
+  <span style="font-size: 20px; font-weight: bold; color: green;">
+    {{ product.price | minus: amount_off | money_without_currency | prepend: "$" }}</span>
+  {% if compare_at_price %}
+  <span class="compare-at" style="color: red; font-weight: normal; text-decoration: line-through;">
+    {{ compare_at_price | money_without_currency | prepend: "$" }}
+  </span> 
+  {% endif %}
+{% else %}
+  {{ product.price | money }}
+{% endif %}
+
+<button class="product-loop-buy-now-btn" style="align-self: end;">Buy now</button>

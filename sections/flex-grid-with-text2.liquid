@@ -1,0 +1,453 @@
+{%- comment -%}// We need to know the current date and time{%- endcomment -%}
+{%- assign current_date_time = 'now' | date: "%Y%m%d%H%M" -%}
+
+{%- comment %}choose start date{%- endcomment -%}
+{%- assign start_year = section.settings.start_year -%}
+{%- assign start_month = section.settings.start_month -%}
+{%- assign start_day = section.settings.start_day -%}
+{%- assign start_hour = section.settings.start_hour | remove: ':' -%}
+{%- assign start_date = start_year | append: start_month | append: start_day | append: start_hour | convert: "date" -%}
+
+{%- comment %}choose end date{%- endcomment -%}
+{%- assign end_year = section.settings.end_year -%}
+{%- assign end_month = section.settings.end_month -%}
+{%- assign end_day = section.settings.end_day -%}
+{%- assign end_hour = section.settings.end_hour | remove: ':' -%}
+{%- assign end_date = end_year | append: end_month | append: end_day | append: end_hour | convert: "date" -%}
+
+{%- if current_date_time >= start_date and current_date_time < end_date -%}
+
+
+{% style %}
+.flex-grid-container--{{ section.id }} {
+    --flex-grid-heading-font-size: {{ section.settings.section_heading_font_size }}px;
+    --flex-grid-section-margin: {{ section.settings.section_margin }}px;
+    --flex-grid-block-count: {{ section.settings.blocks_per_row }};  
+    --flex-grid-block-margin: {{ section.settings.block_margin }}px;
+    --flex-grid-block-height: {{ section.settings.block_height }}px;
+    --flex-grid-block-font-size: {{ section.settings.block_text_font_size }}px;
+    --flex-grid-image-border-radius: {{ section.settings.image_border_radius }}px;  
+    --flex-grid-image-max-width: {{ section.settings.image_max_width }}px;  
+}
+.flex-grid-container--{{ section.id }} .section-heading {
+    /* {% if section.settings.section_heading_uppercase %} */
+    text-transform: uppercase;
+    /* {% else %} */
+    text-transform: unset;
+    /* {% endif %} */
+}
+
+/*
+{%- unless section.settings.section_fw == blank -%}
+    body {background-color: lightyellow !important;}  
+{%- endunless -%}
+*/
+{% endstyle %}
+
+{%- case section.settings.blocks_per_row_d -%}
+{%- when '1' -%}
+    {%- assign block_count = 'full' -%}
+{%- when '2' -%}
+    {%- assign block_count = 'one-half' -%}
+{%- when '3' -%}
+    {%- assign block_count = 'one-third' -%}
+{%- when '4' -%}
+    {%- assign block_count = 'one-fourth' -%}
+{%- when '5' -%}
+    {%- assign block_count = 'one-fifth' -%}
+{%- endcase -%}
+
+<div id="flex-grid-with-text2" class="flex-grid-with-text flex-grid-container--{{ section.id }}">
+    {%- if section.settings.section_heading != '' -%}
+        <h2 class="section-heading">{{ section.settings.section_heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.section_text != '' -%}
+        <span class="section-body">{{ section.settings.section_text }}</span>
+    {%- endif -%}
+    <div id="flex-grid-row" class="flex-grid-row--{{ section.id }} blocks {% if section.settings.section_fw %}fw{% endif %}" data-section-id="{{ section.id }}" data-section-type="flex-grid">
+        {%- for block in section.blocks -%}
+            <div class="zzz flex-grid-block--{{ block.id }} block {{ block_count }} {% if section.settings.block_mobile_half %}one-half-m{% endif %}">
+                {% unless block.settings.link_url == blank %}
+                <a href="{{ block.settings.link_url }}" aria-label="{{ block.settings.link_alt }}" title="{{ block.settings.link_alt }}" class="flex-grid-link">
+                {% endunless %}
+
+                    {%- comment -%} <img
+                    data-sizes="auto"
+                    data-src="{{ block.settings.image | img_url : '5x' }}"
+                    data-srcset="
+                    {{ block.settings.image | img_url : 'x190' }} 190w,
+                    {{ block.settings.image | img_url : 'x480' }} 480w,
+                    {{ block.settings.image | img_url : 'x919' }} 919w" 
+                    class="blur-up" /> -->
+
+                    <!-- <picture>  
+                        <source media="(max-width: 799px)" srcset="{{ block.settings.image | img_url : '480x' }}">  
+                        <source media="(min-width: 800px)" srcset="{{ block.settings.image | img_url : '800x' }}">  
+                        <img src="{{ block.settings.image | img_url : '800x' }}" class="lazyload blur-up">
+                    </picture> {%- endcomment -%}
+
+                    {%- assign bs = block.settings -%}
+                    {% if bs.desktop_image %}
+                        {%- if bs.mobile_image -%}
+                            {%- assign mobile_image = bs.mobile_image -%}
+                        {%- else -%}
+                            {%- assign mobile_image = bs.desktop_image -%}
+                        {%- endif -%}
+                            <picture>
+                                <source 
+                                media="(max-width: 767px)" 
+                                sizes="(max-width: 1268px) 100vw, 1268px" 
+                                data-srcset="
+                                {{ mobile_image | img_url: 'x190' }} 190w,
+                                {{ mobile_image | img_url: 'x1268' }} 1268w"
+                                srcset="
+                                {{ mobile_image | img_url: 'x190' }} 190w,
+                                {{ mobile_image | img_url: 'x1268' }} 1268w">
+                                
+                                <source 
+                                media="(min-width: 768px)" 
+                                sizes="(max-width: 2400px) 60vw, 1400px" 
+                                data-srcset="
+                                {{ bs.desktop_image | img_url: 'x461' }} 461w,
+                                {{ bs.desktop_image | img_url: '1400x' }} 1400w"
+                                srcset="
+                                {{ bs.desktop_image | img_url: 'x461' }} 461w,
+                                {{ bs.desktop_image | img_url: '1400x' }} 1400w">
+                                
+                                <img class="lazyload blur-up {% if section.settings.image_max_width != '' %} original{% endif %}" 
+                                sizes="(max-width: 5623px) 40vw, 2249px" 
+                                data-srcset="
+                                {{ mobile_image | img_url: 'x480' }} 480w,
+                                {{ mobile_image | img_url: 'x723' }} 723w,
+                                {{ bs.desktop_image | img_url: 'x919' }} 919w"
+                                srcset="
+                                {{ mobile_image | img_url: 'x480' }} 480w,
+                                {{ mobile_image | img_url: 'x723' }} 723w,
+                                {{ bs.desktop_image | img_url: 'x919' }} 919w"
+                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
+                                alt="{{ bs.desktop_image.alt }}">
+                            </picture>
+                        {% else %}
+                            {% capture lifestylePlaceholder %}{% cycle 'lifestyle-1', 'lifestyle-2' %}{% endcapture %}
+                            {{ lifestylePlaceholder | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                {% unless block.settings.link_url == blank %}
+                </a>
+                {%- endunless -%}
+
+                {% unless block.settings.image_text == blank %}
+                    {% unless block.settings.link_url == blank %}
+                    <a href="{{ block.settings.link_url }}" aria-label="{{ block.settings.link_alt }}" title="{{ block.settings.link_alt }}">
+                    {% endunless %}
+                        <span class="caption">{{ block.settings.image_text }}</span>
+                    {% unless block.settings.link_url == blank %}
+                    </a>
+                    {% endunless %}
+                {% endunless %}
+
+            </div>
+            {%- if block.settings.break -%}
+                <div class="break"></div>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+</div>
+
+{%- endif -%}
+
+{% schema %}
+
+{
+    "name": "Flex Grid With Texts",
+    //"max_blocks": 8,
+    "class": "flex-grid-with-text",
+    "settings": [
+        {
+            "type": "text",
+            "id": "section_heading",
+            "label": "Section Heading"
+        }, {
+            "type": "html",
+            "id": "section_text",
+            "label": "Section text"
+        }, {
+            "type": "checkbox",
+            "id": "section_fw",
+            "label": "Full Width?",
+            "default": true
+        }, {
+            "type": "select",
+            "id": "blocks_per_row_d",
+            "label": "Blocks per row (desktop)",
+            "default": "4",
+            "options": [
+                {
+                    "value": "1",
+                    "label": "1"
+                }, {
+                    "value": "2",
+                    "label": "2"
+                }, {
+                    "value": "3",
+                    "label": "3"
+                }, {
+                    "value": "4",
+                    "label": "4"
+                }, {
+                    "value": "5",
+                    "label": "5"
+                }
+            ]
+        }, {
+            "type": "checkbox",
+            "id": "block_mobile_half",
+            "label": "2 blocks per row on mobile?",
+            "info": "Click this if you want the 2 blocks side by side on mobile vs full-width (default)",
+            "default": false
+        }, {
+            "type": "checkbox",
+            "id": "section_heading_uppercase",
+            "label": "Heading Uppercase?",
+            "default": true
+        }, {
+            "type": "range",
+            "id": "section_heading_font_size",
+            "min": 14,
+            "max": 60,
+            "step": 1,
+            "unit": "px",
+            "label": "Heading font size",
+            "default": 14
+        }, {
+            "type": "checkbox",
+            "id": "block_heading_uppercase",
+            "label": "Blocks Uppercase?",
+            "default": true
+        }, {
+            "type": "range",
+            "id": "block_text_font_size",
+            "min": 14,
+            "max": 60,
+            "step": 1,
+            "unit": "px",
+            "label": "Block font size",
+            "default": 14
+        }, {
+            "type": "range",
+            "id": "section_margin",
+            "min": 0,
+            "max": 20,
+            "step": 1,
+            "unit": "px",
+            "label": "Section margin",
+            "default": 10
+        }, {
+            "type": "range",
+            "id": "block_margin",
+            "min": 0,
+            "max": 20,
+            "step": 1,
+            "unit": "px",
+            "label": "Block margin",
+            "default": 10
+        }, {
+            "type": "range",
+            "id": "image_border_radius",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Border radius on images",
+            "default": 0
+        }, {
+            "type": "text",
+            "id": "image_max_width",
+            "label": "Image max width",
+            "info": "Do you want all the images to be a certain width instead of 100%"
+        }, {
+            "type": "header",
+            "content": "Start Date"
+        }, {
+            "type": "text",
+            "id": "start_year",
+            "label": "Start Year",
+            "default": "2020"
+        }, {
+            "type": "select",
+            "id": "start_month",
+            "label": "Start Month",
+            "default": "01",
+            "options": [
+                {
+                    "label": "January",
+                    "value": "01"
+                }, {
+                    "label": "February",
+                    "value": "02"
+                }, {
+                    "label": "March",
+                    "value": "03"
+                }, {
+                    "label": "April",
+                    "value": "04"
+                }, {
+                    "label": "May",
+                    "value": "05"
+                }, {
+                    "label": "June",
+                    "value": "06"
+                }, {
+                    "label": "July",
+                    "value": "07"
+                }, {
+                    "label": "August",
+                    "value": "08"
+                }, {
+                    "label": "September",
+                    "value": "09"
+                }, {
+                    "label": "October",
+                    "value": "10"
+                }, {
+                    "label": "November",
+                    "value": "11"
+                }, {
+                    "label": "December",
+                    "value": "12"
+                }
+            ]
+        }, {
+            "type": "text",
+            "id": "start_day",
+            "label": "Start Day",
+            "default": "01",
+            "info": "Example: '09' for the 9th of the month"
+        }, {
+            "type": "text",
+            "id": "start_hour",
+            "label": "Start Time (24hr)",
+            "default": "00:01",
+            "info": "Example: '23:59' for the 11:59pm"
+        }, {
+            "type": "header",
+            "content": "End Date"
+        }, {
+            "type": "text",
+            "id": "end_year",
+            "label": "End Year",
+            "default": "2020"
+        }, {
+            "type": "select",
+            "id": "end_month",
+            "label": "End Month",
+            "default": "01",
+            "options": [
+                {
+                    "label": "January",
+                    "value": "01"
+                }, {
+                    "label": "February",
+                    "value": "02"
+                }, {
+                    "label": "March",
+                    "value": "03"
+                }, {
+                    "label": "April",
+                    "value": "04"
+                }, {
+                    "label": "May",
+                    "value": "05"
+                }, {
+                    "label": "June",
+                    "value": "06"
+                }, {
+                    "label": "July",
+                    "value": "07"
+                }, {
+                    "label": "August",
+                    "value": "08"
+                }, {
+                    "label": "September",
+                    "value": "09"
+                }, {
+                    "label": "October",
+                    "value": "10"
+                }, {
+                    "label": "November",
+                    "value": "11"
+                }, {
+                    "label": "December",
+                    "value": "12"
+                }
+            ]
+        }, {
+            "type": "text",
+            "id": "end_day",
+            "label": "End Day",
+            "default": "01",
+            "info": "Example: '09' for the 9th of the month"
+        }, {
+            "type": "text",
+            "id": "end_hour",
+            "label": "End Time (24hr)",
+            "default": "23:59",
+            "info": "Example: '23:59' for the 11:59pm"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Image",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "desktop_image",
+                    "label": "Desktop Image",
+                    "info": "Displayed at full-width. Minimum recommended width: 1400px."
+                }, {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image",
+                    "info": "Minimum recommended width: 800px."
+                }, {
+                    "type": "header",
+                    "content": "Block Content"
+                }, {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                }, {
+                    "type": "url",
+                    "id": "link_url",
+                    "label": "Link"
+                }, {
+                    "type": "text",
+                    "id": "link_alt",
+                    "label": "Alt & Title Text"
+                }, {
+                    "type": "html",
+                    "id": "image_text",
+                    "label": "Text below image"
+                }, {
+                    "type": "checkbox",
+                    "id": "break",
+                    "label": "Insert a break?"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Flex Grid With Text",
+            "category": "Custom Content"
+        }
+    ]
+}
+
+{% endschema %}
+
+{% stylesheet 'scss' %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

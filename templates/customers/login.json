@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-login",
+      "settings": {
+        "bg_img": "shopify:\/\/shop_images\/Suiting_Hero_copy.jpg"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

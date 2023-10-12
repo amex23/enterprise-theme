@@ -1,0 +1,236 @@
+<style>
+    .get-started {
+        background-color: #fc9000;
+        display: inline-block;
+    }
+    .get-started a {
+        color: white;
+    }
+    .how-it-works {
+        background: linear-gradient(99.19deg, rgba(255, 151, 47, 0.9) -0.28%, #FF8000 98.7%);
+    }
+    .how-it-works h4 {
+        color: white;
+        text-decoration: underline;
+        text-underline-offset: 8px;
+    }
+    .how-it-works .grid {
+        padding: 0 120px;
+        column-gap: 120px;
+    }
+    .pros-point {
+        color: white;
+        text-align: left;
+        position: relative;
+    }
+    .pros-point h5 {
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    .number {
+        background-color: white;
+        color: orange;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 30px;
+        font-weight: 600;
+        position: absolute;
+        left: -70px;
+    }
+
+    .artists-raving {
+        padding: 0 100px;
+    }
+    .eclipse-slider {
+        {% comment %} height: 500px !important; {% endcomment %}
+        box-shadow: 4px 4px 40px 0px #00000026;
+        border-radius: 20px !important;
+        display: none !important;
+        height: 600px !important;
+    }
+    .desktop-cards {
+        
+    }
+    .eclipse-arrow, .eclipse-controls {
+        display: none !important;
+    }
+    .eclipse-slides {
+        line-height: normal !important;
+        {% comment %} height: 500px !important; {% endcomment %}
+        padding: 20px;
+        background: white;
+        height: 600px !important;
+    }
+    .desktop-card {
+        line-height: normal !important;
+        {% comment %} height: 500px !important; {% endcomment %}
+        padding: 20px;
+        background: white;
+        box-shadow: 4px 4px 40px 0px #00000026;
+        border-radius: 20px !important;
+    }
+    .eclipse-card p {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 768.98px) {
+        .get-started {
+            width: calc(100% - 40px);
+        }
+        .how-it-works .grid {
+            padding: 0 20px;
+            column-gap: 120px;
+        }
+        .number {
+            position: unset;
+        }
+        .how-it-works h5 {
+            margin-bottom: 0;
+            padding-left: 10px
+        }
+        .pros-header-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .artists-raving {
+            padding: 0 20px;
+        }
+        .eclipse-slider, .eclipse-controls {
+            display: block !important;
+        }
+        .eclipse-arrow {
+            display: none !important;
+        }
+        .desktop-cards {
+            display: none !important;
+        }
+    }
+</style>
+
+<div class="text-center" id="design-submission-landing">
+    <section class="container mt-8">
+        <img src="//cdn.shopify.com/s/files/1/0709/5539/t/1/assets/peace-banner.png?3829744980452123862" style="max-width: 100%;">
+        <h3 class="text-center mt-8 mb-8">
+            🎨 Become an artist, get paid 💸
+        </h3>
+        <button class="btn get-started mb-8" type="button">
+            <a class="" style="font-size: 2rem;" href="/pages/design-submission">Get Started!</a>
+        </button>
+        <p class="subtext text-center">As a RIPT Apparel artist, you'll join an awesome group of fellow artists. You'll also get to share your artwork with customers from all over the world on numerous high quality products from T-shirts to coasters.</p>
+    </section>
+
+    <section class="how-it-works pb-6 pt-5 mt-8">
+        <h4 class="mb-8">How Does It Work?</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme mt-8">
+            <div class="pros-point">
+                <div class="pros-header-wrapper">
+                    <span class="number">1</span>
+                    <h5>Unleash Your Creativity and Shine!</h5>
+                </div>
+                <p>Unleash your latest masterpiece and upload it here. No waiting forever to hear back from us—we'll get back to you within 5-7 business days. It's all about freedom and speed, so let's dive right in!</p>
+            </div>
+            <div class="pros-point">
+                <div class="pros-header-wrapper">
+                    <span class="number">2</span>
+                    <h5>Reliable Printing & Shipping!</h5>
+                </div>
+                <p>When we select your design, get ready for the sales to roll in! Track your sales easily through our Sales Tracker in your artist dashboard. You'll earn 10% of every item sold during the sale period, bringing joy and a sense of achievement.</p>
+            </div>
+            <div class="pros-point">
+                <div class="pros-header-wrapper">
+                    <span class="number">3</span>
+                    <h5>Watch Your Sales Roll In!</h5>
+                </div>
+                <p>When we select your design, get ready for the sales to roll in! Track your sales easily through our Sales Tracker in your artist dashboard. You'll earn 10% of every item sold during the sale period, bringing joy and a sense of achievement.</p>
+            </div>
+            <div class="pros-point">
+                <div class="pros-header-wrapper">
+                    <span class="number">4</span>
+                    <h5>Embrace Your Artistic Lifestyle!</h5>
+                </div>
+                <p>Within 3 business days of the sale date, we'll send you payment for the items you sold. It's time to reap the rewards of your creativity and individuality. Start earning and living out your radiant artistic lifestyle.</p>
+            </div>
+        </div>
+        <button class="btn get-started mb-8 mt-8" type="button" style="background-color: white;">
+            <a class="" style="color: orange;font-size: 2rem;" href="/pages/design-submission">Get Started!</a>
+        </button>
+    </section>
+
+    <section id="artists-raving" class="artists-raving container pb-6 pt-5 mt-8 mb-8">
+        <h4 class="mb-8">Artists Are Raving About RIPT Apparel</h4>
+        <div class="eclipse-slider">
+            <div>
+                <div class="eclipse-card">
+                    <p>"It's always a pleasure to work with RIPT. Their willingness to try new ideas, and letting you come along for the
+                    ride always makes me and my work feel part of the Ript family, despite being halfway around the world!"</p>
+                    <img class="mb-2" src="https://d550296ed7jau.cloudfront.net/profiles/Zombiedollar%20Creative/avatar-1416252586.16.jpg">
+                    <p>Zombiedollar Creative</p>
+                    <p>www.nikholmes.com</p>
+                </div>
+            </div>
+            <div>
+                <div class="eclipse-card">
+                    <p>"Working with RIPT is a great pleasure! Very nice people and quality printing and products! I always appreciate them for giving me my first ever print!"</p>
+                    <img class="mb-2" src="https://d550296ed7jau.cloudfront.net/profiles/Bamboota/avatar-1416252550.34.jpg">
+                    <p>Bamboota</p>
+                    <p>bamboota.com</p>
+                </div>
+            </div>
+            <div>
+                <div class="eclipse-card">
+                    <p>"With companies like RIPT, why would artists ever take on freelance work again? You get to draw what you’re passionate about, there’s no art revisions, and they pay you insanely fast. As far as I'm concerned, that's every designer's dream"</p>
+                    <img class="mb-2" src="https://d550296ed7jau.cloudfront.net/profiles/Harebrained/avatar-1416252654.14.jpg">
+                    <p>Harebrained</p>
+                    <p>www.harebraineddesign.com</p>
+                </div>
+            </div>
+            <div>
+                <div class="eclipse-card">
+                    <p>"I enjoy working with RIPT because of the money and freedom. With RIPT, I create what I want, and if it gets printed, I get paid for it. From an artist's experience, the submission and approval process is pretty seamless and easy to use."</p>
+                    <img class="mb-2" src="https://d550296ed7jau.cloudfront.net/profiles/Jimiyo/avatar-1416252622.93.jpg">
+                    <p>Jimiyo</p>
+                    <p>www.jimiyo.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="desktop-cards grid grid-cols-1 sm:grid-cols-2 gap-x-theme gap-y-theme mt-8">
+            <div class="desktop-card">
+                <p>"It's always a pleasure to work with RIPT. Their willingness to try new ideas, and letting you come along for the
+                ride always makes me and my work feel part of the Ript family, despite being halfway around the world!"</p>
+                <img class="mb-2" src="https://d550296ed7jau.cloudfront.net/profiles/Zombiedollar%20Creative/avatar-1416252586.16.jpg">
+                <p>Zombiedollar Creative</p>
+                <p>www.nikholmes.com</p>
+            </div>
+            <div class="desktop-card">
+                <p>"Working with RIPT is a great pleasure! Very nice people and quality printing and products! I always appreciate them for giving me my first ever print!"</p>
+                <img class="mb-2" src="https://d550296ed7jau.cloudfront.net/profiles/Bamboota/avatar-1416252550.34.jpg">
+                <p>Bamboota</p>
+                <p>bamboota.com</p>
+            </div>
+            <div class="desktop-card">
+                <p>"With companies like RIPT, why would artists ever take on freelance work again? You get to draw what you’re passionate about, there’s no art revisions, and they pay you insanely fast. As far as I'm concerned, that's every designer's dream"</p>
+                <img class="mb-2" src="https://d550296ed7jau.cloudfront.net/profiles/Harebrained/avatar-1416252654.14.jpg">
+                <p>Harebrained</p>
+                <p>www.harebraineddesign.com</p>
+            </div>
+            <div class="desktop-card">
+                <p>"I enjoy working with RIPT because of the money and freedom. With RIPT, I create what I want, and if it gets printed, I get paid for it. From an artist's experience, the submission and approval process is pretty seamless and easy to use."</p>
+                <img class="mb-2" src="https://d550296ed7jau.cloudfront.net/profiles/Jimiyo/avatar-1416252622.93.jpg">
+                <p>Jimiyo</p>
+                <p>www.jimiyo.com</p>
+            </div>
+        </div>
+        <script>
+            $('#artists-raving').eclipse({
+                adaptiveHeight: true
+            });
+        </script>
+    </section>
+</div>

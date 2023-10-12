@@ -1,0 +1,60 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="mt-[8vh]">
+    <img
+        class="img-desktop"
+        {% comment %}
+        src="https://cdn.shopify.com/s/files/1/0739/9215/files/Group_48095707.png?v=1690793659"
+        {% endcomment %}
+        src="{{ section.settings.desktop_image | img_url: 'master' }}"
+        alt="">
+    <img
+        class="img-mobile"
+        {% comment %}
+        src="https://cdn.shopify.com/s/files/1/0739/9215/files/Group_48095690.png?v=1690794257"
+        {% endcomment %}
+        src="{{ section.settings.mobile_image  | img_url: 'master' }}"
+        alt="">
+</div>
+
+{% schema %}
+    {
+        "name": "Images",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "desktop_image",
+                "label": "Desktop Image"
+            }, {
+                "type": "image_picker",
+                "id": "mobile_image",
+                "label": "Mobile Image"
+            }
+        ]
+    }
+{% endschema %}
+
+<style>
+    @media only screen and (max-width: 600px) {
+
+        .img-desktop {
+            display: none;
+        }
+
+        .img-mobile {
+            display: block;
+        }
+
+    }
+
+    @media only screen and (min-width: 601px) {
+
+        .img-desktop {
+            display: block;
+        }
+
+        .img-mobile {
+            display: none;
+        }
+
+    }
+</style>

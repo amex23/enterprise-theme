@@ -1,0 +1,483 @@
+{{ 'embeddableWidget.bundle.js' | asset_url | script_tag }}
+{{ 'embeddableWidget.min.css' | asset_url | stylesheet_tag }}
+{{ 'jquery.cookie.min.js' | asset_url | script_tag }}
+
+{%- comment -%}
+// Tell us if the collection is in the graveyard
+{%- endcomment -%}
+{% if collection.metafields.global.status == 'graveyard' %}
+{% assign isGraveyard = true %}
+{% endif %}
+
+<style>
+	.hidden {display: none;}
+	.extra-info, .extra-info p {font-size: 14px !important;}
+
+	.connect-to-metamask__open-modal-button {
+		width:100%;
+	}
+
+	.remaining {
+		font-size: 16px;
+		color: #888;
+		font-weight: 500;
+		margin-left: 10px;
+	}
+
+	#verify-nft,
+	#nft-required {
+		display:none;
+	}
+
+	#verify-nft.show,
+	#nft-required.show {
+		display:block;
+	}
+
+	#daily .collection {
+		margin-top: 20px;
+	}
+
+	.connect-to-metamask__open-modal-button {
+		box-shadow: none;
+		border: 1px solid #ccc;
+		border-radius: 0;
+	}
+
+</style>
+
+{% include 'swatch-colors' %}
+<section id="daily">
+	<div class="zzz collection" index="0" data-type="{{ collection.metafields.global.type }}">
+
+		{% assign nftproduct = '' %}
+		{% for product in daily-collection.products %}
+			{% for tag in product.tags %}
+				{% if tag contains "NFT_PRODUCT" %}
+					{% assign nftproduct = tag | replace: "NFT_PRODUCT:", ""  %}
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
+
+		{% for product in daily-collection.products %}
+		<div class="product-data" productid="{{ product.id }}" nftproduct="{{ nftproduct }}"productName="{{ product.title | remove: '"' }}" type="{{ product.type }}" subtype="{{ product.metafields.global.subtype}}" sizingName="{{ product.metafields.global.sizing-text }}" sizing="{{ product.metafields.global.sizing-image }}" description="{{ product.description | escape }}" image="{{ product.images[0].src | product_img_url: 'medium' }}" style="display:none" alt="{{product.title}} - {{product.type}} - RIPT Apparel">
+			{% for variant in product.variants %}
+			{% assign img = '' %}
+			{% if variant.image.src %}
+			{% assign img = variant.image.src | product_img_url: '800x800' %}
+			{% else %}
+			{% assign img = product.images[0].src | product_img_url: '800x800' %}
+			{% endif %}
+
+			{% assign color = variant.option2 %}
+			{% assign size = variant.option1 %}
+
+			{% case variant.option1 %}
+			{% when 'X-small' %} {% assign size = 'XS' %}
+			{% when 'X-Small' %} {% assign size = 'XS' %}
+			{% when 'Small' %} {% assign size = 'S' %}
+			{% when 'Medium' %} {% assign size = 'M' %}
+			{% when 'Large' %} {% assign size = 'L' %}
+			{% when 'X-large' %} {% assign size = 'XL' %}
+			{% when '2x-large' %} {% assign size = '2XL' %}
+			{% when '3x-large' %} {% assign size = '3XL' %}
+			{% when '4x-large' %} {% assign size = '4XL' %}
+			{% when '5x-large' %} {% assign size = '5XL' %}
+			{% endcase %}
+
+			<div class="variant-data" image="{{ img }}" id="{{ variant.id }}" productid="{{ product.id }}" color="{{color}}" title="{{ variant.title }}" size="{{ size }}" qty="{{ variant.inventory_quantity }}" inventory="{{ variant.inventory_management }}" price="{{ variant.price }}" compare_at_price="{{ variant.compare_at_price }}" outofstock="{% if variant.available %}0{% endif %}{% unless variant.available %}1{% endunless %}"></div>
+			{% endfor %}
+		</div> {% comment %}end product-data{% endcomment %}
+		{% endfor %}
+
+      	{% unless isGraveyard %}
+		<div class="row">
+			<div class="columns large-12 show-for-large-up">
+				<ul class="types" data-bind="foreach: vm.designByIndex(0).types">
+					<li data-bind="text: name, attr: { index: $index }, css: { active : $index == 0 }"></li>
+				</ul>
+			</div>
+		</div>
+      	{% endunless %}
+
+		<div class="row">
+			{% comment %}
+			// product images
+			{% endcomment %}
+          	{% if isGraveyard %}
+          	<div class="columns small-12 medium-7 large-6 product-imgs">
+          		<img class="owl-lazy blur-in" src="{{ 'timesup.jpg'| asset_img_url: '1000x1000' }}" alt="{{product.title}} - {{product.type}} - RIPT Apparel">
+          	</div>
+          	{% else %}
+			<div class="columns small-12 medium-7 large-6 product-imgs">
+				<div class="images">
+					<span class="hover show-for-large-up">
+						<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="35" height="40" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+					</span>
+					<div class="images-carousel owl-carousel owl-theme">
+						{% for product in collection.products %}
+						{% assign outer = forloop %}
+						{% assign innerLoop = 0 %}
+						{% for image in product.images %}
+						{% assign mult = innerLoop | plus: 10 %}
+						{% if innerLoop == 0 %}
+						<div index="{{ outer.index0 }}" type="{{ product.type }}" data-subtype="{{ product.metafields.global.subtype }}" class="zoom"><img class="owl-lazy" data-src="{{ image.src | product_img_url: '800x800' }}" alt="{{product.title}} - {{product.type}} - RIPT Apparel"></div>
+						{% endif %}
+						{% assign innerLoop = innerLoop | plus: 1 %}
+						{% endfor %}
+						{% assign number_of_images = forloop.length %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>{% comment %}end product-imgs{% endcomment %}
+          	{% endif %}
+			
+			{% comment %}
+			// design, purchase and variant info
+			{% endcomment %}
+			<div class="columns small-12 medium-5 large-6 design-info-wrap">
+				<div class="design-info">
+					<div class="row small-collapse">
+						<div class="columns {% unless isGraveyard %}small-8 {% else %}span-12{% endunless %}">
+							<h1 class="text-left">{{ collection.title }}</h1>
+						</div>
+						{% unless isGraveyard %}
+						<div class="columns small-4">
+							<span class="compare-at"></span>
+							<div class="price"></div>
+						</div>
+						{% endunless %}
+					</div>
+
+					{% unless isGraveyard %}
+					<span class="artist-name">
+						{% capture artist_name %}{{ collection.metafields.global.artist-name }}{% endcapture %}
+						{% if artist_name == blank %}
+						{% assign artist_name = 'RIPTapparel' %}
+						{% endif %}
+						by: <a href="/pages/member/?{{ artist_name }}">{{ artist_name }}</a>
+					</span>
+
+					<div class="divider stripe"></div>		
+
+					<div class="variants">
+						<select class="product-type" style="display:none"></select>
+						<div class="row product-types">
+							<div class="columns small-12 medium-12">
+								<select style="display:none" class="product-subtype" data-bind="options: designByIndex(0).selectedType().subtypes, optionsValue: 'name', optionsText: 'name', value: designByIndex(0).selectedSubtype().name"></select>
+								<div data-bind="foreach: designByIndex(0).selectedType().subtypes">
+									<div class="subtype" data-bind="text:name, css: { active: name == $parent.designByIndex(0).selectedSubtype().name }, attr: { index: $index } "></div>
+								</div>
+							</div>
+						</div> {% comment %}end product-types{% endcomment %}
+
+						<div class="row">                        
+							<div class="columns small-12 medium-12">
+								<div class="variant-colors" data-bind="visible: designByIndex(0).selectedSubtype().colors().length > 1">
+									<span data-bind="if: designByIndex(0).selectedSubtype().selectedColor()">
+										<p class="title">Color: <span data-bind="text: designByIndex(0).selectedSubtype().selectedColor().name"></span></p>
+										<span data-bind="foreach:designByIndex(0).selectedSubtype().colors()">
+											<span data-bind="if: !unavailable">
+												<span data-bind="css: { active: $parent.designByIndex(0).selectedSubtype().selectedColor().name == name }, style: { backgroundColor : $parent.swatchColors(name).color }, attr: { color: name, bg: $parent.swatchColors(name).class }" class="color-swatch "></span>
+											</span>
+										</span>
+									</span>
+								</div>
+
+								<div class="sizes" data-bind="if: designByIndex(0).selectedSubtype().getVariants().length == 0">
+									<p class="title"> Size: <a href="#" class="sizing-link" data-bind="text:designByIndex(0).selectedSubtype().sizingName, attr: { sizing: designByIndex(0).selectedSubtype().sizing }" class="sizing-link"></a></p>
+									
+									<span>
+										<span class="sizes" data-bind="foreach: designByIndex(0).selectedSubtype().getVariants()">
+											<span data-bind="visible: quantity >= 0">
+												<div class="size-swatch" data-bind="attr: { variantId: id }, css: { disabled: quantity == 0, pointy:true, available: quantity > 0}">
+													<div class="size" data-bind="text: size, css: {active : id == $parent.designByIndex(0).selectedSubtype().selectedVariant().id } "></div>
+													<div class="qty-msg">
+														<span data-bind="visible: quantity < 10 && quantity > 0"><span data-bind="text: quantity"></span> Left</span>
+													</div>
+													<span class="sold-out" data-bind="visible: quantity == 0">Sold Out</span>
+													<span class="on-sale" style="font-size: 12px; color: green; text-align: center; display: block;" data-bind="if: price < compareAt && quantity > 0">On Sale! <br>$<span data-bind="text: Math.floor(price/100) == price/100 ? price / 100 : (price/100).toFixed(2)"></span></span>
+													<span class="on-sale" style="font-size: 12px; text-align: center; display: block;" data-bind="if: price > compareAt">$<span data-bind="text: Math.floor(price/100) == price/100 ? price / 100 : (price/100).toFixed(2)"></span></span>
+												</div>
+											</span>
+										</span>
+									</span>
+								</div> 
+								<div class="sizes" data-bind="if: designByIndex(0).selectedSubtype().getVariants().length == 1" style="font-size:26px;font-weight:600">
+									$<span data-bind="text: (designByIndex(0).selectedSubtype().getVariants()[0].price/100).toFixed(2)"></span>
+									<span class="remaining">
+										<span data-bind="text: designByIndex(0).selectedSubtype().getVariants()[0].quantity"></span>
+										Remaining
+									</span>
+								</div>
+								{% comment %}end sizes{% endcomment %}
+							</div>
+						</div> {% comment %}end row{% endcomment %}
+
+						{% unless isGraveyard %}
+
+<!-- 						<div id="nft-required" data-bind="css: { show: designByIndex(0).selectedSubtype().name != 'NFT' && !vm.validNFT() }">
+							<div style="margin: 20px 0;padding: 20px;background: rgba(255, 165, 0, .5);">
+								You must own this NFT in order to purchase other merchandise. Please add the NFT to your cart or verify ownership.
+							</div>
+
+							<div id="verify-nft" data-bind="css: { show: designByIndex(0).selectedSubtype().name != 'NFT' && !vm.validNFT() }"></div>
+						</div>
+ -->
+						
+						<div>
+							<form action="/cart/add" method="post">
+								<input type="hidden" class="variant-id" name="id" />
+								<button id="AddToCartButton" class="add-to-cart orange" 
+								style="margin-bottom: 20px;"
+								data-bind="text: designByIndex(0).selectedSubtype().selectedVariant().id ? 'Add to cart' : 'Add to cart', css: { available: designByIndex(0).selectedSubtype().selectedVariant().id, unavailable: !designByIndex(0).selectedSubtype().selectedVariant().id }"
+								>Add to cart</button>
+							</form>
+						</div>
+						{% endunless %}
+
+						{% if collection.metafields.global.status == 'today' %}
+						<div data-bind="if: designByIndex(0).selectedSubtype().name == 'NFT'">
+							<div class="product-page-timer" style="margin-top: 0;">
+								This NFT is no longer for sale in: <b><span class="nft-time"></span></b>
+							</div>
+						</div>
+						{% endif %}
+
+						<div class="row extra-info">
+							<ul>
+								<li><b>Online Only. Not available in stores</b></li>
+								<li><b>100% Satisfaction Guarantee</b></li>
+								<li><b>Secure Online Ordering</b></li>
+							</ul>
+                          	<p><img class="icon icons8-Truck" width="22" height="22" style="margin-top: -8px; margin-right: 5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAByElEQVRoQ+2Y4U3EMAyF300ATABMACOwAhMAEwATABMAE8BtwAYwAkzACMAEoCc1UkiTNI5VXQ3On9NJV9uf32su8QrG18p4/XCATSvoCrgCyg64hZQNVD/uCqhbqAzgCigbqH78TyhwCuAWwLa6HfkAnwAuATzOEZ8KfMxYfKiZEDtzAXzPETgTcxa7MqgDNCoYFHgAwPeuZdF6ZwCeSj/ehAJSxQmxD4Cfo2UBgEVTgWPLAKydACMrLUmB3C51B+B86HzWSksH4J/rK4DdAWJkpaUDsO4jAM+R/39ZyQIAay9ayQpA0UpWAIpWsgSQtZI1gNRK90sCaDkbmT1KFOFcAYHu4aggPY1WU7gCroCgA9bvA1nUf/UOcDgVbkS8lF8J1W/dhUR5WhVgUB5p43UtgPiKhme1bVSchwDsJovbqnSUU7V0KrAH4L1BBRZ/EY0W47N9+rg0z7o2LYs71RK4d/KmylNLyrvowdCiGwC0TMlCbwAOG9TI/USVpwZA2Tm1DosA6+HLSQLE6Vnv9FmVZ0r2uDulBmu6H2J255kC4AXiJbJSCsHiOTXIjv0ElurOMwUQauBORanDO8HCuZv02qbEJs7zAx0HhGYZL6TgAAAAAElFTkSuQmCC"> Shipping starts at just $4.50! Orders can take 7 business days to ship.</p>
+                          	<p style="margin-bottom: 0;"><b>About this RIPT Apparel product</b></p>
+							<span data-bind="html: designByIndex(0).selectedSubtype().description"></span>
+							<p style="margin-top: 10px;font-style: italic;color:#999;">Product pictures are digital representations.  Variations in print size and color of the final in-hand product may differ.</p>
+						</div>
+
+					</div> {% comment %}end variants{% endcomment %}
+					{% else %}
+						{% section 'product-unavailable-block' %}
+					{% endunless %}
+
+					{% capture artist_name %}{{ collection.metafields.global.artist-name }}{% endcapture %}
+					{% if artist_name == blank %}
+					{% assign artist_name = 'RIPTapparel' %}
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div> {% comment %}end collection{% endcomment %}
+
+	{% include 'todays-deals-widget', type: 'today' %}
+	<hr>
+	{% unless isGraveyard %}
+	{% comment %} {% include 'recommended-products' %}  {% endcomment %}
+	{% section 'leaderboards' %}
+  	
+
+	<div class="row" style="margin:40px auto;">
+		<div class="columns large-6"><img src="{{ collection.image.src | img_url: 'original' }}" alt="{{collection.title}} - RIPT Apparel"></div>
+		<div class="columns large-6">
+			<div class="row">
+				<div class="half-banner green small" style="margin-bottom:20px;">About the Artist</div>
+				<div class="columns medium-2">
+					<img data-bind="attr: { src: artistAvatar() }" style="width:100px;" alt="{{ artist_name }} Artist Avatar - RIPT Apparel"/>
+				</div>
+				<div class="columns medium-10 text-sm-center text-md-left">
+					<h5>
+						<a href="/pages/member?{{ artist_name }}">
+							{{ artist_name }}
+						</a>
+					</h5>
+					<div data-bind="text: artistBio" style="color;#444"></div>
+	                <br>
+	                <a href="/pages/member?{{ artist_name }}" class="rec-btn">Shop all designs by {{ artist_name }}</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="half-banner purple small" style="margin-bottom:20px;">Yesterday's Designs</div>
+				<div class="side-designs yesterdays-designs">
+					{% include 'daily-designs', type: 'yesterday' %}
+				</div>
+				<div class="divider stripe purple"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+	{% if number_of_images > 1 %}
+	<div id="available-as" style="padding-bottom:50px;">
+		<div class="half-banner green smaller">{% if isGraveyard %}Was Available As:{% else %}Shop This Artwork{% endif %}</div>
+		<br>
+		<div class="row">
+				{% comment %}<ul class="other-variants small-block-grid-2 large-block-grid-4">
+				</ul>{% endcomment %}
+				<div class="also-carousel owl-carousel owl-theme">
+					{% for product in collection.products %}
+					{% assign outer = forloop %}
+					{% assign innerLoop = 0 %}
+					{% for image in product.images %}
+					{% if innerLoop == 0 %}
+					<div class="also-available" index="{{ outer.index0 }}" type="{{ product.type }}" data-subtype="{{ product.metafields.global.subtype }}" ><img class="owl-lazy" data-src="{{ product.selected_or_first_available_variant.image | default: product.featured_image | img_url: 'medium' }}" alt="{{product.title}} - {{product.type}} - RIPT Apparel">{{ product.metafields.global.subtype }} <br> ${{ product.price | divided_by: 100 }}</div>
+					{% endif %}
+					{% assign innerLoop = innerLoop | plus: 1 %}  
+					{% endfor %}
+					{% assign number_of_images = forloop.length %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		{% comment %}<div class="divider stripe"></div>{% endcomment %}
+		{% endif %}
+	</div>
+
+	<div id="sizechart-modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+		<img src="" alt="close">
+		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	</div>
+  {% endunless %}
+
+</section>
+
+<script>   
+	$('body').addClass('daily-collection-page');
+	$(document).ready(function() {
+	// Get artists.
+	$.get('{{ settings.api_url }}/shopify/artists/{{ artist_name }}', {} , function(data) {
+		if(data.artist.avatar == '') {
+			data.artist.avatar = "{{ 'default-avatar.jpg' | asset_url }}";
+		} else {
+			data.artist.avatar = "{{ settings.image_base_url }}" + data.artist.avatar;
+		}
+		if(data.artist.bio == '') {
+			data.artist.bio = "There's no information about this artist.";
+		}
+		vm.artistAvatar(data.artist.avatar);
+		vm.artistBio(data.artist.bio);
+	}, 'json');
+
+	$('.graveyard-loves').click(function() {
+		$this = $(this);
+		{% if customer %}
+		$.post('{{ settings.api_url }}/shopify/newlove/{{ collection.handle }}', { username : $.cookie('ript-username') }, function(data) {
+				// update love count
+				if(data) {
+					$this.children('span').html(data);
+					if ($this.hasClass('loved')){
+						$this.removeClass('loved');
+					}else{
+						$this.addClass('loved');
+					}
+				}
+			});
+		{% else %}
+			// redirect to login
+			window.location.assign('/account/login?checkout_url=' + window.location.href);
+			{% endif %}
+		});
+
+	Ript.choicesFromUrl();
+});
+
+	$(document).ready(function($) {
+		$('ul.tabs li').click(function(){
+			var tab_id = $(this).attr('data-tab');
+
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+
+			$(this).addClass('current');
+			$("#"+tab_id).addClass('current');
+		})
+
+		$('.also-carousel .also-available').click(function(){
+			$("html, body").animate({ scrollTop: 0 }, 200);
+			return false;
+		});
+
+		$('.add-to-cart').click(function() {
+// 			_shopmsg("confirmOptin", "addToCartCheckbox");
+		});
+	});
+
+
+
+// Track collection page view for Klaviyo
+//var _learnq = _learnq || [];
+//_learnq.push(['track', 'Viewed Collection']);
+
+var _learnq = _learnq || [];
+var item = {
+	Name: {{ collection.title|json }},
+	CollectionID: {{ collection.id|json }},
+    //Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ collection.image.src | img_url: 'original' }}",
+    URL: "{{ shop.secure_url }}{{ collection.url }}",
+    {%- if collection.metafields.global.status == 'graveyard' -%}
+    Graveyard: true
+    {%- endif -%}
+    {%- if collection.metafields.global.status == 'today' or collection.metafields.global.status == 'yesterday' -%}
+    Daily: true
+    {%- endif -%}
+};
+
+_learnq.push(['track', 'Viewed Collection', item]);
+
+_learnq.push(['trackViewedItem', {
+	Title: item.Name,
+	ItemId: item.CollectionID,
+	ImageUrl: item.ImageURL,
+	Url: item.URL,
+}]);
+
+</script>
+
+<script>
+
+var address = '/';
+var nftAddress = '';
+var nftToken = '';
+
+{% for product in daily-collection.products %}
+	{% for tag in product.tags %}
+		{% if tag contains "NFT_ADDRESS" %}
+			address = '{{ tag | replace: "NFT_ADDRESS:", "" }}';
+			{% break %}
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+
+var split = address.split("/");
+nftAddress = split[0];
+
+var params = {
+	// apiUrl: ApiUrl,
+	parentElement: "#verify-nft",
+		networkId: 137,
+	metamaskDeepLink: null, // replace host for metamask mobile dapp apps, example: https://metamask.app.link/dapp/wallet.niftybridge.io/widget.html, see part after /dapp/
+	nftAddress: nftAddress,
+	tokenId: parseInt(split[1]), 
+	onConfirmCallback: ({onCloseModal, address, user}) => {
+		$.cookie('nft-' + '{{ nftproduct }}', true, { expires: 30 / 1440, path: '/' });
+		vm.validNFT(true);
+		
+		onCloseModal()
+	},
+	onErrorCallback: () => {console.log("error")},
+	onUnconfirmCallback: () => {console.log("not confirmed")}
+}
+
+mountWidget();
+
+function unmountWidget() {
+	EmbeddableWidget.unmount()
+}
+
+function mountWidget() {
+	EmbeddableWidget.mount(params);
+}
+
+</script>

@@ -1,0 +1,129 @@
+{
+  "type": "header",
+  "name": "Header Group",
+  "sections": {
+    "announcement": {
+      "type": "announcement",
+      "disabled": true,
+      "settings": {
+        "link1": "",
+        "link1_label": "",
+        "link2": "",
+        "link2_label": "",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "text_type_scale": "small",
+        "read_time": 7
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "031ad32a-5b32-4142-b82b-1522015cdb91": {
+          "type": "sidebar",
+          "settings": {
+            "title": "",
+            "collection_images": "standard",
+            "collection_use_product_image": true,
+            "show_underline": true,
+            "show_collection_images": true,
+            "sidebar_link_use_product_image": false,
+            "show_product_images": true,
+            "aspect_ratio": "1",
+            "badge1_color": "#000000",
+            "badge1_link": "",
+            "badge1_text": "",
+            "badge2_color": "#000000",
+            "badge2_link": "",
+            "badge2_text": "",
+            "badge3_color": "#000000",
+            "badge3_link": "",
+            "badge3_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "031ad32a-5b32-4142-b82b-1522015cdb91"
+      ],
+      "settings": {
+        "enable_sticky": true,
+        "mobile_menu_position": "burger-left",
+        "logo_text": "RIPT Apparel",
+        "logo_type_scale": "2",
+        "logo": "shopify:\/\/shop_images\/Winning_Spirit_Showroom_2.webp",
+        "logo_width": 150,
+        "enable_search": true,
+        "minimise_search_mobile": false,
+        "minimise_search_desktop": false,
+        "menu": "main-menu-1",
+        "repeat_links": true,
+        "menu_featured_link": "Sale",
+        "quicklinks_menu": "",
+        "quicklinks_menunew": "top-header-menu",
+        "bg_color": "#ffffff",
+        "text_color": "#070707",
+        "accent_color": "#777777"
+      }
+    },
+    "promo-strip": {
+      "type": "promo-strip",
+      "blocks": {
+        "heading-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Welcome To Our New Site",
+            "heading_size": "h6",
+            "show_on_mobile": true,
+            "show_on_desktop": true
+          }
+        },
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Celebrate with us with 15% off all orders.<\/p>",
+            "enlarge_text": false,
+            "show_on_mobile": true,
+            "show_on_desktop": true
+          }
+        },
+        "discount-2": {
+          "type": "discount",
+          "settings": {
+            "discount_code": "NEWRIPT15"
+          }
+        }
+      },
+      "block_order": [
+        "heading-0",
+        "text-1",
+        "discount-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_height": "xsmall",
+        "color_scheme": "1",
+        "full_width": true,
+        "dividers": "border-top",
+        "prevent_animation": false
+      }
+    },
+    "59d3a28a-0eb0-400c-8b33-928aa0706654": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>\nh2.header {\n    z-index: -1000 !important;\n}\n\nsection.header {\n    z-index: -1001 !important;\n}\n\n.section.relative.section--full-width.section--padded-default.cc-animate-init.cc-animate-in {\n    padding-top: 0px !important;\n    padding-bottom: 0px !important;\n}\n<\/style>",
+        "section_height": "default",
+        "full_width": false,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header",
+    "promo-strip",
+    "59d3a28a-0eb0-400c-8b33-928aa0706654"
+  ]
+}

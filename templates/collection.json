@@ -1,0 +1,119 @@
+{
+  "sections": {
+    "collection-banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_title": true,
+        "show_product_count": true,
+        "show_collection_description": false,
+        "text_align": "items-center text-center",
+        "collection_image": "1.77",
+        "use_product_image": false,
+        "text_width": "standard",
+        "color_scheme": "default"
+      }
+    },
+    "details": {
+      "type": "product-details",
+      "blocks": {
+        "highlight-text": {
+          "type": "highlight-text",
+          "disabled": true,
+          "settings": {
+            "title": "Highlight title",
+            "text": "<p>Text to highlight a key feature of your product<\/p>"
+          }
+        },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+            "style": "tabs",
+            "show_description": false,
+            "show_specification": false,
+            "show_reviews": false,
+            "spec_metafields": "",
+            "spec_right_align": false,
+            "spec_show_empty_metafields": true,
+            "spec_empty_field_text": "-",
+            "tab_1_title": "",
+            "tab_1_text": "",
+            "tab_1_page": "",
+            "tab_2_title": "",
+            "tab_2_text": "",
+            "tab_2_page": "",
+            "tab_3_title": "",
+            "tab_3_text": "",
+            "tab_3_page": ""
+          }
+        },
+        "payment-methods": {
+          "type": "payment-methods",
+          "settings": {
+            "title": "Payment & Security",
+            "title1": "Payment methods",
+            "show_payment_icons": true,
+            "text1": "<p>Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.<\/p>",
+            "title2": "",
+            "text2": ""
+          }
+        }
+      },
+      "block_order": [
+        "highlight-text",
+        "tabs",
+        "payment-methods"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "collection-products": {
+      "type": "main-collection-products",
+      "settings": {
+        "products_per_page": 20,
+        "card_size": "large",
+        "show_layout_toggle": false,
+        "enable_filtering": true,
+        "filters_open_lg": true,
+        "stick_on_scroll": true,
+        "show_filter_counts": false,
+        "expand_filters": true,
+        "max_filter_options": 7,
+        "enable_sorting": true,
+        "show_feat_sort_opt": true,
+        "sort_first": true
+      }
+    },
+    "4a12d3fd-4ed6-442a-8042-e80918f7a9d1": {
+      "type": "countdown-timer-custom",
+      "disabled": true,
+      "settings": {
+        "countdown_text": "These Daily Deals End In:",
+        "font_size": 2,
+        "ript_slogan": "RIPT Apparel features 3 new designs for sale everyday created by artists from all around the world. Each design is available for 24 hours on t-shirts, hoodies, posters and more, starting at just $14.00."
+      }
+    },
+    "0f7ee29f-9bfa-41cb-8a80-1e0629fdfb7e": {
+      "type": "homepage_daily_designs",
+      "disabled": true,
+      "settings": {}
+    },
+    "3fef24da-b62f-4c4e-a521-f21a060bd887": {
+      "type": "custom-display",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/WP05-MEN_55_copy_3.png",
+        "section_height": "default",
+        "full_width": false,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    }
+  },
+  "order": [
+    "collection-banner",
+    "details",
+    "collection-products",
+    "4a12d3fd-4ed6-442a-8042-e80918f7a9d1",
+    "0f7ee29f-9bfa-41cb-8a80-1e0629fdfb7e",
+    "3fef24da-b62f-4c4e-a521-f21a060bd887"
+  ]
+}

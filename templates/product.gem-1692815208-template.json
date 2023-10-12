@@ -1,0 +1,258 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor-sku": {
+          "type": "vendor-sku",
+          "disabled": true,
+          "settings": {
+            "show_vendor": true,
+            "show_sku": false
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax_and_shipping": true
+          }
+        },
+        "divider-0": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "spacing": "mt-8 mb-8"
+          }
+        },
+        "variant-picker": {
+          "type": "variant-picker",
+          "settings": {
+            "selector_style": "buttons",
+            "enable_dynamic_availability": true,
+            "show_backorder_text": false,
+            "enable_size_chart": false,
+            "size_chart_variant": "Size",
+            "size_chart_page": ""
+          }
+        },
+        "divider-1": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "spacing": "mt-8 mb-8"
+          }
+        },
+        "buy-buttons": {
+          "type": "buy-buttons",
+          "settings": {
+            "show_qty_selector": true,
+            "enable_dynamic_checkout": true,
+            "show_pickup_availability": false
+          }
+        },
+        "message-1": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "clock",
+            "title": "<p><strong>Popular right now<br\/><\/strong>Lots of people have looked at this recently<\/p>",
+            "close": "once",
+            "show_over_media": true,
+            "visibility_duration": 4,
+            "bg_color": "#ffb653",
+            "text_color": "#ffffff"
+          }
+        },
+        "message-2": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "price_tag",
+            "title": "<p><strong>Selling fast!<br\/><\/strong>Grab yours while you can<\/p>",
+            "close": "once",
+            "show_over_media": true,
+            "visibility_duration": 5,
+            "bg_color": "#ffb653",
+            "text_color": "#ffffff"
+          }
+        },
+        "4a3bf882-b3b7-4fa9-8955-979fe34bb579": {
+          "type": "collapsible-content",
+          "disabled": true,
+          "settings": {
+            "heading": "Design description",
+            "icon": "brush",
+            "text": "",
+            "page": "",
+            "open": false
+          }
+        },
+        "226e2d67-e991-4c69-9d92-2902cab2604e": {
+          "type": "collapsible-content",
+          "settings": {
+            "heading": "Product description",
+            "icon": "shirt",
+            "text": "",
+            "page": "",
+            "open": false
+          }
+        },
+        "collapsible-content-1": {
+          "type": "collapsible-content",
+          "settings": {
+            "heading": "Care information",
+            "icon": "heart",
+            "text": "<p>We recommend washing all apparel products \"inside-out\" and on the \"cold\" water setting. Air drying is best, at least the first time.<\/p>",
+            "page": "",
+            "open": false
+          }
+        },
+        "collapsible-content-2": {
+          "type": "collapsible-content",
+          "settings": {
+            "heading": "Shipping & Returns",
+            "icon": "truck",
+            "text": "",
+            "page": "shipping-returns",
+            "open": false
+          }
+        },
+        "message-3": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "none",
+            "title": "<p>Add a stand out message for your customers<\/p>",
+            "close": "once",
+            "show_over_media": false,
+            "visibility_duration": 7,
+            "bg_color": "#ffb653",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "vendor-sku",
+        "title",
+        "price",
+        "divider-0",
+        "variant-picker",
+        "divider-1",
+        "buy-buttons",
+        "message-1",
+        "message-2",
+        "4a3bf882-b3b7-4fa9-8955-979fe34bb579",
+        "226e2d67-e991-4c69-9d92-2902cab2604e",
+        "collapsible-content-1",
+        "collapsible-content-2",
+        "message-3"
+      ],
+      "settings": {
+        "stick_on_scroll": true,
+        "sticky_atc_panel": true,
+        "media_layout": "slider",
+        "media_size": "default",
+        "media_ratio": "1",
+        "media_crop": "none",
+        "hover_zoom": "large",
+        "enable_video_looping": false,
+        "stacked_scroll": "always",
+        "underline_active": true,
+        "media_thumbs": "desktop",
+        "thumb_ratio": "1",
+        "thumb_crop": "none",
+        "media_arrows": "desktop",
+        "show_slide_count": true,
+        "border_color": "#eeeeee",
+        "bg_color": "#f4f4f4",
+        "enable_media_grouping": false,
+        "media_grouping_option": "Color,Colour,Couleur,Farbe"
+      }
+    },
+    "details": {
+      "type": "product-details",
+      "blocks": {
+        "highlight-text": {
+          "type": "highlight-text",
+          "settings": {
+            "title": "",
+            "text": "<p>This original design cannot be found in stores. Online Only.<\/p>"
+          }
+        },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+            "style": "tabs",
+            "show_description": false,
+            "show_specification": false,
+            "show_reviews": false,
+            "spec_metafields": "",
+            "spec_right_align": false,
+            "spec_show_empty_metafields": true,
+            "spec_empty_field_text": "-",
+            "tab_1_title": "",
+            "tab_1_text": "",
+            "tab_1_page": "",
+            "tab_2_title": "",
+            "tab_2_text": "",
+            "tab_2_page": "",
+            "tab_3_title": "",
+            "tab_3_text": "",
+            "tab_3_page": ""
+          }
+        },
+        "payment-methods": {
+          "type": "payment-methods",
+          "disabled": true,
+          "settings": {
+            "title": "Payment & Security",
+            "title1": "Payment methods",
+            "show_payment_icons": true,
+            "text1": "<p>Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.<\/p>",
+            "title2": "",
+            "text2": ""
+          }
+        },
+        "6e3a6180-d88e-4712-ac32-2da41b3c4dbf": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<img \nclass=\"payment_security\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0739\/9215\/files\/payment_method_image_430x.png?v=1692106444#\" alt=\"payment and security\" style=\"width:530px\">\n\n<style>\n.payment_security{\ndisplay: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%;\n}\n<\/style>"
+          }
+        }
+      },
+      "block_order": [
+        "highlight-text",
+        "tabs",
+        "payment-methods",
+        "6e3a6180-d88e-4712-ac32-2da41b3c4dbf"
+      ],
+      "settings": {}
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "heading_align": "text-center",
+        "layout": "grid",
+        "card_size": "small",
+        "products_to_show": 5
+      }
+    },
+    "168565167378b1db1c": {
+      "type": "apps",
+      "settings": {
+        "full_width": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "details",
+    "recommendations",
+    "168565167378b1db1c"
+  ]
+}

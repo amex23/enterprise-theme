@@ -1,0 +1,339 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor-sku": {
+          "type": "vendor-sku",
+          "disabled": true,
+          "settings": {
+            "show_vendor": true,
+            "show_sku": false
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax_and_shipping": true
+          }
+        },
+        "acf6b445-be87-4551-a67c-c07ec2e35256": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"-mt-5\" style=\"border-bottom: 2px solid #D5DBDB;\"><\/div>"
+          }
+        },
+        "226e2d67-e991-4c69-9d92-2902cab2604e": {
+          "type": "collapsible-content",
+          "disabled": true,
+          "settings": {
+            "heading": "Product description",
+            "icon": "none",
+            "text": "",
+            "page": "",
+            "open": false
+          }
+        },
+        "5ce1350c-936d-4470-ba17-8daa79e8fe30": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"flex flex-col gap-5\">\n{{ product.description }}\n<\/div>"
+          }
+        },
+        "divider-0": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "spacing": "mt-8 mb-8"
+          }
+        },
+        "variant-picker": {
+          "type": "variant-picker",
+          "settings": {
+            "selector_style": "buttons",
+            "enable_dynamic_availability": true,
+            "show_backorder_text": false,
+            "enable_size_chart": false,
+            "size_chart_variant": "Size",
+            "size_chart_page": ""
+          }
+        },
+        "divider-1": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "spacing": "mt-8 mb-8"
+          }
+        },
+        "e6741d28-d11f-4332-bed9-819ff0f6031f": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "image": "{{ product.metafields.custom.sizeguideimage.value }}",
+            "image_width": 600,
+            "image_align": "justify-start",
+            "url": ""
+          }
+        },
+        "e75850e5-54d1-4db9-b9c3-d4432ff39629": {
+          "type": "pop-up",
+          "disabled": true,
+          "settings": {
+            "link_text": "View Chart",
+            "link_style": "link",
+            "text": "",
+            "page": ""
+          }
+        },
+        "buy-buttons": {
+          "type": "buy-buttons",
+          "settings": {
+            "show_qty_selector": true,
+            "enable_dynamic_checkout": true,
+            "show_pickup_availability": false
+          }
+        },
+        "message-1": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "clock",
+            "title": "<p><strong>Popular right now<br\/><\/strong>Lots of people have looked at this recently<\/p>",
+            "close": "once",
+            "show_over_media": true,
+            "visibility_duration": 4,
+            "bg_color": "#ffb653",
+            "text_color": "#ffffff"
+          }
+        },
+        "message-2": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "price_tag",
+            "title": "<p><strong>Selling fast!<br\/><\/strong>Grab yours while you can<\/p>",
+            "close": "once",
+            "show_over_media": true,
+            "visibility_duration": 5,
+            "bg_color": "#ffb653",
+            "text_color": "#ffffff"
+          }
+        },
+        "4a3bf882-b3b7-4fa9-8955-979fe34bb579": {
+          "type": "collapsible-content",
+          "disabled": true,
+          "settings": {
+            "heading": "Design description",
+            "icon": "brush",
+            "text": "",
+            "page": "",
+            "open": false
+          }
+        },
+        "collapsible-content-1": {
+          "type": "collapsible-content",
+          "settings": {
+            "heading": "Care information",
+            "icon": "none",
+            "text": "",
+            "page": "care-information",
+            "open": false
+          }
+        },
+        "collapsible-content-2": {
+          "type": "collapsible-content",
+          "settings": {
+            "heading": "Shipping & Returns",
+            "icon": "none",
+            "text": "",
+            "page": "shipping-returns",
+            "open": false
+          }
+        },
+        "62fafc46-a072-40c7-97a1-467701a561f1": {
+          "type": "collapsible-content",
+          "settings": {
+            "heading": "Fitting Guide",
+            "icon": "none",
+            "text": "",
+            "page": "fitting-guide",
+            "open": false
+          }
+        },
+        "aec10195-6eb0-4a93-be08-b7b95af94637": {
+          "type": "share",
+          "disabled": true,
+          "settings": {}
+        },
+        "message-3": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "none",
+            "title": "<p>Add a stand out message for your customers<\/p>",
+            "close": "once",
+            "show_over_media": false,
+            "visibility_duration": 7,
+            "bg_color": "#ffb653",
+            "text_color": "#ffffff"
+          }
+        },
+        "8e3f0e3e-daa4-46bc-8187-2ceaa0c74b73": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "none",
+            "title": "<p>Your purchase helps support an Indie Artist! Thank you for helping us support this mission.<\/p>",
+            "close": "once",
+            "show_over_media": false,
+            "visibility_duration": 7,
+            "bg_color": "#e4edfa",
+            "text_color": "#1a66d2"
+          }
+        }
+      },
+      "block_order": [
+        "vendor-sku",
+        "title",
+        "price",
+        "acf6b445-be87-4551-a67c-c07ec2e35256",
+        "226e2d67-e991-4c69-9d92-2902cab2604e",
+        "5ce1350c-936d-4470-ba17-8daa79e8fe30",
+        "divider-0",
+        "variant-picker",
+        "divider-1",
+        "e6741d28-d11f-4332-bed9-819ff0f6031f",
+        "e75850e5-54d1-4db9-b9c3-d4432ff39629",
+        "buy-buttons",
+        "message-1",
+        "message-2",
+        "4a3bf882-b3b7-4fa9-8955-979fe34bb579",
+        "collapsible-content-1",
+        "collapsible-content-2",
+        "62fafc46-a072-40c7-97a1-467701a561f1",
+        "aec10195-6eb0-4a93-be08-b7b95af94637",
+        "message-3",
+        "8e3f0e3e-daa4-46bc-8187-2ceaa0c74b73"
+      ],
+      "settings": {
+        "stick_on_scroll": true,
+        "sticky_atc_panel": true,
+        "media_layout": "slider",
+        "media_size": "default",
+        "media_ratio": "1",
+        "media_crop": "none",
+        "hover_zoom": "large",
+        "enable_video_looping": false,
+        "stacked_scroll": "always",
+        "underline_active": true,
+        "media_thumbs": "desktop",
+        "thumb_ratio": "1",
+        "thumb_crop": "none",
+        "media_arrows": "desktop",
+        "show_slide_count": true,
+        "border_color": "#eeeeee",
+        "bg_color": "#f4f4f4",
+        "enable_media_grouping": false,
+        "media_grouping_option": "Color,Colour,Couleur,Farbe"
+      }
+    },
+    "details": {
+      "type": "product-details",
+      "blocks": {
+        "highlight-text": {
+          "type": "highlight-text",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "text": "<p>This original design cannot be found in stores. Online Only.<\/p>"
+          }
+        },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+            "style": "tabs",
+            "show_description": false,
+            "show_specification": false,
+            "show_reviews": false,
+            "spec_metafields": "",
+            "spec_right_align": false,
+            "spec_show_empty_metafields": true,
+            "spec_empty_field_text": "-",
+            "tab_1_title": "",
+            "tab_1_text": "",
+            "tab_1_page": "",
+            "tab_2_title": "",
+            "tab_2_text": "",
+            "tab_2_page": "",
+            "tab_3_title": "",
+            "tab_3_text": "",
+            "tab_3_page": ""
+          }
+        },
+        "payment-methods": {
+          "type": "payment-methods",
+          "disabled": true,
+          "settings": {
+            "title": "Payment & Security",
+            "title1": "Payment methods",
+            "show_payment_icons": true,
+            "text1": "<p>Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.<\/p>",
+            "title2": "",
+            "text2": ""
+          }
+        },
+        "6e3a6180-d88e-4712-ac32-2da41b3c4dbf": {
+          "type": "custom-liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "highlight-text",
+        "tabs",
+        "payment-methods",
+        "6e3a6180-d88e-4712-ac32-2da41b3c4dbf"
+      ],
+      "settings": {}
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "heading_align": "text-center",
+        "layout": "grid",
+        "card_size": "medium",
+        "products_to_show": 4
+      }
+    },
+    "dbd405ca-57ff-46cb-bfc9-26ee4be4f42f": {
+      "type": "custom-display",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/WP05-MEN_55_copy_3.png",
+        "section_height": "default",
+        "full_width": false,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "168565167378b1db1c": {
+      "type": "apps",
+      "settings": {
+        "full_width": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "details",
+    "recommendations",
+    "dbd405ca-57ff-46cb-bfc9-26ee4be4f42f",
+    "168565167378b1db1c"
+  ]
+}

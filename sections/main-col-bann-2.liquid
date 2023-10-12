@@ -1,0 +1,723 @@
+{% comment %} <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> {% endcomment %}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- <script src="https://unpkg.com/vue@3.0.5"></script> -->
+<script src="https://unpkg.com/vue@3.0.5/dist/vue.global.prod.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+{%- comment -%}
+// section banner image chosen by user
+{%- endcomment -%}
+{% assign col_1 = settings.todays_designs | split: "," %}
+
+{% assign col_2 = settings.lastcall_designs | split: "," %}
+
+{% assign all_col = col_1 | concat: col_2 %}
+
+<div class="main_col_banner">
+{% if collection.image %}
+<div class="outer-div-banner" {% for items in all_col %}
+ {% if collection.handle == items %}yes 
+   style = "display:none;opacity:0;visbility:hidden;"
+  data-all-collections="{{ items }}"
+   {% endif %}
+  {% endfor %}>
+  <div class="inner-div-banner" style="background-image: url('{{ collection.image | img_url: 'master' }}');">
+    <div class="content-div-banner">
+      <h2 class="collection-title-banner" style="font-weight: bold !important;">{{ collection.title }}</h2>
+      <p class="item-count-banner" style="font-weight: bold !important;">{{ collection.products_count }} items</p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% for items in all_col %}
+ {% if collection.handle == items %}
+   
+    <div class="product-template container">
+        <div class="product-images flex w-full">
+            <div class="tab-wrapper flex flex-col w-full gap-7">
+                <div class="grid grid-cols-2">
+
+
+                  <div class="collection_buttons">
+                        {% assign mens_tags = '' %}
+                        {% assign other_tags = '' %}
+
+                        {% for tag in collection.tags %}
+                          
+                            {% if tag contains 'Type-Mens' %}
+                                {% if tag == 'Type-Mens' %}
+                                    {% assign mens_tags = mens_tags | append: 'Standard,' %}
+                              
+                                {% elsif tag == 'Type-Mens-Premium' %}
+                                    {% assign mens_tags = mens_tags | append: 'Premiums,' %}
+                              
+                                  {% endif %}
+                            {% elsif tag == 'Type-Hoodies' %}
+                                {% assign other_tags = other_tags | append: 'Hoodies,' %}
+                            
+                              {% elsif tag == 'Type-Tanktop' %}
+                                {% assign other_tags = other_tags | append: 'Tanktops,' %}
+                        
+                              {% elsif tag == 'Type-Crew-Neck-Sweatshirt' %}
+                                {% assign other_tags = other_tags | append: 'Crewnecks,' %}
+                       
+                              {% endif %}
+                        {% endfor %}
+
+                        {% assign sorted_mens_tags = mens_tags | split: ',' | sort %}
+                      
+                        {% assign sorted_other_tags = other_tags | split: ',' | sort %}
+                    
+
+                        <button class="Type-Mens" data-target="Type-Mens">
+                            Standard
+                        </button>
+
+                        {% for tag in sorted_mens_tags %}
+                            {% if tag != 'Standard' and tag != 'Premiums' %}
+                                <button class="button tab-button {{ tag }}">
+                                    {{ tag }}
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+
+                        <button class="Type-Mens-Premium" data-target="Type-Mens">
+                            Premiums
+                        </button>
+
+                        {% for tag in sorted_other_tags %}
+                            <button class="{% if tag contains 'Crewnecks' %}Type-Crew-Neck-Sweatshirt{% elsif tag contains 'Tanktops' %}Type-Tanktop{% elsif tag contains 'Hoodies' %}Type-Hoodies{% endif %}">
+                                {{ tag }}
+                            </button>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="contents-details">
+
+                    {% assign tags_sequence = 'Type-Mens,Type-Mens-Premium,Type-Crew-Neck-Sweatshirt,Type-Hoodies,Type-Tanktop' | split: ',' %}
+
+                    {% for tag in tags_sequence %}
+                        {% for product in collection.products %}
+                            {% if product.tags contains tag %}
+                                <div class="tab-content bg-green-400 w-full {{ tag }}">
+                                    <div class="w-full flex items-start gap-10 bg-red-400">
+                                        <div class="w-1/2 bg-blue-400 my-4">
+                                            <img
+                                                src="{{ product.images[0].src | img_url: 'master' }}"
+                                                alt="{{ product.title }}"
+                                                class="product-image" />
+                                        </div>
+                                      
+                                        <div class="w-1/2 flex flex-col gap-4 b-gray px-3 py-5">
+                                     
+                                            <!-- <p>by: {{ product.vendor }}</p> -->
+                                           <span class="artist-name">
+                            {% capture artist_name %}
+                                {{ collection.metafields.global.artist-name }}{% endcapture %}
+                            {% if artist_name == blank %}
+                                {% assign artist_name = 'RIPTapparel' %}
+                            {% endif %}
+                            by:
+                            <a href="/pages/member/?{{ artist_name }}">{{ artist_name }}</a>
+                        </span>
+                                            <h3 class="text-4xl font-bold">{{ product.title }}</h3>
+                                            <h2 class="text-6xl font-bold">{{ product.price | money_without_trailing_zeros }}</h2>
+                                            <h6 class="my-3">Sizes</h6>
+                                            <ul class="abc">
+
+                                          <div class="product_swatches">
+                                          {% for variant in product.variants %}
+                                          <label class="opt-label opt-label--btn btn relative text-center" for="product_variant--{{ variant.id }}">
+                                          <span class="js-value">{{ variant.title }}</span>
+                                          <input type="radio" class="opt-btn visually-hidden focus-label js-option" name="" id="product_variant--{{ variant.id }}" value="{{ variant.id }}">
+                                          </label>
+                                         
+                                          <!-- <input id="variant_get" type="hidden" value="{{ variant.id }}"> -->
+                                          {% endfor %}
+                                          </div>
+                                                      <!-- <select id="my_variant_id">
+                                                        {% for variant in product.variants %}
+                                                        <option value="{{ variant.id }}">{{ variant.title }}</option>
+                                                        {% endfor %}
+                                                      </select> -->
+                                            
+
+                                              
+                                                
+                              <form id="collection_page_add_to_cart" method="post" action="/cart/add">
+                                    <input type="hidden" id="variant_id" name="id" value="{{ product.variants[0].id }}" />
+                                    <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+                                    <input class="add-value" type="submit" value="Add to cart" class="btn" />
+                              </form> 
+                                             </ul>
+                               
+                                        </div>
+                             
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endif %}
+  {% endfor %}
+</div>
+
+<style>
+
+  /* .abc{
+    display: flex;
+    gap: 12px;
+  }
+  .variant{
+        border: 2px solid;
+    width: 40px;
+    height: 40px;
+    /* text-align: center; */
+    border-radius: 50%;
+    /* padding: 3px; */
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  } */
+  .main_col_banner{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+  }
+  .js-value{
+    text-transform: uppercase !important;
+  }
+  .collection_buttons button{
+    padding:8px 16px;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 30px;
+    margin-right: 4px;
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+/* #change:active {
+    background: black !important;
+    color: white !important;
+} */
+ 
+  button.active{
+    background-color: #000;
+    color:#fff;
+  }
+    .product-details__block {
+        width: 50% !important;
+    }
+    .js-quick-add {
+        color: black;
+    }
+    .tab-wrapper {
+        display: flex;
+    }
+
+    .variant {
+        border: 2px solid gray;
+    }
+
+    .b-gray {
+        border: 1px solid rgb(199, 198, 198);
+    }
+
+    .tab-button {
+        cursor: pointer;
+        padding: 8px 16px;
+        background-color: #f1f1f1;
+        border: none;
+        border-radius: 4px 4px 0 0;
+        margin-right: 4px;
+    }
+
+    .tab-button:hover {
+        background-color: #ddd;
+    }
+
+    .tab-button.active {
+        background-color: black;
+        color: white;
+    }
+
+    .tab-content {
+        display: none;
+        padding: 16px;
+        border: 1px solid #ccc;
+        border-radius: 0 0 4px 4px;
+    }
+
+    .tab-content.show {
+        display: block;
+    }
+  .add-value{
+    background: black;
+    color: white;
+    padding: 15px 50px;
+    border-radius: 30px;
+    margin-top: 5%;
+}
+  .variant_active{
+    background: #000 !important;
+    color:#fff !important;
+  }
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+
+   var get_labels = document.querySelectorAll(".product_swatches label");
+  var add_to_cart_input = document.querySelectorAll("#collection_page_add_to_cart #variant_id");
+  get_labels.forEach((label_variant)=>{
+    label_variant.addEventListener("click", function(){
+      var input_id = label_variant.querySelector("input");
+      add_to_cart_input.forEach((cart_btn)=>{
+        cart_btn.value =input_id.value;
+      })
+      // add_to_cart_input.value = input_id.value;
+      console.log(input_id.value);
+    });
+    
+  })
+
+  const pick_swatches = document.querySelectorAll(".product_swatches .opt-label");
+  
+  pick_swatches.forEach((my_color_variant)=>{
+    $(pick_swatches).click(function() {
+  $(this).addClass('variant_active');
+  $(pick_swatches).not(this).removeClass('variant_active');
+});
+    
+  })
+  
+  
+  //   var variant_select = document.getElementById("my_variant_id");
+//   var add_to_cart_input = document.querySelector("#collection_page_add_to_cart #variant_id");
+//   // console.log(add_to_cart_input);
+// function onChange() {
+//   var variant_value = variant_select.value;
+//   var text = variant_select.options[variant_select.selectedIndex].text;
+//   var add_button_input = add_to_cart_input.value;
+//    add_to_cart_input.value = variant_select.value;
+//   console.log(variant_value, add_button_input);
+// }
+// variant_select.onchange = onChange;
+// onChange();
+
+  
+// ORIGNAL CODE DO NOT DLETE IT  --- Select all buttons and content details
+// const buttons = document.querySelectorAll('.collection_buttons button');
+// const contentDetails = document.querySelectorAll('.contents-details > div');
+
+// // Function to hide all content details
+// function hideAllContent() {
+//     contentDetails.forEach(content => {
+//         content.style.display = 'none';
+//     });
+// }
+
+// // Show details of the first button by default
+// hideAllContent();
+// contentDetails[0].style.display = 'block';
+
+// // Get the class list of the first displayed content div
+// const firstContentClasses = contentDetails[0].classList;
+
+// // Add 'active' class to the buttons with matching classes
+// buttons.forEach((button, index) => {
+//     const buttonClass = button.classList[0];
+//     if (firstContentClasses.contains(buttonClass)) {
+//         button.classList.add('active');
+//     }
+// });
+
+// // Add click event listener to each button
+// buttons.forEach((button, index) => {
+//   const buttons_all_classes = buttons.classList;
+// console.log(buttons_all_classes);
+//     button.addEventListener('click', function(event) {
+//         console.log("Button clicked");
+
+//         // Get the class name of the clicked button
+//         const buttonClass = event.target.classList[0];
+//         console.log("Class name: " + buttonClass);
+      
+//         // Hide all content elements
+//         hideAllContent();
+
+//         // Find the matching class element in content-details
+//         const matchingClassElement = document.querySelector('.contents-details .' + buttonClass);
+//         console.log("Matching class element:", matchingClassElement);
+
+//         // Display the matching class element
+//         if (matchingClassElement) {
+//             matchingClassElement.style.display = "block";
+
+//             // Update 'active' class on buttons
+//             buttons.forEach(btn => {
+//                 const contentDivClasses = matchingClassElement.classList;
+//                 if (contentDivClasses.contains(btn.classList[0])) {
+//                     btn.classList.add('active');
+//                 } else {
+//                     btn.classList.remove('active');
+//                 }
+//             });
+//         }
+//     });
+// });
+
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.collection_buttons button');
+    const contentDetails = document.querySelectorAll('.contents-details > div');
+
+    // Function to hide all content details
+    function hideAllContent() {
+        contentDetails.forEach(content => {
+            content.style.display = 'none';
+        });
+    }
+
+    // Show details of the first button by default
+    hideAllContent();
+    contentDetails[0].style.display = 'block';
+
+    // Get the classes of the first displayed content div
+    const firstContentClasses = Array.from(contentDetails[0].classList);
+
+    // Add 'active' class to the buttons with matching classes
+    buttons.forEach((button, index) => {
+        const buttonClass = button.classList[0];
+        if (firstContentClasses.includes(buttonClass)) {
+            button.classList.add('active');
+        }
+    });
+
+    // Add click event listener to each button
+    buttons.forEach((button, index) => {
+        button.addEventListener('click', function(event) {
+            const buttonClass = event.target.classList[0];
+            hideAllContent();
+
+            const matchingClassElement = document.querySelector('.contents-details .' + buttonClass);
+            if (matchingClassElement) {
+                matchingClassElement.style.display = "block";
+
+                buttons.forEach(btn => {
+                    const contentDivClasses = Array.from(matchingClassElement.classList);
+                    if (contentDivClasses.includes(btn.classList[0])) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+        });
+    });
+
+    // Check button classes against content-details classes and disable buttons
+    buttons.forEach(button => {
+        const buttonClass = button.classList[0];
+        const foundMatchingClass = Array.from(contentDetails).some(content => content.classList.contains(buttonClass));
+        if (!foundMatchingClass) {
+            button.disabled = true;
+        }
+    });
+});
+
+
+
+  
+
+//     $(document).ready(function() {
+//         const tabButtons = $(".tab-button");
+//         const tabContents = $(".tab-content");
+
+//         function openTab(tabIndex) {
+
+// // Hide all tab contents
+//             tabContents.hide();
+
+// // Deactivate all tab buttons
+//             tabButtons.removeClass("active");
+
+// // Show the selected tab content and activate the corresponding tab button
+//             $(tabContents[tabIndex]).show();
+//             $(tabButtons[tabIndex]).addClass("active");
+//         }
+
+// // Show the first tab content by default on page load
+//         openTab(0);
+
+// // Add click event listeners to each tab button to handle tab switching
+//         tabButtons.on("click", function() {
+//             const index = tabButtons.index(this);
+//             openTab(index);
+//         });
+//     });
+</script>
+{% schema %}
+    {
+        "name": "Collection banner",
+        "class": "cc-collection-banner section section--template",
+        "settings": [
+            {
+                "type": "paragraph",
+                "content": "Add a description or image by editing your collection. [Learn more](https://help.shopify.com/en/manual/products/collections/collection-layout)"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_collection_title",
+                "label": "Show collection title",
+                "info": "If hidden, you should provide a primary page heading (h1 tag) in another section with h1 option (rich text, image banner, slideshow, video) for SEO purposes.",
+                "default": true
+            },
+            {
+                "type": "checkbox",
+                "id": "show_product_count",
+                "label": "Show product count",
+                "info": "Only visible if the title is shown.",
+                "default": true
+            },
+            {
+                "type": "checkbox",
+                "id": "show_collection_description",
+                "label": "Show collection description",
+                "default": true
+            }, {
+                "type": "select",
+                "id": "text_align",
+                "label": "Content alignment",
+                "options": [
+                    {
+                        "value": "text-start",
+                        "label": "Left"
+                    }, {
+                        "value": "items-center text-center",
+                        "label": "Center"
+                    }, {
+                        "value": "items-end justify-end text-end",
+                        "label": "Right"
+                    }
+                ],
+                "default": "text-start"
+            }, {
+                "type": "select",
+                "id": "collection_image",
+                "label": "Collection image",
+                "default": "natural",
+                "options": [
+                    {
+                        "value": "natural",
+                        "label": "Natural"
+                    },
+                    {
+                        "value": "1.33",
+                        "label": "Landscape (4:3)"
+                    },
+                    {
+                        "value": "1.77",
+                        "label": "Landscape (16:9)"
+                    },
+                    {
+                        "value": "1",
+                        "label": "Square"
+                    }, {
+                        "value": "0.75",
+                        "label": "Portrait"
+                    }, {
+                        "label": "Fill",
+                        "value": "fill"
+                    }, {
+                        "value": "none",
+                        "label": "None"
+                    }
+                ]
+            }, {
+                "type": "checkbox",
+                "id": "use_product_image",
+                "label": "Use the first product image as the collection image",
+                "default": false
+            }, {
+                "type": "select",
+                "id": "text_width",
+                "label": "Content width",
+                "options": [
+                    {
+                        "value": "standard",
+                        "label": "Standard"
+                    }, {
+                        "value": "wide",
+                        "label": "Wide"
+                    }
+                ],
+                "default": "standard",
+                "info": "Does not apply when \"Collection image\" is set to \"Natural\"."
+            }, {
+                "type": "header",
+                "content": "Style"
+            }, {
+                "type": "select",
+                "id": "color_scheme",
+                "label": "Color scheme",
+                "options": [
+                    {
+                        "value": "default",
+                        "label": "Default"
+                    }, {
+                        "value": "1",
+                        "label": "Scheme 1"
+                    }, {
+                        "value": "2",
+                        "label": "Scheme 2"
+                    }, {
+                        "value": "3",
+                        "label": "Scheme 3"
+                    }
+                ],
+                "default": "default"
+            }
+        ]
+    }
+{% endschema %}
+
+
+<style>
+    .hidden {
+        display: none;
+    }
+    .extra-info,
+    .extra-info p {
+        font-size: 14px !important;
+    }
+
+    .connect-to-metamask__open-modal-button {
+        width: 100%;
+    }
+
+    .remaining {
+        font-size: 16px;
+        color: #888;
+        font-weight: 500;
+        margin-left: 10px;
+    }
+
+    #verify-nft,
+    #nft-required {
+        display: none;
+    }
+
+    #verify-nft.show,
+    #nft-required.show {
+        display: block;
+    }
+
+    #daily .collection {
+        margin-top: 20px;
+    }
+
+    .connect-to-metamask__open-modal-button {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        border-radius: 0;
+    }
+  .outer-div-banner {
+  width: 100%;
+  height: 200px;
+    margin-bottom: 50px;
+}
+
+.inner-div-banner {
+  width: 85%;
+  height: 200px;
+  margin: 0 auto; /* Center align */
+  border-radius: 15px;
+  background-image: url('{{ collection.image | img_url: 'master' }}');
+  background-size: cover;
+  background-position: center;
+}
+  .content-div-banner {
+  width: 30%;
+    position: relative;
+    top: 50%;
+    text-align: center;
+    height: 100px;
+    border-radius: 15px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.collection-title-banner {
+  margin: 0;
+    font-size: 3rem;
+    line-height: 3;
+    color: #fff;
+    font-weight: 400!important;
+}
+
+.item-count-banner {
+  font-size: 16px;
+    margin-top: -15px;
+    color: white;
+    line-height: 0;
+    font-weight: 400!important;
+}
+
+  .shopify-section.cc-collection-banner.section.section--template {
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  .shopify-section cc-product-details {
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
+{% comment %} {% assign first_product = collection.products.first %}
+{% if first_product %}
+{% assign product_image = first_product.images[0] %}
+<img src="{{ product_image | img_url: 'master' }}" alt="{{ product_image.alt }}" />
+{% endif %} {% endcomment %}{% comment %} <div class="image-container w-1/2">
+{% for product in collection.products %}
+{% if product.tags contains 'Type-Mens' or product.tags contains 'Type-Mens-Premium' %}
+{% for image in product.images %}
+<img
+class="image-displayer"
+src="{{ image.src | img_url: 'master' }}"
+alt="{{ product.title }}"
+data-tags="{{ product.tags | join: ',' }}" />
+{% endfor %}
+{% endif %}
+{% endfor %}
+</div> {% endcomment %}
+
+
+

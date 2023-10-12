@@ -1,0 +1,282 @@
+{%- if section.settings.show -%}
+
+{%- comment -%}
+// Tell us if the selected collection is Reaper's Choice
+{%- endcomment -%}
+{% if collections[section.settings.collection].handle == 'reapers-choice' %}
+  {% assign reapersChoice = true %}
+{% endif %}
+
+{%- comment -%}<hr class="hide-for-small">{%- endcomment -%}
+
+{%- comment -%}
+// section banner image chosen by user
+{%- endcomment -%}
+{%- if section.settings.logo -%}
+  <div class="row section-header text-center">
+    <img src="{{ loading_image }}" data-src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ collection.title | escape }}" style="width:100%;">
+  </div>
+{%- endif -%}
+
+<div class="row">
+  {%- comment -%}
+  // section heading chosen by user
+  {%- endcomment -%}
+  {%- if section.settings.title != blank -%}
+    <div class="columns small-12 section-title text-center">
+      <h2>{{ section.settings.title | escape }}</h2>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.description != blank -%}
+    <div class="columns small-12 section-description text-center">
+      {{ section.settings.description }}
+    </div>
+  {%- endif -%}
+</div>
+
+<div class="container row section-images">
+
+  {%- comment -%}
+  //-- products per row
+  {%- endcomment -%}
+  {%- case section.settings.grid -%}
+    {%- when '2' -%}
+      {%- assign block_grid = 'medium-block-grid-2' -%}
+    {%- when '3' -%}
+      {%- assign block_grid = 'medium-block-grid-3' -%}
+    {%- when '4' -%}
+      {%- assign block_grid = 'medium-block-grid-3 large-block-grid-4' -%}
+    {%- when '5' -%}
+      {%- assign block_grid = 'medium-block-grid-5' -%}
+  {%- endcase -%}
+
+  {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+  {%- assign counter = 0 -%}
+  {%- assign break_at = product_limit | plus: 0 -%}
+  {%- assign collection = collections[section.settings.collection] -%}
+
+
+  {% comment %} <ul class="row small-block-grid-2 {{ block_grid }}"> {% endcomment %}
+  <ul class="grid grid md:grid-cols-4 grid-cols-2">
+
+    {% comment %}// loop through the products{% endcomment %}
+    {%- paginate collection.products by collection.products_count -%}
+    {%- for product in collection.products -%}
+      {% comment %}// grab product handle and remove the product type{% endcomment %}
+      {% assign product_handle = product.handle | remove: "-tanktop" | remove: "-womens" | remove: "-mens" %}
+      {%- assign product_image_crop = 'center' -%}
+
+      {% comment %}depending on the product type, change the dimensions of the design{% endcomment %}
+      {%- if product.title contains '- Mens' -%}
+        {%- assign product_image_size = '300x210' -%}
+        {%- assign product_image_crop = 'top' -%}
+      {%- elsif product.title contains '- Mens Premium' -%}
+        {%- assign product_image_size = '300x210' -%}
+        {%- assign product_image_crop = 'top' -%}
+      {%- elsif product.title contains '- Womens' -%}
+        {%- assign product_image_size = '290x130' -%}
+      {%- elsif product.title contains '- Crew Neck' -%}
+        {%- assign product_image_size = '280x250' -%}
+      {%- elsif product.title contains '- Tank' -%}
+        {%- assign product_image_size = '300x250' -%}
+        {%- assign product_image_crop = 'top' -%}
+      {% else %}
+        {%- assign product_image_size = '200x' -%}
+      {% endif %}
+
+      {% assign amount_off = section.settings.amount_off %}
+      {% comment %} {% assign badge_text = section.settings.badge_text %} {% endcomment %}
+
+      {%- if product.available and product.tags contains section.settings.tag -%}
+        <li class="text-center grid" style="align-items: start;">
+          {%- include 'product--loop' with collection.handle with product_image_size with product_image_crop with matched_handle with amount_off with badge_text -%}
+        </li>
+        {%- assign counter = counter | plus: 1 -%}
+        {%- if counter == break_at -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endif -%}
+
+    {%- endfor -%}
+    {%- endpaginate -%}
+
+  </ul>
+
+  {%- if section.settings.show_view_all -%}
+  <div class="text-center">
+    <a href="{{ collection.url }}" class="rec-btn">
+      {{ section.settings.button_text }}
+    </a>
+  </div>
+  {%- endif -%}
+
+</div>
+<hr>
+{%- endif -%}
+
+{% schema %}
+
+{
+    "name": "Reaper's Choice",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show",
+            "label": "Show",
+            "default": false
+        }, {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Featured collection"
+        }, {
+            "type": "textarea",
+            "id": "description",
+            "label": "Flavor Text",
+            "default": "<p>Considered discovered ye sentiments projecting entreaties of melancholy is. In expression an solicitude principles in do. Hard do me sigh with west same lady.</p>"
+        }, {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Collection Banner",
+            "info": "Leave 'Heading' and 'Description' blank if you use banner"
+        }, {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+        }, {
+            "type": "text",
+            "id": "tag",
+            "label": "Tag",
+            "default": "Type-Mens"
+        }, {
+            "type": "text",
+            "id": "amount_off",
+            "label": "If on sale, how much off",
+            "default": "700",
+            "info": "In cents (ie: 700 = 7.00)"
+        }, {
+            "type": "text",
+            "id": "badge_text",
+            "label": "Badge text",
+            "default": "ON SALE"
+        }, {
+            "type": "select",
+            "id": "grid",
+            "label": "Products per row",
+            "default": "3",
+            "options": [
+                {
+                    "value": "2",
+                    "label": "2"
+                }, {
+                    "value": "3",
+                    "label": "3"
+                }, {
+                    "value": "4",
+                    "label": "4"
+                }, {
+                    "value": "5",
+                    "label": "5"
+                }
+            ]
+        }, {
+            "type": "select",
+            "id": "rows",
+            "label": "Rows",
+            "default": "2",
+            "options": [
+                {
+                    "value": "1",
+                    "label": "1"
+                }, {
+                    "value": "2",
+                    "label": "2"
+                }, {
+                    "value": "3",
+                    "label": "3"
+                }, {
+                    "value": "4",
+                    "label": "4"
+                }, {
+                    "value": "5",
+                    "label": "5"
+                }
+            ]
+        }, {
+            "type": "checkbox",
+            "id": "show_sale_badge",
+            "label": "Show sale badge on products",
+            "default": true
+        }, {
+            "type": "checkbox",
+            "id": "show_view_all",
+            "label": "Show button",
+            "default": false
+        }, {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Shop Now"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Reaper's Choice",
+            "category": "Custom Content"
+        }
+    ]
+}
+
+{% endschema %}
+{% stylesheet %}
+
+.section-description {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.section-title h2 {
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+#shopify-section-collection ul li a {
+    display: block;
+    height: auto;
+    overflow: hidden;
+    max-height: 375px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.section-header {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.section-images [class*=block-grid-] > li img {
+    border-radius: 5px;
+    width: 100%;
+    min-height: 300px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge.sale {
+    background-color: red;
+    width: 100%;
+}
+
+.row.grid {
+  grid-template-columns: auto auto;
+}
+
+h5 {
+  margin-bottom: 0;
+}
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,526 @@
+<style>
+  /* -- */
+  /* general styles */
+  /* -- */
+  body {font-family: 'Mina', sans-serif;}
+  .row{ max-width: 82.5rem; }
+  h1, h2, h3, h4, h5, small, p { margin: 0; padding: 0; font-family: 'Mina', sans-serif;}
+  #rewards img {width: 60px; max-width: 60px; margin-bottom: 10px;}
+  @media only screen and (max-width: 400px) {
+    #rewards img {width: 30px;}
+  }
+  h2 {font-weight: bold;}
+  .button {background: #a02fff;color: #fff;border-color: #a02fff;border-width: 2px;color: #fff; font-size: 2em;font-weight: bold; font-family: 'Mina', sans-serif; vertical-align: middle;}
+  .button:hover {background: #761ac3;color: #fff;}
+  .highlight {color: #ae7dd6;}
+  .center {text-align:center;}
+
+  /* -- */
+  /* heading styles */
+  /* -- */
+  h2.header {text-align: left; border-bottom: 10px solid #ae7dd6; margin-bottom: 25px; font-size: 2em;}
+  .earn h2, .earn h3, .spend h2, .spend h3 {line-height: 1; font-size: 2.5em}  
+  .earn h3, .spend h3 {font-size: 1em; font-weight: bold; margin-bottom: 10px;}
+  @media only screen and (max-width: 900px) {
+    .earn h2, .earn h3, .spend h2, .spend h3, .vip h2 {
+      font-size: 1.5em;
+      text-align: center;
+    }    
+  }
+  @media only screen and (min-width: 640px) {
+    .spend h2, .spend h3 {text-align:left;}
+  }
+
+  /* -- */
+  /* page header styles */
+  /* -- */
+  .hide {display: none;}
+  .show {display: block;}
+  section.header, section.refer-a-friend {text-align:center; margin-bottom: 50px; padding: 45px 25px; background: url('https://cdn.shopify.com/s/files/1/0739/9215/files/974593e6-457e-49b0-9c6b-8ae7b88981e6.gif?4644854711361502759'); background-size: contain; position: relative;}
+  section.header .button {margin: 0 0 10px 0; }
+  section.header .reaper {position: absolute;right: 0;top: 75px;}
+  #rewards .reaper img {height: 200px; max-width: 300px; width: auto; }
+  @media only screen and (max-width: 940px) {
+    .reaper {display: none;} 
+    section.header h1 {line-height: 1;}
+  }
+  section.header h1, section.refer-a-friend h2 {font-size: 3.5em; font-weight: bold; color: #fff; }
+  section.header p {color: #fff; font-size: 22px; max-width: 700px; margin: 0 auto 30px;}
+
+  /* -- */
+  /* first */
+  /* -- */
+  .points-math {margin-bottom: 60px;}
+  .points-math h2 {font-size: 2.5em;}
+  @media only screen and (max-width: 900px) {
+    .points-math h2 {font-size: 2em;}
+  }
+  
+  /* -- */
+  /* earn bones */
+  /* -- */
+  .earn {
+    flex: 2;
+  }
+  .earn .flex-items { 
+    flex-direction:row;
+    flex-wrap:wrap;
+    display:flex;
+    flex: 1 1 0%;
+  }
+  .earn .item {
+    width: calc(33.333% - 10px);  /* Or whatever */
+    margin: 0 auto;  /* Magic! */
+    background: #f2f2f2;
+    padding: 1em;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    background: #F2F2F2;
+    box-shadow: 4px 4px 40px 0px rgba(0, 0, 0, 0.15);
+  }
+  .earn small {font-size: 12px;}
+  @media only screen and (max-width: 640px) {
+    .earn .flex-items {margin-bottom: 30px;}
+    .earn .item {
+      width: calc(50% - 10px);  /* Or whatever */
+    }
+  }
+  @media only screen and (max-width: 335px) {
+    .earn .item {
+      width: calc(100% - 10px);  /* Or whatever */
+    }
+  }
+
+  /* -- */
+  /* spend bones */
+  /* -- */
+  #rewards .spend img {
+    margin-bottom: 0;
+    width: 75px; max-width: 75px;
+  }
+  .spend {
+    flex: 1;
+  }
+  .spend .item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: centetr;
+    align-content: stretch;
+    align-items: center;
+    margin-bottom: 40px;
+    /*   border: 1px solid red; */
+  }
+  .spend .item-icon, .spend .item-info {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: center;
+    /*   padding: 10px 20px; */
+  }
+  .spend .item-icon {
+    flex: 0 1 30%;
+    text-align: center;
+    /*   border: 1px solid blue; */
+  }
+  .spend .item-info {
+    justify-self: center;
+    align-self: center;
+    flex: 1 1 auto;
+    text-align: left;
+    /*   border: 1px solid orange; */
+  }
+  @media only screen and (max-width: 640px) {
+    .spend .item {flex-direction: column;}
+    .spend .item-info {text-align: center;}
+  }
+  .spend .item-info h3 {margin-bottom: 10px;}
+  .spend p {line-height: 1;}
+
+  /* -- */
+  /* VIP */
+  /* -- */
+  .vip {margin-top: 30px;}
+
+  /* -- */
+  /* table styles */
+  /* -- */
+  table {width: 100%; border: none;border-bottom: 15px solid black;}
+  table th {border-bottom: 15px solid black;}
+  table th:not(:first-child), table tr td:not(:first-child) {text-align: center;}
+  table th:not(:first-child) {font-size: 1.2em;}
+  table th:first-child > h3 {display: block !important;}
+  #rewards table th img {width: 150px; max-width: 150px;}
+  @media only screen and (max-width: 640px) {
+    #rewards table th img {width: 60px; max-width: 60px;}
+  }
+  table tr td {padding: 20px; font-size: 1em;}
+  table h3 {font-weight: bold; line-height: 1; font-size: 1.7em; margin-bottom: 10px;}
+
+
+  /* -- */
+  /* refer a friend styles */
+  /* -- */
+  section.refer-a-friend {color: #fff; margin-top: 30px; }
+  section.refer-a-friend h2 {color: #c6ffda; }
+  .refer-a-friend p {width: 50%; margin: 0 auto 15px; font-size: 22px;}
+  @media only screen and (max-width: 640px) {
+    .refer-a-friend p {width: 100%;}
+    section.refer-a-friend h2 {font-size: 2em; line-height: 1; margin-bottom: 20px;}
+  }
+  
+  /* -- */
+  /* responsive tables  */
+  /* -- */
+  #rewards table {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    border: none;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+  #rewards table tr {
+    padding: .35em;
+  }
+  #rewards table thead {
+    background: #F5F5F5;
+  }
+  #rewards table th, #rewards table td {
+    border: none;
+  }
+  #rewards table tr:nth-child(even) {
+    background: #F9F9F9;
+  }
+  @media screen and (max-width: 600px) {
+    #rewards table {
+      border: 0;
+    }
+    #rewards table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    #rewards table tr {
+      display: block;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+    }
+    #rewards table td {
+      display: block;
+      text-align: right;
+      padding: 10px;
+    }
+    #rewards table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+    }
+    #rewards table td:last-child {
+      border-bottom: 0;
+    }
+  }
+  /* Dynamic edits to page based on member status */
+  .rr-points-math .rr-points {font-weight: normal;}
+  .rr-points-math p {margin-bottom: 20px;}
+  .rr-points-math {margin-bottom: 20px;}
+  .rr-input-and-button p, .rr-points-math p {font-size: 1.2em; }
+  .rr-referral {max-width: 600px; padding: 0 25px 35px;}
+  .rr-referral .rr-input-and-button {display: flex; flex-direction: column;}
+
+  .rr-referral .button {font-size: 1em; margin:0;}
+  .rr-referral-url {font-size: 18px; padding: 10px; border: 1px solid #999;text-align: center;}
+
+  #main-content .bones-container {
+    flex-direction: row;
+  }
+  #main-content a {
+    color: #4EB98F;
+  }
+
+  #main-content .btn.btn--primary {
+    color: white;
+    background: #A02FFF;
+  }
+
+  #main-content .primary-join-btn {
+    padding: 20px 50px;
+    font-size: 30px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
+  @media only screen and (max-width: 768px) {
+    #main-content .bones-container {
+      flex-direction: column;
+    }
+    #main-content .btn {
+      padding: 20px 50px;
+      font-size: 24px;
+      border-radius: 50px;
+      padding: 20px 30px;
+    }
+    #main-content table tr {
+      border-radius: 30px;
+    }
+  }
+</style>
+
+
+<div id="rewards">
+
+  <section class="header">
+    <div class="reaper"><img src="https://cdn.shopify.com/s/files/1/0739/9215/files/reaper.png?7458492537110573349" alt=""></div>
+    <h1>{{ page.title }}</h1>
+    <div class="content">
+      <p>
+        {{ page.content }}
+      </p>
+      <a href="/account/register" class="btn btn--primary primary-join-btn">Start Earning Now!</span></a>
+      <br>
+      <a href="/account/login">Already a member?  Login Here</a>
+    </div>
+  </section>
+  
+  <section class="row rr-referral hide">
+  	<h2>Your custom referral link</h2>
+   
+    <div class="rr-input-and-button">
+        <input class="rr-referral-url" type="text" value="" id="referralLinkInput">
+        <a href="#" class="button postfix" onclick="myReferral()">Copy</a>
+    </div>
+  </section>
+
+  <section class="container center tandc mb-8 rr-points-math">
+    <h2 class="rr-name"></h2>
+    <p class="rr-points"></p>
+    
+    <p><b><span class="rr-current-points-match">5</span> BONES</b> for every $1.00 you spend</p>
+  </section>
+
+  <br>
+  
+  <div class="flex container bones-container">
+    <!-- earn bones -->
+    <div class="earn block">
+      <h2 class="header">Earning BONES is easy!</h2>
+
+      <div class="flex-items">
+        <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0739/9215/files/user.svg?15760440540493978977" alt="">
+          <h2>50</h2>
+          <h3>BONES</h3>
+          <p>
+            <b>Sign up</b><br>
+            <small>To earn, spend: $0</small>
+          </p>
+        </div> <!-- end item -->
+        <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0739/9215/files/instagram.svg?15760440540493978977" alt="">
+          <h2>25</h2>
+          <h3>BONES</h3>
+          <p>
+            <b>Follow on Instagram (once)</b><br>
+            <small>To earn, spend: $0</small>
+          </p>
+        </div> <!-- end item -->
+        <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0739/9215/files/like.svg?15760440540493978977" alt="">
+          <h2>25</h2>
+          <h3>BONES</h3>
+          <p>
+            <b>Like on Facebook (once)</b><br>
+            <small>To earn, spend: $0</small>
+          </p>
+        </div> <!-- end item -->
+        <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0739/9215/files/facebook.svg?15760440540493978977" alt="">
+          <h2>5</h2>
+          <h3>BONES</h3>
+          <p>
+            <b>Share on Facebook (daily)</b><br>
+            <small>To earn, spend: $0</small>
+          </p>
+        </div> <!-- end item -->
+        <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0739/9215/files/cake.svg?15760440540493978977" alt="">
+          <h2>200</h2>
+          <h3>BONES</h3>
+          <p>
+            <b>Celebrate your birthday</b><br>
+            <small>To earn, spend: $0</small>
+          </p>
+        </div> <!-- end item -->
+        <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0739/9215/files/friends.svg?15760440540493978977" alt="">
+          <h2>$5</h2>
+          <h3>DOLLARS</h3>
+          <p><b>Refer a friend</b><br>
+            <small>Your friend gets $5 Coupon, <br> You get $5 off any non-daily product</small>
+          </p>
+        </div> <!-- end item -->
+        <div class="item">
+          <img src="https://cdn.shopify.com/s/files/1/0739/9215/files/rating.svg?2076" alt="">
+          <h2>100</h2>
+          <h3>BONES</h3>
+          <p><b>Write a review</b><br>
+            <small>Can be earned once per month</small>
+          </p>
+        </div><!-- end item -->
+      </div> <!-- end flex-items -->
+    </div>
+
+    <!-- spend bones -->
+    <div class="spend block">
+      <h2 class="header">Spend Bones</h2>
+
+      <div class="flex-items">
+        <div class="item">
+          <div class="item-icon">
+            <img src="{{ 'bill-5-dollars.png' | file_img_url: '500x' }}" alt="Get $5 to spend">
+          </div>
+          <div class="item-info">
+            <h2>500</h2>
+            <h3>BONES</h3>
+            <p>$5 Off orders over $30 <br> <i>(*does not apply to daily products)</i></p>
+          </div>
+        </div> <!-- end item -->
+        <div class="item">
+          <div class="item-icon">
+            <img src="{{ 'bill-10-dollars.png' | file_img_url: '500x' }}" alt="Get $10 to spend">
+          </div>
+          <div class="item-info">
+            <h2>1000</h2>
+            <h3>BONES</h3>
+            <p>$10 Off orders over $60 <br> <i>(*does not apply to daily products)</i></p>
+          </div>
+        </div> <!-- end item -->
+        <div class="item">
+          <div class="item-icon">
+            <img src="{{ 'bill-10-percent.png' | file_img_url: '500x' }}" alt="Get 10% off to spend">
+          </div>
+          <div class="item-info">
+            <h2>1000</h2>
+            <h3>BONES</h3>
+            <p>10% Off any order</p>
+          </div>
+        </div> <!-- end item -->
+      </div>
+    </div>
+  </div>
+
+
+  <section class="vip container full-width">
+    <div class="columns small-12">
+      <h2 class="header">Level up and unlock</h2>
+      <table cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th scope="col">
+            <h3 class="show-for-medium-up">Unlock new VIP<br>levels for even<br>better perks</h3>
+            <span class="show-for-medium-up">Amount of BONES earned to enter tier</span>
+          </th>
+          <th scope="col"><img src="https://cdn.shopify.com/s/files/1/0739/9215/files/bones-bronze.svg?15298228330344538201" alt=""><br><span>Bronze <br class="show-for-small-only">VIP<br> <small>0 - 699 <br class="show-for-small-only">BONES</small></span></th>
+          <th scope="col"><img src="https://cdn.shopify.com/s/files/1/0739/9215/files/bones-silver.svg?15298228330344538201" alt=""><br><span>Silver <br class="show-for-small-only">VIP<br> <small>700 - 1,500 <br class="show-for-small-only">BONES</small></span></th>
+          <th scope="col"><img src="https://cdn.shopify.com/s/files/1/0739/9215/files/bones-gold.svg?15298228330344538201" alt=""><br><span>Gold <br class="show-for-small-only">VIP<br> <small>1,500+ <br class="show-for-small-only">BONES</small></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Perk">Bones earned per $ spent</td>
+          <td data-label="Bronze VIP">5</td>
+          <td data-label="Silver VIP">6</td>
+          <td data-label="Gold VIP">7</td>
+        </tr>
+        <tr>
+          <td scope="row" data-label="Perk">Weekly sneak peek of upcoming designs</td>
+          <td data-label="Bronze VIP">Yes</td>
+          <td data-label="Silver VIP">Yes</td>
+          <td data-label="Gold VIP">Yes</td>
+        </tr>
+        <tr>
+          <td scope="row" data-label="Perk">Discount code</td>
+          <td data-label="Bronze VIP">&nbsp;</td>
+          <td data-label="Silver VIP">10% OFF</td>
+          <td data-label="Gold VIP">15% OFF</td>
+        </tr>
+        <tr>
+          <td scope="row" data-label="Perk">Tier climber freebie</td>
+          <td data-label="Bronze VIP">&nbsp;</td>
+          <td data-label="Silver VIP">Small Surprise</td>
+          <td data-label="Gold VIP">Bigger Surprise</td>
+        </tr>
+        <tr>
+          <td scope="row" data-label="Perk">Free annual gift</td>
+          <td data-label="Bronze VIP">&nbsp;</td>
+          <td data-label="Silver VIP">&nbsp;</td>
+          <td data-label="Gold VIP">Exclusive VIP Gift</td>
+        </tr>
+        <tr>
+          <td scope="row" data-label="Perk">Early access to sales</td>
+          <td data-label="Bronze VIP">&nbsp;</td>
+          <td data-label="Silver VIP">&nbsp;</td>
+          <td data-label="Gold VIP">Yes</td>
+        </tr>
+        <tr>
+          <td scope="row" data-label="Perk">Mad respect</td>
+          <td data-label="Bronze VIP">&nbsp;</td>
+          <td data-label="Silver VIP">&nbsp;</td>
+          <td data-label="Gold VIP">Yes</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section class="refer-a-friend">
+    <h2>Give $5, Get $5</h2>
+    <p>When a friend makes a purchase using your link, you receive $5 OFF any <a href-"https://riptapparel.com/collections/anytime-products">non-daily product</a> and they receive a $5 off coupon.</p>
+    <p><b>The more friends you refer, the more CASH you earn towards <a href="https://www.riptapparel.com/collections/best-sellers/type-mens" title="Awesome T-Shirts">awesome t-shirts</a>!</b></p>
+    <a href="/account/register" class="btn btn--primary">Start Earning Now!</a>
+  </section>
+  
+  <section class="container center tandc mb-8">
+    <div class="columns small-12">
+      <h5>Terms &amp; Conditions:</h5>
+      <p>
+        Points not given for shipping cost and are awarded on the subtotal after discounts are applied.  
+        Points are not redeemable on shipping costs and 
+        no other coupon codes are valid when redeeming reward points. 
+        *Restrictions may apply. Email 
+        <a href="mailto:help@riptapparel.com">help [at] riptapparel [dot] com</a> with questions or for more information.
+      </p>
+      <p><a href="https://docs.google.com/document/d/1kN6Olpie0UvQkjxGTFqz9CrNoqfNTLdnktFrSEbDLRU">CLICK HERE</a> for the full terms & conditions.</p>
+    </div>
+  </section>
+
+</div> 
+{% comment %}-- end #rewards --{% endcomment %}
+
+{{ 'smile-tj.js' | asset_url | script_tag }} 
+
+<script>
+  function myReferral() {
+	//Get the text field
+    var copyText = document.getElementById("referralLinkInput");
+
+	//Select the text field
+    copyText.select();
+
+	//Copy the text inside the text field
+    document.execCommand("copy");
+
+	//Alert the copied text
+    alert("Copied the text: " + copyText.value);
+  }
+</script>

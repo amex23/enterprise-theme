@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modal Example</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.15/tailwind.min.css">
+    </head>
+    <body>
+        <div>
+            <a
+                href="#"
+                id="openModal"
+                class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Open Modal</a>
+
+            <!-- Modal -->
+            <div id="modalcontainer" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+                <div class="modal-content bg-white p-8 rounded shadow-lg">
+                    <!-- Modal Content Goes Here -->
+                    <p>This is a Tailwind CSS modal.</p>
+                    <a
+                        href="#"
+                        id="closeModal"
+                        class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded mt-4">Close</a>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            /* CSS for the modal */
+            #modalcontainer:target {
+                display: block;
+            }
+
+            /* Styles to overlay the background when the modal is open */
+            #modalcontainer:before {
+                content: "";
+                background-color: rgba(0, 0, 0, 0.7);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+
+            /* Center the modal */
+            .modal-content {
+                max-width: 400px; /* Adjust as needed */
+                margin: 0 auto;
+                z-index: 99999 !important;
+            }
+
+            /* Hide the modal by default */
+            #modalcontainer {
+                display: none;
+            }
+        </style>
+
+        <script>
+            // JavaScript to open and close the modal
+            const openModalLink = document.getElementById('openModal');
+            const closeModalLink = document.getElementById('closeModal');
+            const modalnew = document.getElementById('modalcontainer');
+
+            openModalLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                modalnew.style.display = 'block';
+            });
+
+            closeModalLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                modalnew.style.display = 'none';
+            });
+
+// Close the modal when clicking outside
+            modalnew.addEventListener('click', (event) => {
+                if (event.target === modalnew) {
+                    modalnew.style.display = 'none';
+                }
+            });
+        </script>
+
+
+    </body>
+</html>

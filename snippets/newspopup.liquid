@@ -1,0 +1,75 @@
+<div class="modal-overlay" id="modal-overlay">
+    <div class="modal modalnew" id="modal">
+        <div class="flex w-full justify-between items-center">
+            <div>
+                <h2 class="text-2xl font-bold">$20 off your next order over $99*</h2>
+                <p class="text-sm">Hear about sales, new arrivals & more</p>
+            </div>
+            <button id="close-modal">Close</button>
+        </div>
+        {% form 'customer' %}
+            <div class="bg-red-400">
+                <div class="email">
+                    <label for="email">Email</label>
+                    <input type="email" name="contact[email]" />
+                </div>
+
+                <div class="submit bg-[black] text-white font-bold py-3">
+                    <input type="submit" value="Sign up" />
+                </div>
+            </div>
+        {% endform %}
+    </div>
+</div>
+
+<script>
+    // Get references to the modal and overlay
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modal = document.getElementById('modal');
+    const closeModalButton = document.getElementById('close-modal');
+
+// Function to show the modal
+    function showModal() {
+        modalOverlay.style.display = 'flex'; // Display the overlay as a flex container
+    }
+
+// Function to close the modal
+    function closeModal() {
+        modalOverlay.style.display = 'none'; // Hide the overlay
+    }
+
+// Event listener for the close button
+    closeModalButton.addEventListener('click', closeModal);
+
+// Show the modal on initial load (when the page is fully loaded)
+    window.addEventListener('load', showModal);
+</script>
+
+<style>
+    /* Styles for the modal and overlay */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 75%;
+        left: 68%;
+        {% comment %}
+            width: 100%;
+        {% endcomment %}
+        height: 14%;
+        /* background-color: rgba(0, 0, 0, 0.5); */
+        background-color: red;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999999 !important;
+    }
+    .modal {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        text-align: center;
+
+    }
+
+    .modalnew {}
+</style>

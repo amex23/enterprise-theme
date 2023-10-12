@@ -1,0 +1,253 @@
+<div id="graveyard">
+
+	<div class="large-banner green">
+		<h2>Graveyard</h2>
+		<p>
+		The Graveyard is where all our daily Tees go to rest in peace after their original sale date at their ghostly low price! Feel free to take a gander through our entire history and "LOVE" your favorites.
+		</p>
+	</div>
+
+	<div class="filter">
+		<select id="date-released" style="width:200px">
+			<option value="">Date Released</option>
+			<option value="new">Newest to Oldest</option>
+			<option value="old">Oldest to Newest</option>
+		</select>
+
+		<select id="love-count" style="width:200px">
+			<option value="">Love Count</option>
+			<option value="most">Most Loves</option>
+			<option value="least">Least Loves</option>
+		</select>
+
+		<select id="shirt-color" data-bind="options: colors,
+                       optionsText: 'color',
+                       optionsValue: 'color',
+                       optionsCaption: 'All Shirt Colors'" style="width:200px;margin-right:15px;">
+
+		</select>
+
+		<div class="search-box">
+			<form method="get" action="/pages/graveyard" style="position: relative;">
+				<input type="search" name="search" id="search" placeholder="Search" class="search__input w-full input js-search-input" /> 
+				<button class="search__submit text-current absolute focus-inset start"><span class="visually-hidden">Search</span><svg width="21" height="23" viewBox="0 0 21 23" fill="currentColor" aria-hidden="true" focusable="false" role="presentation" class="icon"><path d="M14.398 14.483 19 19.514l-1.186 1.014-4.59-5.017a8.317 8.317 0 0 1-4.888 1.578C3.732 17.089 0 13.369 0 8.779S3.732.472 8.336.472c4.603 0 8.335 3.72 8.335 8.307a8.265 8.265 0 0 1-2.273 5.704ZM8.336 15.53c3.74 0 6.772-3.022 6.772-6.75 0-3.729-3.031-6.75-6.772-6.75S1.563 5.051 1.563 8.78c0 3.728 3.032 6.75 6.773 6.75Z"></path></svg></button>
+			</form>
+		</div>
+	</div>
+
+	<div data-bind="foreach: designs">
+		<div class="graveyard-design" data-bind="attr: { design : id, status: release_status }">
+
+			<span data-bind="with:merchandise">
+				<img data-bind="
+					attr: {
+						src: shopify_detail_image, 
+						alt: $parent.name + ' - Collection Image - RIPT Apparel' 
+					}
+				"/>
+			</span>
+			<div class="overlay graveyard-overlay" data-bind="attr: { handle : handle }">
+				
+				<div class="graveyard-overlay-content overlay-content">
+					<h3 class="graveyard-title" data-bind="text: name"></h3>
+					<span class="graveyard-artist" data-bind="with:artist">
+						<a data-bind="text: username, attr: { href: '/pages/member?' + handle }"></a>
+					</span>
+					<div class="graveyard-loves">
+						<span data-bind="text: loves"></span>
+							<svg class="svg-heart" viewBox="0 0 1024 1024">
+                                <use xlink:href="#svg-heart"></use>
+                            </svg>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<button class="btn btn--primary mb-8" id="view-more" style="margin-top:25px" data-bind="click: loadGraveyard">View More</button>
+	</div>
+</div>
+
+<script>
+
+// Set the active tab.
+$('.graveyard-tab').addClass('active');
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
+$(document).ready(function() {
+  
+  	var	dailyOverlay = '<span class="price">$14</span>',
+        yesterdayOverlay = '<span class="price">$19</span>';
+  
+    function applySaleTreatments(){
+      $('.graveyard-design[status="yesterdays-designs"]').each(function(){
+        $(this).addClass('yesterdays-designs').addClass('daily-design');
+        $(this).append(yesterdayOverlay);
+      });
+                                                                
+      $('.graveyard-design[status="daily-design"]').each(function(){
+        $(this).addClass('daily-design');
+        $(this).append(dailyOverlay);
+      });
+    }
+
+	// Setup the view model.
+	var vm = function() {
+		this.offset = 0;
+		this.designs = ko.observableArray([]);
+		this.colors = ko.observableArray([]);
+
+		this.loadGraveyard = function() {
+
+			// Get the username
+			var q = getUrlVars();
+
+			var params = {
+				sortby : q['sortby'],
+				search : q['search'],
+				color : q['color'],
+				offset : this.offset
+			};
+
+			$('#search').val(q['search']);
+
+			$.get('{{ settings.api_url }}/shopify/colors' , {}, function(colors) {
+				self.colors(colors);
+				var q = getUrlVars();
+
+				if(q['color'] != undefined) {
+					$('#shirt-color').val(q['color']);
+				}
+// 				$('#shirt-color').data('selectBoxIt').refresh();
+			}, 'json');
+
+			$.get('{{ settings.api_url }}/shopify/graveyard' , params, function(designs) {
+      			
+                for (var i = 0; i < designs.length; i++){
+				
+                  if (designs[i].release_date == moment().format('YYYY-MM-DD')){
+						console.log('daily-design');
+                    	designs[i].release_status = "daily-design";
+
+
+                  }else if ((designs[i].release_date == moment().subtract('1', 'days').format('YYYY-MM-DD')) && (moment().tz('America/Chicago').hours() < 12)){
+						console.log('yesterdays-designs');
+                    	designs[i].release_status = "yesterdays-designs";
+
+                  }else{
+                    	designs[i].release_status = "";
+                  }
+                }
+      
+      			console.log(designs);
+      
+				self.designs.push.apply(self.designs, designs);
+				self.offset += 20;
+      
+ 				applySaleTreatments();
+                
+				if(designs.length < 20) {
+					$('#view-more').hide();
+				}
+			}, 'json');
+		};
+	};
+	ko.applyBindings(vm);
+
+	// Load the first set of artists.
+	$('#view-more').trigger('click');
+
+	// Update loves
+	$('#graveyard').on('click', '.graveyard-loves', function(e) {
+		console.log(e)
+		e.preventDefault();
+		e.stopPropagation();
+		{% if customer %}
+		var $design = $(this).closest('.graveyard-design');
+
+		var designId = $design.attr('design');
+		$.post('{{ settings.api_url }}/shopify/newlove/' + designId, { username: $.cookie('ript-username') }, function(count) {
+			$design.find('.graveyard-loves span').text(count);
+      
+            if ($design.find('.graveyard-loves').hasClass('loved')){
+              $design.find('.graveyard-loves').removeClass('loved');
+            }else{
+              $design.find('.graveyard-loves').addClass('loved');
+            }
+		});
+		{% else %}
+  
+		window.location.assign('/account/login?checkout_url=' + window.location.href);
+		console.log("not logged in");
+		{% endif %}
+	});
+ 
+
+	// Check if a filter was applied
+
+	function getUrlVars()
+	{
+	    var vars = [], hash;
+	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	    for(var i = 0; i < hashes.length; i++)
+	    {
+	        hash = hashes[i].split('=');
+	        vars.push(hash[0]);
+	        vars[hash[0]] = hash[1];
+	    }
+	    return vars;
+	}
+
+	var q = getUrlVars();
+
+	if(q['sortby'] == 'new' || q['sortby'] == 'old') {
+		$('#date-released').val(q['sortby']);
+	}
+
+	if(q['sortby'] == 'most' || q['sortby'] == 'least') {
+		$('#love-count').val(q['sortby']);
+	}
+
+	if(q['color'] != undefined) {
+		$('#shirt-color').val(q['color']);
+	}
+
+	// Go to the design page
+	$('#graveyard').on('click', '.graveyard-overlay', function() {
+		window.location = '/collections/' + $(this).attr('handle');
+	});
+
+	$('#date-released').on('change', function() {
+		if($(this).val() != '') {
+			window.location = '/pages/graveyard?sortby=' + $(this).val();
+		}
+	});
+
+	$('#love-count').on('change', function() {
+		if($(this).val() != '') {
+			window.location = '/pages/graveyard?sortby=' + $(this).val();
+		}
+	});
+
+	$('#shirt-color').on('change', function() {
+		if($(this).val() != '') {
+			window.location = '/pages/graveyard?color=' + $(this).val();
+		}
+	});
+});
+
+</script>
